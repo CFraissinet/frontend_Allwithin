@@ -1,22 +1,77 @@
-.main {
+/* styles/Home.module.css */
+
+.homeContainer {
+  width: 100%;
+}
+
+.navbar {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
-  padding: 4rem 0;
+  width: 100%;
+  height: 10vh;
+  background-color: #ffffff;
+  padding: 0 2%;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 8vh; /* Adjust this as per your logo's aspect ratio */
+}
+
+.buttons {
+  display: flex;
+  gap: 1%;
+}
+
+.button {
+  width: 10%;
+  height: 8vh;
+  font-size: 1vh;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5vh;
+  color: #fff;
+  background-color: #87C0CD;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
 }
 
 .title {
-  line-height: 1.15;
-  font-size: 4rem;
+  font-size: 6vh;
+  width: 60%;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 5vh auto;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.highlight {
+  color: #87C0CD;
 }
 
-.title a:hover, .title a:focus, .title a:active {
-  text-decoration: underline;
+.subtitle {
+  font-size: 3vh;
+  width: 40%;
+  color: #87C0CD;
+  text-align: center;
+  margin: 3vh auto;
+}
+
+.backgroundTop {
+  width: 100%;
+  height: 60vh;
+  background-color: #152232;
+}
+
+.backgroundBottom {
+  width: 100%;
+  height: 40vh;
+  background-color: #87C0CD;
 }
