@@ -23,33 +23,59 @@
   height: 8vh; /* Adjust this as per your logo's aspect ratio */
 }
 
+/* the positioning div that includes the 2 buttons */
 .buttons {
   display: flex;
-  gap: 1%;
+  gap: 10%;
+  width: 40%;
+  height: 80%;
+  justify-content: flex-end;
+    
 }
 
 .button {
-  width: 10%;
-  height: 8vh;
-  font-size: 1vh;
+  width: 232px;
+  height: 100%;
+  font-size: 24px;
   font-weight: 600;
-  border: none;
-  border-radius: 0.5vh;
-  color: #fff;
-  background-color: #87C0CD;
+  border: solid 5px #152232;
+  border-radius: 20px;
+  color: #152232;
+  background-color: #ffffff;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #0056b3;
-}
+  background-color: #87C0CD;
+  color: #ffffff;
+  transition: 0.2s;
 
+}
+.headerPositioning{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #1879f0;
+}
+.titles {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: rgb(85, 255, 167);
+  height: 50%;
+  align-items: flex-start; /* Align text to the left */
+  padding-left: 2%; /* Add some padding on the left */
+  position: relative; /* Add relative positioning to allow absolute positioning of children */
+}
 .title {
-  font-size: 6vh;
-  width: 60%;
+  font-size: 96.82px;
+  width: 100%; /* Take the full width */
   color: #FFFFFF;
-  text-align: center;
-  margin: 5vh auto;
+  text-align: left; /* Align text to the left */
+  margin-bottom: 1vh; /* Decrease the margin to reduce space between h1 and h2 */
 }
 
 .highlight {
@@ -57,12 +83,33 @@
 }
 
 .subtitle {
-  font-size: 3vh;
-  width: 40%;
+  font-size: 48px;
+  width: 100%; /* Take the full width */
   color: #87C0CD;
-  text-align: center;
-  margin: 3vh auto;
+  margin-left: 20%;
+  margin-top: -2%; /* Remove margin at the top to reduce space between h1 and h2 */
 }
+/* styles/Home.module.css */
+
+.lineDiamond {
+  position: absolute; /* Position the line absolutely within .titles */
+  right: 0; /* Position it on the far right */
+  align-items: center;
+  width: 30%;
+  height: 8px;
+  background-color: #f90303;
+}
+
+.lineDiamond::before {
+  content: '';
+  position: absolute;
+  left: -20px; /* Adjust this value to position the diamond correctly */
+  width: 20px;
+  height: 20px;
+  background-color: #ff0000;
+  transform: rotate(45deg);
+}
+
 
 .backgroundTop {
   width: 100%;

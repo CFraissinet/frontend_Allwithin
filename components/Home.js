@@ -13,10 +13,11 @@ function Home() {
                 <button className={styles.button}>Sign In</button>
             </div>
         </div>
-        <h1 className={styles.title}>
-            Welcome to <span className={styles.highlight}>AllWithin</span>
-        </h1>
-        <h2 className={styles.subtitle}>Where projects come to life</h2>
+          <div className={styles.titles}>        
+          <h1 className={styles.title}> Welcome to <span className={styles.highlight}>AllWithin</span> </h1>
+            <h2 className={styles.subtitle}>Where projects come to life</h2>
+            <div className={styles.lineDiamond}></div>
+          </div>
     </div>
     <div className={styles.backgroundBottom}></div>
 </div>
