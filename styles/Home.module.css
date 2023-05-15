@@ -64,7 +64,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: rgb(85, 255, 167);
   height: 50%;
   align-items: flex-start; /* Align text to the left */
   padding-left: 2%; /* Add some padding on the left */
@@ -86,18 +85,19 @@
   font-size: 48px;
   width: 100%; /* Take the full width */
   color: #87C0CD;
-  margin-left: 20%;
+  margin-left: 23%;
   margin-top: -2%; /* Remove margin at the top to reduce space between h1 and h2 */
 }
 /* styles/Home.module.css */
 
 .lineDiamond {
+  margin-top: 12%;
   position: absolute; /* Position the line absolutely within .titles */
   right: 0; /* Position it on the far right */
   align-items: center;
   width: 30%;
   height: 8px;
-  background-color: #f90303;
+  background-color: #ffffff;
 }
 
 .lineDiamond::before {
@@ -106,8 +106,9 @@
   left: -20px; /* Adjust this value to position the diamond correctly */
   width: 20px;
   height: 20px;
-  background-color: #ff0000;
+  background-color: #ffffff;
   transform: rotate(45deg);
+  margin-top:-6px;
 }
 
 
