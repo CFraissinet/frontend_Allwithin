@@ -29,7 +29,7 @@ function Home() {
             </div>
             <div className={styles.containerCards}>
             <div className={styles.leftCard}>
-              <span className={styles.txtLeftCard}>Creat your own project and costumize your staff</span>
+              <span className={styles.txtLeftCard}>Create your own project and costumize your staff</span>
             <button className={styles.btnLeft}>Creat Project</button>
             </div>
         <div className={styles.rightCard}>
