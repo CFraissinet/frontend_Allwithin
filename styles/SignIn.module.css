@@ -15,11 +15,20 @@
 
 .buttonSignUp {
     font-size: large;
+    border: solid transparent 1px;
     border-radius: 20px;
     background-color: #152232;
     color: white;
     height: 50px    ;
     width: 150px;
+}
+
+.buttonSignUp:hover {
+    cursor: pointer;
+    background-color: #87c0cd;
+    border-color: #87c0cd;
+    transition: 0.3s;
+
 }
 
 .componant {
@@ -101,6 +110,7 @@
 }
 
 .buttonSignIn {
+    border: solid transparent 1px;
     margin-bottom: 10%;
     font-size: large;
     border-radius: 20px;
@@ -108,6 +118,13 @@
     color: black;
     height: 50px;
     width: 150px;
+}
+
+.buttonSignIn:hover {
+    cursor: pointer;
+    background-color: #87c0cd;
+    border-color: #87c0cd;
+    transition: 0.3s;
 }
 
 .graph {
