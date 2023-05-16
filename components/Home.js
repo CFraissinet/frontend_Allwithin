@@ -11,8 +11,8 @@ function Home() {
             <img className={styles.logo} src="/path/to/your/logo.png" alt="Logo" />
           </div>
           <div className={styles.buttons}>
-            <button className={styles.button}>Sign Up</button>
-            <button className={styles.button}>Sign In</button>
+            <button className={styles.btnSIgnIn}>Sign In</button>
+            <button className={styles.btnSignUp}>Sign Up</button>
           </div>
       </div>
            {/* navbar end*/}
@@ -28,18 +28,15 @@ function Home() {
               <div className={styles.line}></div>
             </div>
             <div className={styles.containerCards}>
-            <div className={styles.leftCard}></div>
-        <div className={styles.rightCard}></div>
+            <div className={styles.leftCard}>
+            <button className={styles.btnLeft}>Creat Project</button>
+            </div>
+        <div className={styles.rightCard}>
+            <button className={styles.btnRight}>Join Project</button>
+        </div>
             </div>
             </div>
         {/* backgroundTop end*/}
-
-      {/* container for the cards */}
-      
-
-   
-      {/* background bottom */}
-      {/* <div className={styles.backgroundBottom}></div> */}
     </div>
   );
 }
