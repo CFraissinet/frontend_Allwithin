@@ -1,22 +1,248 @@
-.main {
+/* styles/Home.module.css */
+
+.homeContainer {
+  width: 100vw;
+ height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
-  padding: 4rem 0;
+  width: 100%;
+  height: 70px;
+  background-color: #ffffff;
+  padding: 0 2%;
 }
 
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 8vh; /* Adjust this as per your logo's aspect ratio */
+}
+
+/* the positioning div that includes the 2 buttons */
+.buttons {
+  display: flex;
+  gap: 10%;
+  width: 40%;
+  height: 80%;
+  justify-content: flex-end;
+    
+}
+/************ buttons style start*************/
+.btnSIgnIn {
+  width: 30%;
+  height: 100%;
+  font-size: 100%;
+  font-weight: 600;
+  border: solid 5px #152232;
+  border-radius: 15px;
+  color: #152232;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.btnSIgnIn:hover {
+  background-color: #87C0CD;
+  color: #152232;
+  transition: 0.2s;
+  border: solid 5px #87C0CD;
+
+}
+
+.btnSignUp {
+  width: 30%;
+  height: 100%;
+  font-size: 100%;
+  font-weight: 600;
+  border: solid 5px #152232;
+  border-radius: 20px;
+  color: #ffffff;
+  background-color: #152232;
+  cursor: pointer;
+}
+.btnSignUp:hover {
+  background-color: #87C0CD;
+  color: #152232;
+  transition: 0.2s;
+  border: solid 5px #87C0CD;
+
+}
+
+.btnLeft {
+  width: 30%;
+  height: 100%;
+  font-size: 100%;
+  font-weight: 600;
+  border-radius: 15px;
+  color: #32152f;
+  background-color: #ffffff;
+  cursor: pointer;
+  width: 40%;
+  height: 20%;
+  margin-bottom: 3vh;
+  margin-right: 3vh;
+}
+.btnLeft:hover {
+  background-color: #87C0CD;
+  color: #152232;
+  transition: 0.2s;
+ 
+}
+.btnRight {
+  width: 30%;
+  height: 100%;
+  font-size: 100%;
+  font-weight: 600;
+  border-radius: 15px;
+  color: #ffffff;
+  background-color: #87C0CD;
+  cursor: pointer;
+  width: 40%;
+  height: 20%;
+  margin-bottom: 3vh;
+  margin-left: 3vh;
+}
+.btnRight:hover {
+  background-color: #ffffff;
+  color: #152232;
+  transition: 0.2s;
+
+}
+/************ buttons style end*************/
+
+.backgroundTop {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background:linear-gradient(to bottom, #152232 60%, #87C0CD 61%);
+}
+/* diamondLine start*/
+.lineContainer{
+  margin-top: 10px;
+justify-content: center;
+align-items: center;
+  display: flex;
+  height: min-content;
+  width: 60%;
+
+  align-self: flex-end;
+}
+.line{
+  height: 10px;
+  width:100%;
+  background-color: rgb(255, 255, 255);
+}
+.square{
+  height: 30px;
+  width: 30px;
+  background-color: rgb(255, 255, 255);
+  transform: rotate(45deg);
+}
+/* diamondLine end*/
+
+.headerPositioning{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #152232;
+}
 .title {
-  line-height: 1.15;
-  font-size: 4rem;
+  width:1131.59px;; /* Take the full width */
+  height: 118px;
+  font-weight: bold;
+  color: #FFFFFF;
+  font-size: 96.8205px;
+  margin-bottom: 0vh; /* Decrease the margin to reduce space between h1 and h2 */
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.highlight {
+  color: #87C0CD;
 }
 
-.title a:hover, .title a:focus, .title a:active {
-  text-decoration: underline;
+.subtitle {
+  width: 766px;
+height: 59px;
+font-weight: 500;
+font-size: 48px;
+  color: #87C0CD;
+  margin: 0px 0px 3px 455px; /* Remove margin at the top to reduce space between h1 and h2 */
+}
+/* styles/Home.module.css */
+.containerCards{
+margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+
+
+ 
+}
+.leftCard{
+  display: flex;
+  justify-content: end;
+  align-items: end;
+width: 30%;
+height: 75%;
+background: #152232;
+border: 6px solid #FFFFFF;
+box-shadow: -30px 30px 2px #FFFFFF;
+border-radius: 20px;
+}
+.txtLeftCard{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+justify-content:  flex-start;
+ text-align: center;
+  width: 100%;
+  height: 90%;
+  font-weight: 500;
+  font-size: 25px;
+  color: #FFFFFF;
+  
+}
+.rightCard{
+  display: flex;
+  justify-content: start;
+  align-items: end;
+width: 30%;
+height: 75%;
+background: #152232;
+border: 6px solid #FFFFFF;
+box-shadow: 30px 30px 2px #FFFFFF;
+border-radius: 20px;
+
+}
+.txtRightCard{
+ display: flex;
+  align-items: center;
+  flex-direction: column;
+justify-content:  flex-start;
+ text-align: center;
+ order: 2;
+  width: 100%;
+  height: 90%;
+  font-weight: 500;
+  font-size: 25px;
+  color: #FFFFFF;
+  
+}
+.backgroundBottom {
+  width: 100%;
+  height: 40vh;
+  background-color: #87C0CD;
 }
