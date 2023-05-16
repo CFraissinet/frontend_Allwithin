@@ -14,7 +14,7 @@
   width: 100%;
   height: 70px;
   background-color: #ffffff;
-  padding: 0 2%;
+
 }
 
 .logoContainer {
@@ -31,18 +31,19 @@
   display: flex;
   gap: 10%;
   width: 40%;
-  height: 80%;
+  height: 100%;
   justify-content: flex-end;
+  padding: 10px 20px 10px 20px;
     
 }
 /************ buttons style start*************/
 .btnSIgnIn {
-  width: 30%;
+  width: 150px;
   height: 100%;
   font-size: 100%;
   font-weight: 600;
-  border: solid 5px #152232;
-  border-radius: 15px;
+  border: solid 3px #152232;
+  border-radius: 10px;
   color: #152232;
   background-color: #ffffff;
   cursor: pointer;
@@ -50,28 +51,28 @@
 
 .btnSIgnIn:hover {
   background-color: #87C0CD;
-  color: #152232;
+  color: #ffffff;
   transition: 0.2s;
   border: solid 5px #87C0CD;
 
 }
 
 .btnSignUp {
-  width: 30%;
+  width: 150px;
   height: 100%;
   font-size: 100%;
   font-weight: 600;
-  border: solid 5px #152232;
-  border-radius: 20px;
+  border: solid 1px #152232;
+  border-radius: 10px;
   color: #ffffff;
   background-color: #152232;
   cursor: pointer;
 }
 .btnSignUp:hover {
   background-color: #87C0CD;
-  color: #152232;
+  color: #ffffff;
   transition: 0.2s;
-  border: solid 5px #87C0CD;
+  border: solid 1px #87C0CD;
 
 }
 
@@ -80,7 +81,7 @@
   height: 100%;
   font-size: 100%;
   font-weight: 600;
-  border-radius: 15px;
+  border-radius: 10px;
   color: #32152f;
   background-color: #ffffff;
   cursor: pointer;
@@ -91,7 +92,7 @@
 }
 .btnLeft:hover {
   background-color: #87C0CD;
-  color: #152232;
+  color: #ffffff;
   transition: 0.2s;
  
 }
@@ -100,7 +101,7 @@
   height: 100%;
   font-size: 100%;
   font-weight: 600;
-  border-radius: 15px;
+  border-radius: 10px;
   color: #ffffff;
   background-color: #87C0CD;
   cursor: pointer;
@@ -136,13 +137,13 @@ align-items: center;
   align-self: flex-end;
 }
 .line{
-  height: 10px;
+  height: 5px;
   width:100%;
   background-color: rgb(255, 255, 255);
 }
 .square{
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
   background-color: rgb(255, 255, 255);
   transform: rotate(45deg);
 }
@@ -200,7 +201,7 @@ height: 75%;
 background: #152232;
 border: 6px solid #FFFFFF;
 box-shadow: -30px 30px 2px #FFFFFF;
-border-radius: 20px;
+border-radius: 10px;
 }
 .txtLeftCard{
   display: flex;
@@ -224,7 +225,7 @@ height: 75%;
 background: #152232;
 border: 6px solid #FFFFFF;
 box-shadow: 30px 30px 2px #FFFFFF;
-border-radius: 20px;
+border-radius: 10px;
 
 }
 .txtRightCard{
