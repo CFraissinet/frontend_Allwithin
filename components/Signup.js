@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import styles from "../styles/Signup.module.css";
+import styles from "../styles/SignUp.module.css";
 
 function Signup() {
   const inputCVRef = useRef(null);

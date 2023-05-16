@@ -13,10 +13,12 @@ function Home() {
           <div className={styles.buttons}>
             <Link href='/signIn'>
               <span className={styles.btnSIgnIn}>
-                Sign In
+                  Sign In
               </span>
-</Link>
+          </Link>
+          <Link href='/signUp'>
             <button className={styles.btnSignUp}>Sign Up</button>
+            </Link>
           </div>
       </div>
            {/* navbar end*/}
