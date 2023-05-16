@@ -1,0 +1,248 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: blue;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  padding: 10px 20px 10px 20px;
+  box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.signInbutton {
+  background-color: white;
+  width: 150px;
+  border-radius: 10px;
+  border: solid #152232 3px;
+  font-weight: bold;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.signInbutton:hover {
+  background-color: #87c0cd;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.botContainer {
+  display: flex;
+  height: 100%;
+}
+
+.botLeftContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #152232;
+  width: 45%;
+  height: 100%;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 60px;
+  align-self: flex-start;
+  margin: 20px 0px 0px 20px;
+}
+
+.titleUp {
+  color: #87c0cd;
+}
+
+.lineContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: min-content;
+  width: 60%;
+  align-self: flex-start;
+}
+
+.line {
+  height: 5px;
+  width: 100%;
+
+  background-color: white;
+}
+
+.square {
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  transform: rotate(-45deg);
+}
+
+.botRightContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: #87c0cd; */
+  background: linear-gradient(-150deg, #87c0cd 70%, white 30%);
+  width: 55%;
+  height: 100%;
+  padding: 0px 20px 30px 0px;
+}
+
+.inputContainer {
+  width: 80%;
+  margin-top: 30px;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  gap: 3px;
+}
+
+.labelTxt {
+  margin: 0;
+  font-weight: bold;
+  font-size: small;
+  color: white;
+}
+
+.input {
+  height: 40px;
+  border: 2px solid #152232;
+  box-shadow: -8px 10px 0px #87c0cd;
+}
+
+.accountReady {
+  margin: 0;
+  font-weight: bold;
+  font-size: small;
+  color: white;
+  margin-top: 50px;
+}
+
+.textArea {
+  height: 60%;
+  background: #ffffff;
+  border: 3px solid #152232;
+  box-shadow: -30px 30px #152232;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 3px;
+}
+
+.areaTxt {
+  margin: 0;
+  font-weight: bold;
+  font-size: small;
+  color: #152232;
+  margin-top: 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 70%;
+  margin-top: 60px;
+}
+
+.dropMenu {
+  width: 50%;
+  height: 40px;
+  border: 2px solid #152232;
+  box-shadow: -8px 10px 0px #152232;
+  margin-top: 3px;
+}
+
+.dropMenuTxt {
+  margin: 0;
+  font-weight: bold;
+  font-size: small;
+  color: #152232;
+}
+
+.dropMenu:hover {
+  cursor: pointer;
+}
+
+.cvButton {
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+  border: solid transparent 2px;
+  font-weight: bold;
+  background-color: #152232;
+  color: white;
+  margin-top: 40px;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cvButton:hover {
+  background-color: #87c0cd;
+  cursor: pointer;
+  border: solid #152232 3px;
+}
+
+.photoButton {
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+  border: solid transparent 2px;
+  font-weight: bold;
+  background-color: #152232;
+  color: white;
+  margin-top: 40px;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.photoButton:hover {
+  background-color: #87c0cd;
+  cursor: pointer;
+  border: solid #152232 3px;
+}
+
+.confirmButton {
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+  border: solid #152232 3px;
+  align-self: flex-end;
+  font-weight: bold;
+  margin-top: 50px;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.confirmButton:hover {
+  background-color: #87c0cd;
+  cursor: pointer;
+  color: white;
+  border: solid white 3px;
+}
+
+.signInHere {
+  color: #87c0cd;
+}
+
+.signInHere:hover {
+  color: #87c0cd;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.inputCV {
+  display: none;
+}
+
+.joinFileContent {
+  display: flex;
+  gap: 10px;
+}
+
+.areaTxtContent {
+  display: flex;
+  justify-content: space-between;
+}
