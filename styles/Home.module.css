@@ -81,7 +81,7 @@
   font-size: 100%;
   font-weight: 600;
   border-radius: 15px;
-  color: #152232;
+  color: #32152f;
   background-color: #ffffff;
   cursor: pointer;
   width: 40%;
@@ -188,6 +188,7 @@ margin-top: 2%;
   width: 100%;
   height: 50%;
 
+
  
 }
 .leftCard{
@@ -200,7 +201,19 @@ background: #152232;
 border: 6px solid #FFFFFF;
 box-shadow: -30px 30px 2px #FFFFFF;
 border-radius: 20px;
-
+}
+.txtLeftCard{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+justify-content:  flex-start;
+ text-align: center;
+  width: 100%;
+  height: 90%;
+  font-weight: 500;
+  font-size: 25px;
+  color: #FFFFFF;
+  
 }
 .rightCard{
   display: flex;
@@ -213,6 +226,20 @@ border: 6px solid #FFFFFF;
 box-shadow: 30px 30px 2px #FFFFFF;
 border-radius: 20px;
 
+}
+.txtRightCard{
+ display: flex;
+  align-items: center;
+  flex-direction: column;
+justify-content:  flex-start;
+ text-align: center;
+ order: 2;
+  width: 100%;
+  height: 90%;
+  font-weight: 500;
+  font-size: 25px;
+  color: #FFFFFF;
+  
 }
 .backgroundBottom {
   width: 100%;
