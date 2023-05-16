@@ -1,5 +1,5 @@
-import styles from "../styles/Home.module.css";
-
+import styles from '../styles/Home.module.css';
+import Link from 'next/link';
 function Home() {
   return (
     <div className={styles.homeContainer}>
@@ -11,7 +11,11 @@ function Home() {
             <img className={styles.logo} src="/path/to/your/logo.png" alt="Logo" />
           </div>
           <div className={styles.buttons}>
-            <button className={styles.btnSIgnIn}>Sign In</button>
+            <Link href='/signIn'>
+              <span className={styles.btnSIgnIn}>
+                Sign In
+              </span>
+</Link>
             <button className={styles.btnSignUp}>Sign Up</button>
           </div>
       </div>

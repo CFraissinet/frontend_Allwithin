@@ -1,7 +1,7 @@
 import SignIn from '../components/SignIn';
 
-function SignIn() {
+function signIn() {
     return <SignIn />;
 }
 
-export default SignIn;
+export default signIn;
