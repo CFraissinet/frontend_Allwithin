@@ -1,0 +1,158 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.navBar {
+    height: 70px;
+    background-color: white;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+}
+
+.buttonSignUp {
+    font-size: large;
+    border-radius: 20px;
+    background-color: #152232;
+    color: white;
+    height: 50px    ;
+    width: 150px;
+}
+
+.componant {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.signIn {
+    padding-top: 3%;
+    width: 35%;
+    background-color: #152232;
+}
+
+.catchText {
+    margin-left: 1%;
+    font-size: 85px;
+    color: white;
+}
+
+.a {
+    margin-left: 5%;
+    color: #87c0cd;
+}
+
+.inputDiv {
+    padding: 20% 6% 0 6%;
+    
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.textInput {
+    font-weight: 700;
+    color: white;
+}
+
+.inputEmail, .inputPassword {
+    height: 5vh;
+    box-shadow: -5px 5px lightblue;
+}
+
+
+.b {
+    color: #87c0cd;
+}
+
+.emailInput, .passwordInput  {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10%;
+    width: 100%;
+}
+
+
+.textForgot {
+    padding-top: 2%;
+    font-size: small;
+    color: white;
+    font-weight: 700;
+}
+
+.bNoAccount {
+    color: #87c0cd;
+}
+
+.textNoAccount {
+    font-weight: 700;
+    color: white;
+}
+
+.buttonCo {
+    padding-bottom: 15%;
+    width: 100%;
+    text-align: right;
+}
+
+.buttonSignIn {
+    margin-bottom: 10%;
+    font-size: large;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    height: 50px;
+    width: 150px;
+}
+
+.graph {
+    width: 65%;
+    background:linear-gradient(0.35turn, #87c0cd 75%, white 50%);
+}
+
+
+.svg {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.img1 {
+    padding-left: 10%;
+    width: 50%;
+    align-self: flex-start;
+}
+
+.img2 {
+    padding-right: 10%;
+    width: 50%;
+    align-self: flex-end;
+}
+
+.lineContainer{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: min-content;
+    width: 60%;
+    align-self: flex-end;
+    }
+
+.line{
+    height: 10px;
+    width:100%;
+    background-color: rgb(255, 255, 255);
+}
+
+.square{
+    height: 30px;
+    width: 30px;
+    background-color: rgb(255, 255, 255);
+    transform: rotate(45deg);
+}
