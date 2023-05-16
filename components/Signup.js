@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import styles from "../styles/SignUp.module.css";
+import Link from 'next/link';
 
 function Signup() {
   const inputCVRef = useRef(null);
@@ -83,9 +84,11 @@ function Signup() {
           <span>LOGO</span>
         </div>
         {/* BUTTON */}
-        <button onClick={() => signInClick()} className={styles.signInbutton}>
+        <Link href='/signIn'>
+        <button className={styles.signInbutton}>
           Sign in
         </button>
+        </Link>
       </div>
 
       {/*BOT CONTAINER*/}
@@ -159,12 +162,13 @@ function Signup() {
             </div>
             <h2 className={styles.accountReady}>
               Already have an account?{" "}
+              <Link href='/signIn'>
               <span
-                onClick={() => signInHereClick()}
                 className={styles.signInHere}
               >
                 SIGN IN HERE
               </span>
+              </Link>
             </h2>
           </div>
         </div>

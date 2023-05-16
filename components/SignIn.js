@@ -37,8 +37,10 @@ function SignIn() {
                             <span className={styles.textForgot}>Forgot your password ? <a href="https://twitter.com/home?lang=fr" className={styles.b}>CLICK HERE</a></span>
                         </div>
                         <div className={styles.buttonCo}>
-                            <button onClick={() => clickSignIn()}  className={styles.buttonSignIn}>SIGN IN 
-                            </button>                        
+                       
+                            <button  className={styles.buttonSignIn}>SIGN IN 
+                            </button> 
+                                       
                         </div>
                         <div>
                             <span className={styles.textNoAccount}>No account yet ? <a href="https://twitter.com/home?lang=fr" className={styles.bNoAccount}>SIGN UP HERE</a></span>
