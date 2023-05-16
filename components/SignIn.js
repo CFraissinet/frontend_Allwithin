@@ -40,9 +40,10 @@ function SignIn() {
                             <span className={styles.textForgot}>Forgot your password ? <a href="https://twitter.com/home?lang=fr" className={styles.b}>CLICK HERE</a></span>
                         </div>
                         <div className={styles.buttonCo}>
-                       
+                        <Link href='/lobby'>
                             <button  className={styles.buttonSignIn}>SIGN IN 
                             </button> 
+                        </Link>
                                        
                         </div>
                         <div>

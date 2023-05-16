@@ -3,8 +3,8 @@ import Lobby from "../components/Lobby";
 
 
 
-function Lobby() {
-  return <Home />;
+function lobby() {
+  return <Lobby />;
 }
 
-export default Lobby;
+export default lobby;
