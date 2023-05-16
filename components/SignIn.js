@@ -1,5 +1,6 @@
 import React from "react";
 import styles from '../styles/SignIn.module.css';
+import Link from 'next/link';
 
 function SignIn() {
 
@@ -14,7 +15,9 @@ function SignIn() {
     return (
     <div className={styles.main}>
         <div className={styles.navBar}>
-            <button onClick={() => clickSignUp()} className={styles.buttonSignUp}>Sign up</button>
+        <Link href='/signUp'>
+            <button  className={styles.buttonSignUp}>Sign up</button>
+        </Link>
         </div>
         <div className={styles.componant}>
             <div className={styles.signIn}>
