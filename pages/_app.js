@@ -7,6 +7,7 @@ import storage from "redux-persist/lib/storage";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import project from "../reducers/project";
 import user from "../reducers/user";
+import { Provider } from "react-redux";
 
 const reducers = combineReducers({ user, project });
 const persistConfig = { key: "allwithin", storage };

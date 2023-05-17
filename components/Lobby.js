@@ -1,5 +1,7 @@
 import styles from "../styles/Lobby.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   faUser,
   faArrowRight,
@@ -7,6 +9,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function Lobby() {
+  const project = useSelector((state) => state.project.value);
+  const [dataProjects, setDataProjects] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/projects")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
