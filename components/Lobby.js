@@ -19,9 +19,14 @@ function Lobby() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setDataProjects(data.projects);
       });
   }, []);
 
+  const projectData = dataProjects.map((data, i) => {
+    return <button className={styles.projectButton}>{data.name}</button>;
+  });
+  console.log(dataProjects);
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -41,13 +46,7 @@ function Lobby() {
               <div>
                 <FontAwesomeIcon className={styles.arrow} icon={faArrowLeft} />
               </div>
-              <div className={styles.projectList}>
-                <button className={styles.projectButton}>PROJECT 1</button>
-                <button className={styles.projectButton}>PROJECT 2</button>
-                <button className={styles.projectButton}>PROJECT 3</button>
-                <button className={styles.projectButton}>PROJECT 4</button>
-                <button className={styles.projectButton}>PROJECT 5</button>
-              </div>
+              <div className={styles.projectList}>{projectData}</div>
               <div>
                 <FontAwesomeIcon className={styles.arrow} icon={faArrowRight} />
               </div>
