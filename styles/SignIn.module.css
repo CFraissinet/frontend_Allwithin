@@ -54,6 +54,11 @@
     color: #87c0cd;
 }
 
+.error {
+    color: red;
+    padding-bottom: 2%;
+}
+
 .inputDiv {
     padding: 20% 6% 0 6%;
     
