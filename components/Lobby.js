@@ -10,10 +10,12 @@ import {
 
 function Lobby() {
   const project = useSelector((state) => state.project.value);
+  const user = useSelector((state) => state.user.value);
   const [dataProjects, setDataProjects] = useState([]);
 
+  console.log(user.token);
   useEffect(() => {
-    fetch("http://localhost:3000/projects")
+    fetch(`http://localhost:3000/projects/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
