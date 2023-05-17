@@ -8,7 +8,7 @@ function CreateProject() {
     <div className={styles.background}>
       <div className={styles.homeContainer}>
         <div className={styles.container}>
-         {/*--------------------------- Nav ------------------------------*/}
+          {/*--------------------------- Nav ------------------------------*/}
           <div className={styles.navbar}>
             <div className={styles.logoContainer}>
               <img
@@ -29,13 +29,13 @@ function CreateProject() {
         </div>
         {/* navbar end*/}
         <div className={styles.formContainer}>
-        {/*--------------------------- Nav ------------------------------*/}
+          {/*--------------------------- Nav ------------------------------*/}
 
           <h1>Create Your Project</h1>
 
-        {/*--------------------------- Forms ------------------------------*/}
+          {/*--------------------------- Forms ------------------------------*/}
           <div className={styles.inputDiv}>
-            <div className={styles.formGroup}>
+              <div className={`${styles.inputBox} ${styles.labelStyle}`}>
               <label htmlFor="projectName">Project Name:</label>
               <input
                 type="text"
@@ -44,48 +44,59 @@ function CreateProject() {
                 placeholder="Enter project name"
               />
             </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="startDate">Start Date:</label>
-              <input
-                type="text"
-                id="startDate"
-                className={styles.input}
-                placeholder="Enter start date"
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="endDate">End Date:</label>
-              <input
-                type="text"
-                id="endDate"
-                className={styles.input}
-                placeholder="Enter end date"
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="jobProfile">Job Profile:</label>
-              <input
-                type="text"
-                id="jobProfile"
-                className={styles.input}
-                placeholder="Enter job profile"
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="memberCount">Member Count:</label>
-              <div className={styles.counter}>
-                <button>-</button>
-                <span>0</span>
-                <button>+</button>
+            {/*input  Start Date & End Date FORMS */}
+            <div className={styles.endSartContainer}>
+            <div className={`${styles.inputBox} ${styles.labelStyle}`}>
+                <label htmlFor="startDate">Start Date:</label>
+                <input
+                  type="text"
+                  id="startDate"
+                  className={styles.endStart}
+                  placeholder="Enter start date"
+                />
+              </div>
+
+              <div className={`${styles.inputBox} ${styles.labelStyle}`}>
+                <label htmlFor="endDate">End Date:</label>
+                <input
+                  type="text"
+                  id="endDate"
+                  className={styles.endStart}
+                  placeholder="Enter end date"
+                />
               </div>
             </div>
+            {/* input Start Date & End Date FORMS */}
+
+            {/* input job Profile & member count */}
+
+            <div className={styles.jobInputContainer}>
+             
+            <div className={`${styles.inputBox} ${styles.labelStyle}`}>
+                <label htmlFor="jobProfile">Job Profile:</label>
+                <input
+                  type="text"
+                  id="jobProfile"
+                  className={styles.jobProfile}
+                  placeholder="Enter job profile"
+                />
+              </div>      
+                <div className={styles.counter}>
+                  <div>
+                    <button>-</button>
+                    <span>0</span>
+                    <button>+</button>
+                  </div>
+                  <button>X</button>
+                </div>
+            </div>
+            {/* input job Profile & member count */}
             <button className={styles.addButton}>Add Member</button>
           </div>
-         {/*--------------------------- Forms ------------------------------*/}
+          {/*--------------------------- Forms ------------------------------*/}
         </div>
       </div>
     </div>
   );
 }
-
 export default CreateProject;

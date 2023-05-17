@@ -100,7 +100,6 @@
 
 .input {
   box-sizing: border-box;
-  position: absolute;
   width: 600px;
   height: 60px;
   left: 32px;
@@ -113,6 +112,9 @@
 .counter {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 30%;
+  margin: 30px 40px  0px 0px    ;
 }
 
 .counter button {
@@ -131,7 +133,7 @@
 
 .addButton {
   box-sizing: border-box;
-  position: absolute;
+  
   width: 150px;
   height: 60px;
   left: 32.16px;
@@ -158,89 +160,18 @@
 
 .inputDiv {
   width: 100%;
-  height: 100%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
-}
-.startEndInput{
-  width: 50%;
-  height: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: space-between;
-
-}
-
-.inputEmail {
-  box-sizing: border-box;
-  position: absolute;
-  width: 600px;
-  height: 60px;
-  left: 32px;
-  top: 302px;
-  background: #ffffff;
-  border: 3px solid #152232;
-  box-shadow: -8px 10px 0px #152232;
-  padding: 10px;
-}
-
-.textInput {
-  font-weight: bold;
-}
-
-.inputDiv h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-.inputDiv .formGroup {
-  margin-bottom: 20px;
-}
-
-.inputDiv .formGroup label {
-  display: block;
-  font-weight: bold;
-}
-
-.inputDiv .formGroup input {
-  box-sizing: border-box;
-  position: absolute;
-  width: 600px;
-  height: 60px;
-  left: 32px;
-  background: #ffffff;
-  border: 3px solid #152232;
-  box-shadow: -8px 10px 0px #152232;
-  padding: 10px;
-}
-
-.inputDiv .counter {
-  display: flex;
-  align-items: center;
-}
-
-.inputDiv .counter button {
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: #152232;
-  color: #ffffff;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.inputDiv .counter span {
-  margin: 0 10px;
+  
 }
 
 .inputDiv .addButton {
   box-sizing: border-box;
-  position: absolute;
   width: 150px;
-  height: 60px;
+  height: 100px;
   left: 32.16px;
   top: 687.37px;
   background: #152232;
@@ -256,4 +187,83 @@
 .inputDiv .addButton:hover {
   background-color: #87c0cd;
   transition: 0.2s;
+}
+.endSartContainer{
+  
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.endStart{
+ 
+  box-sizing: border-box;
+  width: 300px;
+  height: 60px;
+  left: 32px;
+  background: #ffffff;
+  border: 3px solid #152232;
+  box-shadow: -8px 10px 0px #152232;
+  padding: 10px;
+}
+.startInputContainer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+
+}
+.inputBox{
+display: flex;
+flex-direction: column;
+}
+.jobInputContainer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+ 
+  align-items: center;
+  justify-content: space-between;
+
+}
+.jobProfile{
+  
+  box-sizing: border-box;
+  width: 400px;
+  height: 60px;
+  left: 32px;
+  background: #ffffff;
+  border: 3px solid #152232;
+  box-shadow: -8px 10px 0px #152232;
+  padding: 10px;
+}   
+.jobInput{
+  display: flex;
+  flex-direction: column;
+}
+.countForm{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+.containerCount{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  height: 100%;
+  width: 50%; 
+ 
+}
+.labelStyle{
+  display: block;
+  font-weight: bold;
 }
