@@ -35,29 +35,6 @@
   justify-content: flex-end;
   padding: 10px 20px;
 }
-
-.btnSignIn {
-  width: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  font-size: 100%;
-  font-weight: 600;
-  border: solid 3px #75808c;
-  border-radius: 10px;
-  color: #152232;
-  background-color: #ffffff;
-  cursor: pointer;
-}
-
-.btnSignIn:hover {
-  background-color: #87c0cd;
-  color: #ffffff;
-  transition: 0.2s;
-  border: solid 5px #87c0cd;
-}
-
 .btnNav {
   width: 150px;
   height: 100%;
@@ -70,7 +47,7 @@
   cursor: pointer;
 }
 
-.btnSignUp:hover {
+.btnNav:hover {
   background-color: #87c0cd;
   color: #ffffff;
   transition: 0.2s;
@@ -148,7 +125,7 @@
 }
 
 .inputDiv .addButton:hover {
-  background-color: #49aac0;
+  background-color: #87c0cd;
   transition: 0.2s;
 }
 .endSartContainer{
@@ -242,8 +219,8 @@ width: 50%;
   height: 93px;
   left: 1614px;
   top: 947px;
-  font-weight: bold;
-  background: #87C0CD;
+  font-weight: 700;
+  background: #87c0cd;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
 }
@@ -254,9 +231,71 @@ width: 50%;
   border: solid 2px #152232;
 }
 
+/* ------------------ Responsive Styles ------------------ */
 
-/* .centerDiv{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .logoContainer {
+    margin-bottom: 20px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .formContainer {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .endSartContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .endStart {
+    width: 100%;
+  }
+
+  .jobInputContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .jobProfile {
+    width: 100%;
+  }
+
+  .counter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .txtAreaContainer {
+    width: 100%;
+  }
+
+  .btnCreatCountainer {
+    padding: 20px 0;
+  }
+
+  .btnCreateProject {
+    width: 100%;
+  }
+}
+
+
+
