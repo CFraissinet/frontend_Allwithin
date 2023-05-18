@@ -10,22 +10,42 @@ import {
 
 function Lobby() {
   const project = useSelector((state) => state.project.value);
+  //user reducer
   const user = useSelector((state) => state.user.value);
+  //hook for user's projects
   const [dataProjects, setDataProjects] = useState([]);
+  const [selectProject, setSelectProject] = useState({});
 
-  console.log(user.token);
+  // useEffect allowing to connect to the backend to retrieve the projects related to the person connected to the component loading
   useEffect(() => {
     fetch(`http://localhost:3000/projects/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         setDataProjects(data.projects);
+        setSelectProject(data.projects[0]);
       });
   }, []);
 
+  // browse the person's projects to view them
   const projectData = dataProjects.map((data, i) => {
-    return <button className={styles.projectButton}>{data.name}</button>;
+    return (
+      <button
+        key={i}
+        onClick={() => showProject(data._id)}
+        className={styles.projectButton}
+      >
+        {data.name}
+      </button>
+    );
   });
+
+  function showProject(idProject) {
+    setSelectProject(
+      dataProjects[dataProjects.findIndex((data) => data._id === idProject)]
+    );
+  }
+
   console.log(dataProjects);
   return (
     <div className={styles.container}>
@@ -61,10 +81,11 @@ function Lobby() {
         </div>
         <div className={styles.rightBody}>
           <div className={styles.infoProject}>
-            <h2 className={styles.rightTitle}>Project 1</h2>
+            <h2 className={styles.rightTitle}>{selectProject.name}</h2>
             <textarea
               className={styles.projectDescription}
               placeholder="Project description"
+              value={selectProject.description}
             ></textarea>
             <button className={styles.buttonDashboard}>GO TO DASHBOARD</button>
           </div>
