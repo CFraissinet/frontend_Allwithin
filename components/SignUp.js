@@ -170,7 +170,9 @@ function Signup() {
       <div className={styles.headerContainer}>
         {/* LOGO */}
         <div className={styles.button}>
-          <span>LOGO</span>
+          <Link href="/">
+            <img src="logo.png" alt="Logo" className={styles.logo} />
+          </Link>
         </div>
         {/* BUTTON */}
         <Link href="/signIn">
@@ -184,7 +186,7 @@ function Signup() {
 
         <div className={styles.botLeftContainer}>
           <h1 className={styles.title}>
-            SIGNING <span className={styles.titleUp}>UP</span>
+            Signing <span className={styles.titleUp}>Up</span>
           </h1>
 
           <div className={styles.lineContent}>

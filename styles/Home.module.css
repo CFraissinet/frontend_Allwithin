@@ -2,19 +2,21 @@
 
 .homeContainer {
   width: 100vw;
- height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: blue;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 100%;
   height: 70px;
   background-color: #ffffff;
-
+  padding: 10px 20px 10px 20px;
+  box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+  z-index: 1;
 }
 
 .logoContainer {
@@ -23,7 +25,7 @@
 }
 
 .logo {
-  height: 8vh; /* Adjust this as per your logo's aspect ratio */
+  height: 7vh; /* Adjust this as per your logo's aspect ratio */
 }
 
 /* the positioning div that includes the 2 buttons */
@@ -31,52 +33,54 @@
   display: flex;
   gap: 10%;
   width: 40%;
-  height: 100%;
+  align-items: center;
   justify-content: flex-end;
-  padding: 10px 20px 10px 20px;
-    
+  padding: 10px 40px 10px 40px;
 }
 /************ buttons style start*************/
 .btnSIgnIn {
   width: 150px;
+  height: 150%;
+  font-size: medium;
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 100%;
-  font-size: 100%;
-  font-weight: 600;
+  align-items: center;
+  font-weight: bold;
   border: solid 3px #152232;
   border-radius: 10px;
   color: #152232;
   background-color: #ffffff;
   cursor: pointer;
+  box-shadow: -4px 4px 4px;
 }
 
-.btnSIgnIn:hover {
-  background-color: #87C0CD;
+.btnSignIn:hover {
+  background-color: #87c0cd;
   color: #ffffff;
   transition: 0.2s;
-  border: solid 5px #87C0CD;
-
+  border: solid 5px #87c0cd;
 }
 
 .btnSignUp {
   width: 150px;
-  height: 100%;
-  font-size: 100%;
-  font-weight: 600;
-  border: solid 1px #152232;
+  height: 150%;
+  font-size: medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border: solid 3px #152232;
   border-radius: 10px;
   color: #ffffff;
   background-color: #152232;
   cursor: pointer;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .btnSignUp:hover {
-  background-color: #87C0CD;
+  background-color: #87c0cd;
   color: #ffffff;
   transition: 0.2s;
-  border: solid 1px #87C0CD;
-
+  border: solid 1px #87c0cd;
 }
 
 .btnLeft {
@@ -91,13 +95,11 @@
   height: 20%;
   margin-bottom: 3vh;
   margin-right: 3vh;
-
 }
 .btnLeft:hover {
-  background-color: #87C0CD;
+  background-color: #87c0cd;
   color: #ffffff;
   transition: 0.2s;
- 
 }
 .btnRight {
   font-size: 100%;
@@ -105,19 +107,17 @@
   flex-direction: row;
   border-radius: 10px;
   color: #ffffff;
-  background-color: #87C0CD;
+  background-color: #87c0cd;
   cursor: pointer;
   width: 35%;
   height: 20%;
   margin-bottom: 3vh;
   margin-left: 3vh;
-  
 }
 .btnRight:hover {
   background-color: #ffffff;
   color: #152232;
   transition: 0.2s;
-
 }
 /************ buttons style end*************/
 
@@ -126,25 +126,25 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background:linear-gradient(to bottom, #152232 60%, #87C0CD 61%);
+  background: linear-gradient(to bottom, #152232 60%, #87c0cd 61%);
 }
 /* diamondLine start*/
-.lineContainer{
+.lineContainer {
   margin-top: 10px;
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
   display: flex;
   height: min-content;
   width: 60%;
 
   align-self: flex-end;
 }
-.line{
+.line {
   height: 5px;
-  width:100%;
+  width: 100%;
   background-color: rgb(255, 255, 255);
 }
-.square{
+.square {
   height: 20px;
   width: 20px;
   background-color: rgb(255, 255, 255);
@@ -152,7 +152,7 @@ align-items: center;
 }
 /* diamondLine end*/
 
-.headerPositioning{
+.headerPositioning {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -162,84 +162,81 @@ align-items: center;
   background-color: #152232;
 }
 .title {
-  width:1131.59px;; /* Take the full width */
+  width: 1130px; /* Take the full width */
   height: 118px;
   font-weight: bold;
-  color: #FFFFFF;
-  font-size: 96.8205px;
+  color: #ffffff;
+  font-size: 96px;
   margin-bottom: 0vh; /* Decrease the margin to reduce space between h1 and h2 */
+  margin-left: 5vh;
 }
 
 .highlight {
-  color: #87C0CD;
+  color: #87c0cd;
 }
 
 .subtitle {
   width: 766px;
-height: 59px;
-font-weight: 500;
-font-size: 48px;
-  color: #87C0CD;
+  height: 59px;
+  font-weight: 500;
+  font-size: 48px;
+  color: #87c0cd;
   margin: 0px 0px 3px 455px; /* Remove margin at the top to reduce space between h1 and h2 */
 }
 /* styles/Home.module.css */
-.containerCards{
-margin-top: 2%;
+.containerCards {
+  margin-top: 2%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
   height: 50%;
-
-
- 
 }
-.leftCard{
+.leftCard {
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-end;
-width: 30%;
-height: 75%;
-background: #152232;
-border: 6px solid #FFFFFF;
-box-shadow: -30px 30px 2px #FFFFFF;
-border-radius: 10px;
+  width: 30%;
+  height: 75%;
+  background: #152232;
+  border: 6px solid #ffffff;
+  box-shadow: -30px 30px 2px #ffffff;
+  border-radius: 10px;
 }
-.txtLeftCard{
+.txtLeftCard {
   display: flex;
   align-items: center;
- text-align: center;
- order: 1;
+  text-align: center;
+  order: 1;
   width: 100%;
   height: 90%;
   font-weight: 500;
-  font-size: 25px;
-  color: #FFFFFF;
-  padding: 10px;  
+  font-size: xx-large;
+  color: #ffffff;
+  padding: 10px;
 }
-.rightCard{
+.rightCard {
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
-width: 30%;
-height: 75%;
-background: #152232;
-border: 6px solid #FFFFFF;
-box-shadow: 30px 30px 2px #FFFFFF;
-border-radius: 10px;
-
+  width: 30%;
+  height: 75%;
+  background: #152232;
+  border: 6px solid #ffffff;
+  box-shadow: 30px 30px 2px #ffffff;
+  border-radius: 10px;
 }
-.txtRightCard{
- display: flex;
+.txtRightCard {
+  display: flex;
   align-items: center;
   flex-direction: row;
- text-align: center;
- order: 2;
+  text-align: center;
+  order: 2;
   width: 100%;
   height: 90%;
   font-weight: 500;
-  font-size: 25px;
-  color: #FFFFFF;
-  padding: 10px; 
+  font-size: xx-large;
+  color: #ffffff;
+  padding: 10px;
 }

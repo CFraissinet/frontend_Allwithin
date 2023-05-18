@@ -1,182 +1,205 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: blue;
 }
 
 .navBar {
-    height: 70px;
-    background-color: white;
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 20px;
-    box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
-    z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  padding: 10px 20px 10px 20px;
+  box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.logo:hover {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
 }
 
 .buttonSignUp {
-    font-size: large;
-    border: solid transparent 1px;
-    border-radius: 20px;
-    background-color: #152232;
-    color: white;
-    height: 50px    ;
-    width: 150px;
+  background-color: #152232;
+  color: #ffffff;
+  width: 150px;
+  border-radius: 10px;
+  border: solid #152232 3px;
+  font-weight: bold;
+  font-size: medium;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .buttonSignUp:hover {
-    cursor: pointer;
-    background-color: #87c0cd;
-    border-color: #87c0cd;
-    transition: 0.3s;
-
+  background-color: #87c0cd;
+  cursor: pointer;
+  color: #ffffff;
 }
 
 .componant {
-    height: 100%;
-    display: flex;
-    flex-direction: row;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 .signIn {
-    padding-top: 3%;
-    width: 35%;
-    background-color: #152232;
+  padding-top: 0%;
+  width: 40%;
+  background-color: #152232;
 }
 
 .catchText {
-    margin-left: 1%;
-    font-size: 85px;
-    color: white;
+  color: #ffffff;
+  font-size: 60px;
+  align-self: flex-start;
+  font-weight: bold;
+  margin: 20px 0px 0px 20px;
 }
 
 .a {
-    margin-left: 5%;
-    color: #87c0cd;
+  margin-left: 5%;
+  color: #87c0cd;
 }
 
 .error {
-    color: red;
-    padding-bottom: 2%;
+  color: red;
+  padding-bottom: 2%;
 }
 
 .inputDiv {
-    padding: 20% 6% 0 6%;
-    
-    display: flex;
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  padding: 20% 6% 0 6%;
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
 }
 
 .textInput {
-    font-weight: 700;
-    color: white;
+  font-weight: 700;
+  color: white;
 }
 
-.inputEmail, .inputPassword {
-    height: 5vh;
-    box-shadow: -5px 5px lightblue;
+.inputEmail,
+.inputPassword {
+  height: 40px;
+  border: 2px solid #152232;
+  box-shadow: -8px 10px 0px #87c0cd;
 }
-
 
 .b {
-    color: #87c0cd;
+  color: #87c0cd;
 }
 
-.emailInput, .passwordInput  {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 10%;
-    width: 100%;
+.emailInput,
+.passwordInput {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10%;
+  width: 100%;
 }
-
 
 .textForgot {
-    padding-top: 2%;
-    font-size: small;
-    color: white;
-    font-weight: 700;
+  padding-top: 2%;
+  font-size: small;
+  color: white;
+  font-weight: 700;
 }
 
 .bNoAccount {
-    color: #87c0cd;
+  color: #87c0cd;
 }
 
 .textNoAccount {
-    font-weight: 700;
-    color: white;
+  font-weight: bold;
+  font-size: medium;
+  color: white;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.noAccount {
+  font-weight: bold;
+  font-size: x-large;
+  color: white;
+  align-self: flex-start;
 }
 
 .buttonCo {
-    padding-bottom: 15%;
-    width: 100%;
-    text-align: right;
+  padding-bottom: 0%;
+  width: 100%;
+  text-align: right;
+  margin-top: -15%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
 .buttonSignIn {
-    border: solid transparent 1px;
-    margin-bottom: 10%;
-    font-size: large;
-    border-radius: 20px;
-    background-color: white;
-    color: black;
-    height: 50px;
-    width: 150px;
+  background-color: white;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  border: solid #152232 3px;
+  font-weight: bold;
+  font-size: medium;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 20%;
 }
 
 .buttonSignIn:hover {
-    cursor: pointer;
-    background-color: #87c0cd;
-    border-color: #87c0cd;
-    transition: 0.3s;
+  background-color: #87c0cd;
+  cursor: pointer;
+  color: #ffffff;
 }
 
 .graph {
-    width: 65%;
-    background:linear-gradient(0.35turn, #87c0cd 75%, white 50%);
+  width: 65%;
+  background: linear-gradient(0.4turn, #87c0cd 60%, white 50%);
 }
 
-
 .svg {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .img1 {
-    padding-left: 10%;
-    width: 50%;
-    align-self: flex-start;
+  padding-left: 10%;
+  width: 50%;
+  align-self: flex-start;
 }
 
 .img2 {
-    padding-right: 10%;
-    width: 50%;
-    align-self: flex-end;
+  padding-right: 10%;
+  width: 50%;
+  align-self: flex-end;
 }
 
-.lineContainer{
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    height: min-content;
-    width: 60%;
-    align-self: flex-end;
-    }
-
-.line{
-    height: 10px;
-    width:100%;
-    background-color: rgb(255, 255, 255);
+.lineContainer {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: min-content;
+  width: 60%;
+  align-self: flex-end;
 }
 
-.square{
-    height: 30px;
-    width: 30px;
-    background-color: rgb(255, 255, 255);
-    transform: rotate(45deg);
+.line {
+  height: 5px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+.square {
+  height: 20px;
+  width: 20px;
+  background-color: rgb(255, 255, 255);
+  transform: rotate(45deg);
 }

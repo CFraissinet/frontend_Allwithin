@@ -1,8 +1,8 @@
 .mainContainer {
-  display: flex;
-  flex-direction: column;
   height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
   background-color: blue;
 }
 
@@ -17,12 +17,19 @@
   z-index: 1;
 }
 
+.logo:hover {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
 .signInbutton {
   background-color: white;
   width: 150px;
   border-radius: 10px;
   border: solid #152232 3px;
   font-weight: bold;
+  font-size: medium;
   box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -35,6 +42,7 @@
 .botContainer {
   display: flex;
   height: 100%;
+  flex-direction: row;
 }
 
 .botLeftContainer {
@@ -42,7 +50,7 @@
   flex-direction: column;
   align-items: center;
   background-color: #152232;
-  width: 45%;
+  width: 40%;
   height: 100%;
 }
 
@@ -69,15 +77,14 @@
 .line {
   height: 5px;
   width: 100%;
-
   background-color: white;
 }
 
 .square {
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
   background-color: white;
-  transform: rotate(-45deg);
+  transform: rotate(45deg);
 }
 
 .botRightContainer {
@@ -86,7 +93,7 @@
   align-items: center;
   /* background-color: #87c0cd; */
   background: linear-gradient(-150deg, #87c0cd 70%, white 30%);
-  width: 55%;
+  width: 60%;
   height: 100%;
   padding: 0px 20px 30px 0px;
 }
@@ -106,8 +113,9 @@
 .labelTxt {
   margin: 0;
   font-weight: bold;
-  font-size: small;
+  font-size: medium;
   color: white;
+  font-size: medium;
 }
 
 .input {
@@ -119,24 +127,25 @@
 .accountReady {
   margin: 0;
   font-weight: bold;
-  font-size: small;
+  font-size: x-large;
   color: white;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .textArea {
   height: 60%;
   background: #ffffff;
   border: 3px solid #152232;
+  font-weight: bold;
+  font-size: medium;
   box-shadow: -30px 30px #152232;
   border-radius: 10px;
-  padding: 10px;
-  margin-top: 3px;
+  padding: 20px;
 }
 
 .areaTxt {
   margin: 0;
-  font-weight: bold;
+  font-weight: 800;
   font-size: small;
   color: #152232;
   margin-top: 20px;
@@ -153,6 +162,9 @@
 .dropMenu {
   width: 50%;
   height: 40px;
+  font-weight: bold;
+  font-size: small;
+  color: #757575;
   border: 2px solid #152232;
   box-shadow: -8px 10px 0px #152232;
   margin-top: 3px;
@@ -160,7 +172,7 @@
 
 .dropMenuTxt {
   margin: 0;
-  font-weight: bold;
+  font-weight: 800;
   font-size: small;
   color: #152232;
 }

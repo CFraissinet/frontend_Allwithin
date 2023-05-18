@@ -39,7 +39,10 @@ function SignIn() {
   return (
     <div className={styles.main}>
       <div className={styles.navBar}>
-        {/* NAV BAR */}
+        {/* LOGO */}
+        <Link href="/">
+          <img src="logo.png" alt="Logo" className={styles.logo} />
+        </Link>
         <Link href="/signUp">
           <button className={styles.buttonSignUp}>Sign up</button>
         </Link>
@@ -79,37 +82,29 @@ function SignIn() {
                   type="password"
                   placeholder="Password"
                 />
-                <span className={styles.textForgot}>
+                <h2 className={styles.textNoAccount}>
                   Forgot your password ?{" "}
-                  <a
-                    href="https://twitter.com/home?lang=fr"
-                    className={styles.b}
-                  >
-                    CLICK HERE
-                  </a>
-                </span>
+                  <Link href="/signUp">
+                    <span className={styles.bNoAccount}>SIGN UP HERE</span>
+                  </Link>
+                </h2>
               </div>
               <div className={styles.buttonCo}>
-                <button onClick={clickSignIn} className={styles.buttonSignIn}>
-                  SIGN IN
-                </button>
+                <Link href="/lobby">
+                  <button className={styles.buttonSignIn}>SIGN IN</button>
+                </Link>
               </div>
-              <div>
-                <span className={styles.textNoAccount}>
-                  No account yet ?{" "}
-                  <a
-                    href="https://twitter.com/home?lang=fr"
-                    className={styles.bNoAccount}
-                  >
-                    SIGN UP HERE
-                  </a>
-                </span>
-              </div>
+
+              <h2 className={styles.noAccount}>
+                No account yet ?{" "}
+                <Link href="/signUp">
+                  <span className={styles.bNoAccount}>SIGN UP HERE</span>
+                </Link>
+              </h2>
             </div>
           </div>
         </div>
         <div className={styles.graph}>
-          {/* CONTAINER FOR IMG */}
           <div className={styles.svg}>
             <img
               className={styles.img1}
