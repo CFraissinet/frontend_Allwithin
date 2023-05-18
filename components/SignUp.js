@@ -56,9 +56,8 @@ function Signup() {
       name: name,
       email: email,
       password: password,
-      confirmPassword: confirmPassword,
-      job: job,
-      experiences: experiences,
+      job: null,
+      experiences: null,
     };
 
     const formData = new FormData();
