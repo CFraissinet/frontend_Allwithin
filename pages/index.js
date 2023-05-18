@@ -2,10 +2,10 @@ import SignIn from "../components/SignIn";
 import Home from "../components/Home";
 import Lobby from "../components/Lobby";
 import CreateProject from "../components/CreateProject";
-import Join from "../components/Join";
+import NavBar from "../components/NavBar";
 
 function Index() {
-  return <Join />;
+  return <NavBar />;
 }
 
 export default Index;
