@@ -165,7 +165,7 @@ function Signup() {
 
   return (
     //Embedded all JSX code with "form" tag to collect all infos from inputs
-    <form encType="multipart/form-data" className={styles.mainContainer}>
+    <div className={styles.mainContainer}>
       {/* HEADER */}
       <div className={styles.headerContainer}>
         {/* LOGO */}
@@ -180,177 +180,186 @@ function Signup() {
         </Link>
       </div>
 
-      {/*BOT CONTAINER*/}
-      <div className={styles.botContainer}>
-        {/*BOT LEFT CONTAINER*/}
+      <form className={styles.formSignUp} encType="multipart/form-data">
+        {/*BOT CONTAINER*/}
+        <div className={styles.botContainer}>
+          {/*BOT LEFT CONTAINER*/}
 
-        <div className={styles.botLeftContainer}>
-          <h1 className={styles.title}>
-            Signing <span className={styles.titleUp}>Up</span>
-          </h1>
+          <div className={styles.botLeftContainer}>
+            <h1 className={styles.title}>
+              Signing <span className={styles.titleUp}>Up</span>
+            </h1>
 
-          <div className={styles.lineContent}>
-            <div className={styles.line}></div>
-            <div className={styles.square}></div>
-          </div>
-          {/* INPUT CONTAINER */}
-          <div className={styles.inputContainer}>
-            <div className={styles.inputBox}>
-              <h2 className={styles.labelTxt}>Enter your firstname :</h2>
-              <input
-                name="firstname"
-                onChange={(e) => setFirstname(e.target.value)}
-                value={firstname}
-                className={styles.input}
-                placeholder="John"
-              ></input>
+            <div className={styles.lineContent}>
+              <div className={styles.line}></div>
+              <div className={styles.square}></div>
             </div>
+            {/* INPUT CONTAINER */}
+            <div className={styles.inputContainer}>
+              <div className={styles.inputBox}>
+                <h2 className={styles.labelTxt}>Enter your firstname :</h2>
+                <input
+                  name="firstname"
+                  onChange={(e) => setFirstname(e.target.value)}
+                  value={firstname}
+                  className={styles.input}
+                  placeholder="John"
+                ></input>
+              </div>
 
-            <div className={styles.inputBox}>
-              <h2 className={styles.labelTxt}>Enter your name :</h2>
-              <input
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                className={styles.input}
-                placeholder="Doe"
-              ></input>
-            </div>
+              <div className={styles.inputBox}>
+                <h2 className={styles.labelTxt}>Enter your name :</h2>
+                <input
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
+                  className={styles.input}
+                  placeholder="Doe"
+                ></input>
+              </div>
 
-            <div className={styles.inputBox}>
-              <h2 className={styles.labelTxt}>Enter your e-mail :</h2>
-              <input
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                className={styles.input}
-                placeholder="email@gmail.com"
-              ></input>
-            </div>
+              <div className={styles.inputBox}>
+                <h2 className={styles.labelTxt}>Enter your e-mail :</h2>
+                <input
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  className={styles.input}
+                  placeholder="email@gmail.com"
+                ></input>
+              </div>
 
-            <div className={styles.inputBox}>
-              <h2 className={styles.labelTxt}>Enter your password</h2>
+              <div className={styles.inputBox}>
+                <h2 className={styles.labelTxt}>Enter your password</h2>
 
-              <input
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                value={password}
-                className={styles.input}
-                placeholder="**********"
-              ></input>
-            </div>
+                <input
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  value={password}
+                  className={styles.input}
+                  placeholder="**********"
+                ></input>
+              </div>
 
-            <div className={styles.inputBox}>
-              <h2 className={styles.labelTxt}>Confirm you password</h2>
+              <div className={styles.inputBox}>
+                <h2 className={styles.labelTxt}>Confirm you password</h2>
 
-              <input
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                type="password"
-                value={confirmPassword}
-                className={styles.input}
-                placeholder="**********"
-              ></input>
-            </div>
-            <h2 className={styles.accountReady}>
-              Already have an account?{" "}
+                <input
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  type="password"
+                  value={confirmPassword}
+                  className={styles.input}
+                  placeholder="**********"
+                ></input>
+              </div>
+              <h2 className={styles.accountReady}>
+                Already have an account ?{" "}
+              </h2>
               <Link href="/signIn">
                 <span className={styles.signInHere}>SIGN IN HERE</span>
               </Link>
-            </h2>
-          </div>
-        </div>
-
-        {/*BOT Right CONTAINER*/}
-        <div className={styles.botRightContainer}>
-          <div className={styles.content}>
-            {/* DROP DOWN MENU */}
-            <h2 className={styles.dropMenuTxt}>Select a job post :</h2>
-            <select
-              onChange={(e) => setJob(e.target.value)}
-              className={styles.dropMenu}
-              name="language"
-              id="language"
-            >
-              <option value="" defaultValue>
-                Drop & Select
-              </option>
-              <option value="javascript">JavaScript</option>
-              <option value="python">Python</option>
-              <option value="c++">C++</option>
-            </select>
-            {/* TEXT AREA */}
-
-            <div className={styles.areaTxtContent}>
-              <h2 className={styles.areaTxt}>Do you have any experiences ?</h2>
-              <h2 className={styles.areaTxt}>{counter}/1000</h2>
             </div>
-            <textarea
-              onChange={(e) => HandleTextArea(e.target.value)}
-              maxLength="1000"
-              value={experiences}
-              className={styles.textArea}
-              placeholder="Describe your experiences in a few words..."
-            ></textarea>
+          </div>
 
-            {/* JOIN CV AND PHOTO */}
-            <div className={styles.joinFileContent}>
-              {/* CV */}
-              <div className={styles.cvButtonContent}>
-                <button onClick={(e) => cvClick(e)} className={styles.cvButton}>
-                  Join your CV *
-                </button>
+          {/*BOT Right CONTAINER*/}
+          <div className={styles.botRightContainer}>
+            <div className={styles.content}>
+              {/* DROP DOWN MENU */}
+              <h2 className={styles.dropMenuTxt}>Select a job post :</h2>
+              <select
+                onChange={(e) => setJob(e.target.value)}
+                className={styles.dropMenu}
+                name="language"
+                id="language"
+              >
+                <option value="" defaultValue>
+                  Drop & Select
+                </option>
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="c++">C++</option>
+              </select>
+              {/* TEXT AREA */}
 
-                <span className={styles.errorTxt} style={errorColorCV}>
-                  {errorCV}
-                </span>
+              <div className={styles.areaTxtContent}>
+                <h2 className={styles.areaTxt}>
+                  Do you have any experiences ?
+                </h2>
+                <h2 className={styles.areaTxt}>{counter}/1000</h2>
+              </div>
+              <textarea
+                onChange={(e) => HandleTextArea(e.target.value)}
+                maxLength="1000"
+                value={experiences}
+                className={styles.textArea}
+                placeholder="Describe your experiences in a few words..."
+              ></textarea>
 
+              {/* JOIN CV AND PHOTO */}
+              <div className={styles.joinFileContent}>
+                {/* CV */}
+                <div className={styles.cvButtonContent}>
+                  <button
+                    onClick={(e) => cvClick(e)}
+                    className={styles.cvButton}
+                  >
+                    Join your CV *
+                  </button>
+
+                  <span className={styles.errorTxt} style={errorColorCV}>
+                    {errorCV}
+                  </span>
+
+                  <input
+                    className={styles.inputCV}
+                    ref={inputCVRef}
+                    id="cv"
+                    name="cv"
+                    type="file"
+                    accept="application/pdf"
+                    onChange={(e) => handleOnChangeCV(e)}
+                  />
+                </div>
+                {previewCV && popCV}
+
+                {/* PROFILE PICTURE */}
+                <div className={styles.photoButtonContent}>
+                  <button
+                    onClick={(e) => photoClick(e)}
+                    className={styles.photoButton}
+                  >
+                    Profile picture
+                  </button>
+                  <span className={styles.errorTxt} style={errorColorAvatar}>
+                    {errorAvatar}
+                  </span>
+                </div>
                 <input
                   className={styles.inputCV}
-                  ref={inputCVRef}
-                  id="cv"
-                  name="cv"
+                  ref={inputPhotoRef}
+                  id="avatar"
+                  name="avatar"
                   type="file"
-                  accept="application/pdf"
-                  onChange={(e) => handleOnChangeCV(e)}
+                  accept="image/png, image/jpeg,image/jpg"
+                  onChange={(e) => handleOnChangeAvatar(e)}
                 />
+                {previewAvatar && popImg}
               </div>
-              {previewCV && popCV}
+            </div>
 
-              {/* PROFILE PICTURE */}
-              <div className={styles.photoButtonContent}>
-                <button
-                  onClick={(e) => photoClick(e)}
-                  className={styles.photoButton}
-                >
-                  Profile picture
-                </button>
-                <span className={styles.errorTxt} style={errorColorAvatar}>
-                  {errorAvatar}
-                </span>
-              </div>
-              <input
-                className={styles.inputCV}
-                ref={inputPhotoRef}
-                id="avatar"
-                name="avatar"
-                type="file"
-                accept="image/png, image/jpeg,image/jpg"
-                onChange={(e) => handleOnChangeAvatar(e)}
-              />
-              {previewAvatar && popImg}
+            <div className={styles.confirmButtonContent}>
+              {loader && (
+                <FontAwesomeIcon size="2x" icon={faSpinner} spinPulse />
+              )}
+              <button
+                onClick={(e) => confirmClick(e)}
+                className={styles.confirmButton}
+              >
+                CONFIRM
+              </button>
             </div>
           </div>
-
-          <div className={styles.confirmButtonContent}>
-            {loader && <FontAwesomeIcon size="2x" icon={faSpinner} spinPulse />}
-            <button
-              onClick={(e) => confirmClick(e)}
-              className={styles.confirmButton}
-            >
-              CONFIRM
-            </button>
-          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
 

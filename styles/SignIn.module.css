@@ -10,14 +10,15 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
   height: 70px;
   background-color: white;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px;
   box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
   z-index: 1;
 }
 
-.logo:hover {
+.logo {
   height: 40px;
   width: 40px;
   cursor: pointer;
@@ -26,6 +27,7 @@
 .buttonSignUp {
   background-color: #152232;
   color: #ffffff;
+  padding: 10px 0;
   width: 150px;
   border-radius: 10px;
   border: solid #152232 3px;
@@ -40,10 +42,10 @@
   color: #ffffff;
 }
 
-.componant {
-  height: 100%;
+.component {
   display: flex;
   flex-direction: row;
+  flex: 1;
 }
 
 .signIn {
@@ -100,8 +102,10 @@
 .passwordInput {
   display: flex;
   flex-direction: column;
+  width: 80%;
+}
+.emailInput {
   padding-bottom: 10%;
-  width: 100%;
 }
 
 .textForgot {
@@ -113,6 +117,12 @@
 
 .bNoAccount {
   color: #87c0cd;
+  cursor: pointer;
+}
+
+.bNoPassword {
+  color: #87c0cd;
+  background-color: red;
 }
 
 .textNoAccount {
@@ -127,14 +137,14 @@
   font-weight: bold;
   font-size: x-large;
   color: white;
-  align-self: flex-start;
+  padding-right: 30%;
 }
 
 .buttonCo {
   padding-bottom: 0%;
   width: 100%;
   text-align: right;
-  margin-top: -15%;
+  /* margin-top: -15%; */
   display: flex;
   justify-content: flex-end;
   margin-bottom: 10px;
@@ -149,7 +159,7 @@
   font-weight: bold;
   font-size: medium;
   box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-top: 20%;
+  margin-top: 15%;
 }
 
 .buttonSignIn:hover {
@@ -159,7 +169,7 @@
 }
 
 .graph {
-  width: 65%;
+  width: 60%;
   background: linear-gradient(0.4turn, #87c0cd 60%, white 50%);
 }
 

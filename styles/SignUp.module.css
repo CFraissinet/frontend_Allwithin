@@ -8,6 +8,7 @@
 
 .headerContainer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   height: 70px;
@@ -17,14 +18,19 @@
   z-index: 1;
 }
 
-.logo:hover {
+.logo {
   height: 40px;
   width: 40px;
   cursor: pointer;
 }
 
+.formSignUp {
+  flex: 1;
+}
+
 .signInbutton {
   background-color: white;
+  padding: 10px 0;
   width: 150px;
   border-radius: 10px;
   border: solid #152232 3px;
@@ -99,8 +105,8 @@
 }
 
 .inputContainer {
-  width: 80%;
-  margin-top: 30px;
+  width: 70%;
+  margin-top: 100px;
 }
 
 .inputBox {
@@ -125,11 +131,17 @@
 }
 
 .accountReady {
-  margin: 0;
   font-weight: bold;
   font-size: x-large;
   color: white;
   margin-top: 100px;
+  margin-bottom: 0px;
+}
+
+.signInHere {
+  font-weight: bold;
+  font-size: x-large;
+  color: white;
 }
 
 .textArea {
