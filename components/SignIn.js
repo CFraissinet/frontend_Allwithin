@@ -11,12 +11,22 @@ function SignIn() {
   const [token, setToken] = useState("");
   const dispatch = useDispatch();
 
+  /* Fetch for connect to account and go to /Lobby */
   const clickSignIn = () => {
     const data = {
       email: email,
       password: password,
     };
+    
+    /* Const for validate if that was a */
+    const verifEmail = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
 
+    const validate = verifEmail.test(email);
+    if(!validate) {
+      setError("Please enter a valid email");
+      return;
+    }
+    
     fetch("http://localhost:3000/users/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -24,7 +34,6 @@ function SignIn() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.result) {
           location.href = "/lobby";
           dispatch(login({ token: data.token }));
@@ -77,6 +86,7 @@ function SignIn() {
                 <span className={styles.textInput}>Enter your password :</span>
                 <input
                   onChange={(e) => setPassword(e.target.value)}
+                  // onChange={validate}
                   value={password}
                   className={styles.inputPassword}
                   type="password"
@@ -90,9 +100,7 @@ function SignIn() {
                 </h2>
               </div>
               <div className={styles.buttonCo}>
-                <Link href="/lobby">
-                  <button className={styles.buttonSignIn}>SIGN IN</button>
-                </Link>
+                  <button onClick={clickSignIn} className={styles.buttonSignIn}>SIGN IN</button>
               </div>
 
               <h2 className={styles.noAccount}>
