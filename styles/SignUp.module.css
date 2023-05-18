@@ -246,3 +246,37 @@
   display: flex;
   justify-content: space-between;
 }
+
+.cvButtonContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.photoButtonContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.photoPreview {
+  height: 100px;
+  width: 70px;
+  object-fit: contain;
+  border: solid #152232 2px;
+  margin-top: 40px;
+}
+
+.pdf {
+  border: solid #152232 2px;
+  margin-top: 40px;
+}
+
+.errorTxt {
+  /* color: red; */
+  font-size: xx-small;
+  font-weight: bold;
+  width: 150px;
+}

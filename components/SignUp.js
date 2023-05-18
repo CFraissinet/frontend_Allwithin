@@ -1,11 +1,19 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import styles from "../styles/SignUp.module.css";
-import Link from 'next/link';
+import Link from "next/link";
+import { Document, Page, pdfjs } from "react-pdf";
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
 function Signup() {
   const inputCVRef = useRef(null);
   const inputPhotoRef = useRef(null);
 
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const [previewCV, setPreviewCV] = useState(false);
+  const [previewAvatar, setPreviewAvatar] = useState(false);
   const [CV, setCV] = useState("");
   const [avatar, setAvatar] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -16,28 +24,19 @@ function Signup() {
   const [job, setJob] = useState("");
   const [experiences, setExperiences] = useState("");
   const [counter, setCounter] = useState("0");
+  const [errorCV, setErrorCV] = useState("");
+  const [errorAvatar, setErrorAvatar] = useState("");
 
   const cvClick = (e) => {
     e.preventDefault();
-
     // Click sur l'input moche masqué
     inputCVRef.current.click();
-    console.log("join CV");
   };
 
   const photoClick = (e) => {
     e.preventDefault();
     // Click sur l'input moche masqué
     inputPhotoRef.current.click();
-    console.log("join photo");
-  };
-
-  const signInClick = () => {
-    console.log("SignIn");
-  };
-
-  const signInHereClick = () => {
-    console.log("SignInHere");
   };
 
   const HandleTextArea = (value) => {
@@ -58,11 +57,10 @@ function Signup() {
       experiences: experiences,
     };
 
-    console.log(data);
     const formData = new FormData();
     formData.append("cv", inputCVRef.current.files[0]);
     formData.append("avatar", inputPhotoRef.current.files[0]);
-
+    // adds/append data object in formData stringified
     formData.append("data", JSON.stringify(data));
 
     fetch("http://localhost:3000/users/signup", {
@@ -75,7 +73,88 @@ function Signup() {
       });
   };
 
+  // Generating a base64 version of a pdf file
+  function generateCV(e) {
+    //Read File
+    let selectedFile = e.target.files;
+    //Check File is not Empty
+    if (selectedFile.length > 0) {
+      // Select the very first file from list
+      var fileToLoad = selectedFile[0];
+      // FileReader function for read the file.
+      var fileReader = new FileReader();
+      var base64;
+      // Onload of file read the file content
+      fileReader.onload = function (fileLoadedEvent) {
+        base64 = fileLoadedEvent.target.result;
+        // Print data in console
+        setCV(base64);
+      };
+      // Convert data to base64
+      fileReader.readAsDataURL(fileToLoad);
+    }
+  }
+  //
+
+  // Styling text color for error messages
+  let errorColorCV;
+  let errorColorAvatar;
+  if (previewCV) {
+    errorColorCV = { color: "#152232" };
+  } else {
+    errorColorCV = { color: "#FF0000" };
+  }
+
+  if (previewAvatar) {
+    errorColorAvatar = { color: "#152232" };
+  } else {
+    errorColorAvatar = { color: "#FF0000" };
+  }
+  //
+
+  // for poping files preview when uploading files (CV & AVATAR)
+  const popCV = (
+    <div className={styles.pdf}>
+      <Document file={CV}>
+        <Page height={100} pageNumber={pageNumber} renderTextLayer={false} />
+      </Document>
+    </div>
+  );
+
+  const popImg = (
+    <img className={styles.photoPreview} src={avatar} alt="photo" />
+  );
+  //
+
+  const handleOnChangeCV = (e) => {
+    if (e.target.value.includes(".pdf")) {
+      generateCV(e);
+      setPreviewCV(true);
+
+      setErrorCV(e.target.value.slice(12));
+    } else {
+      setPreviewCV(false);
+      setErrorCV("Only PDF files are accepted");
+    }
+  };
+
+  const handleOnChangeAvatar = (e) => {
+    if (
+      e.target.value.includes(".jpeg") ||
+      e.target.value.includes(".jpg") ||
+      e.target.value.includes(".png")
+    ) {
+      setAvatar(URL.createObjectURL(e.target.files[0]));
+      setPreviewAvatar(true);
+      setErrorAvatar(e.target.value.slice(12));
+    } else {
+      setPreviewAvatar(false);
+      setErrorAvatar("Only JPEG, JPG or PNG files are accepted");
+    }
+  };
+
   return (
+    //Embedded all JSX code with "form" tag to collect all infos from inputs
     <form encType="multipart/form-data" className={styles.mainContainer}>
       {/* HEADER */}
       <div className={styles.headerContainer}>
@@ -84,10 +163,8 @@ function Signup() {
           <span>LOGO</span>
         </div>
         {/* BUTTON */}
-        <Link href='/signIn'>
-        <button className={styles.signInbutton}>
-          Sign in
-        </button>
+        <Link href="/signIn">
+          <button className={styles.signInbutton}>Sign in</button>
         </Link>
       </div>
 
@@ -162,12 +239,8 @@ function Signup() {
             </div>
             <h2 className={styles.accountReady}>
               Already have an account?{" "}
-              <Link href='/signIn'>
-              <span
-                className={styles.signInHere}
-              >
-                SIGN IN HERE
-              </span>
+              <Link href="/signIn">
+                <span className={styles.signInHere}>SIGN IN HERE</span>
               </Link>
             </h2>
           </div>
@@ -178,7 +251,12 @@ function Signup() {
           <div className={styles.content}>
             {/* DROP DOWN MENU */}
             <h2 className={styles.dropMenuTxt}>Select a job post :</h2>
-            <select className={styles.dropMenu} name="language" id="language">
+            <select
+              onChange={(e) => setJob(e.target.value)}
+              className={styles.dropMenu}
+              name="language"
+              id="language"
+            >
               <option value="" defaultValue>
                 Drop & Select
               </option>
@@ -203,35 +281,49 @@ function Signup() {
             {/* JOIN CV AND PHOTO */}
             <div className={styles.joinFileContent}>
               {/* CV */}
-              <button onClick={(e) => cvClick(e)} className={styles.cvButton}>
-                Join your CV *
-              </button>
+              <div className={styles.cvButtonContent}>
+                <button onClick={(e) => cvClick(e)} className={styles.cvButton}>
+                  Join your CV *
+                </button>
 
-              <input
-                className={styles.inputCV}
-                ref={inputCVRef}
-                id="cv"
-                name="cv"
-                type="file"
-                onChange={(e) => setCV(e.target.value)}
-              />
+                <span className={styles.errorTxt} style={errorColorCV}>
+                  {errorCV}
+                </span>
+
+                <input
+                  className={styles.inputCV}
+                  ref={inputCVRef}
+                  id="cv"
+                  name="cv"
+                  type="file"
+                  accept="application/pdf"
+                  onChange={(e) => handleOnChangeCV(e)}
+                />
+              </div>
+              {previewCV && popCV}
 
               {/* PROFILE PICTURE */}
-              <button
-                onClick={(e) => photoClick(e)}
-                className={styles.photoButton}
-              >
-                Profile picture
-              </button>
-
+              <div className={styles.photoButtonContent}>
+                <button
+                  onClick={(e) => photoClick(e)}
+                  className={styles.photoButton}
+                >
+                  Profile picture
+                </button>
+                <span className={styles.errorTxt} style={errorColorAvatar}>
+                  {errorAvatar}
+                </span>
+              </div>
               <input
                 className={styles.inputCV}
                 ref={inputPhotoRef}
                 id="avatar"
                 name="avatar"
                 type="file"
-                onChange={(e) => setAvatar(e.target.value)}
+                accept="image/png, image/jpeg,image/jpg"
+                onChange={(e) => handleOnChangeAvatar(e)}
               />
+              {previewAvatar && popImg}
             </div>
           </div>
           <button
