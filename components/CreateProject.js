@@ -32,10 +32,10 @@ function CreateProject() {
 {/* contien la div formContainer et txtAreaContainer */}
         <div className={styles.leftRightContainer}>
 
-       
+          <h1>Create Your Project</h1>
+       <div className={styles.leftRight} >
         <div className={styles.formContainer}>
           {/*--------------------------- Nav ------------------------------*/}
-          <h1>Create Your Project</h1>
 
 
           {/*--------------------------- Forms ------------------------------*/}
@@ -77,6 +77,7 @@ function CreateProject() {
 
             <div className={styles.jobInputContainer}>
              
+             
             <div className={`${styles.inputBox} ${styles.labelStyle}`}>
                 <label htmlFor="jobProfile">Job Profile:</label>
                 <input
@@ -95,16 +96,25 @@ function CreateProject() {
                   <button>X</button>
                 </div>
             </div>
-            {/* input job Profile & member count */}
             <button className={styles.addButton}>Add Member</button>
+            {/* input job Profile & member count */}
           </div>
-          {/*--------------------------- Forms ------------------------------*/}
         </div>
+          {/*--------------------------- Forms ------------------------------*/}
     
 
         {/*------------------------- div txtAreaContainer ----------------------*/}
         <div  className={styles.txtAreaContainer}>
-    <h1>Project description</h1>
+        <label className={styles.labelStyle} htmlFor="projectDescription">Project description:</label>
+    <textarea 
+    maxLength="1000"
+    className={styles.txtArea} 
+    placeholder="Enter project description"
+    ></textarea>
+    <div className={styles.btnCreatCountainer}>
+    <button className={styles.btnCreateProject}> CREATE PROJECT</button>
+    </div>
+        </div>
         </div>
         {/*------------------------- div txtAreaContainer fin ----------------------*/}
         </div>
@@ -113,4 +123,4 @@ function CreateProject() {
     </div>
   );
 }
-export default CreateProject;
+export default CreateProject; 
