@@ -210,9 +210,7 @@
   width: 150px;
   border-radius: 10px;
   border: solid #152232 3px;
-  align-self: flex-end;
   font-weight: bold;
-  margin-top: 50px;
   box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -245,4 +243,46 @@
 .areaTxtContent {
   display: flex;
   justify-content: space-between;
+}
+
+.cvButtonContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.photoButtonContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.photoPreview {
+  height: 100px;
+  width: 70px;
+  object-fit: contain;
+  border: solid #152232 2px;
+  margin-top: 40px;
+}
+
+.pdf {
+  border: solid #152232 2px;
+  margin-top: 40px;
+}
+
+.errorTxt {
+  /* color: red; */
+  font-size: xx-small;
+  font-weight: bold;
+  width: 150px;
+}
+
+.confirmButtonContent {
+  display: flex;
+  margin-top: 50px;
+  align-items: center;
+  gap: 20px;
+  align-self: flex-end;
 }
