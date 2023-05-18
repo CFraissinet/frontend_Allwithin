@@ -28,10 +28,15 @@ function CreateProject() {
           </div>
         </div>
         {/* navbar end*/}
+
+{/* contien la div formContainer et txtAreaContainer */}
+        <div className={styles.leftRightContainer}>
+
+       
         <div className={styles.formContainer}>
           {/*--------------------------- Nav ------------------------------*/}
-
           <h1>Create Your Project</h1>
+
 
           {/*--------------------------- Forms ------------------------------*/}
           <div className={styles.inputDiv}>
@@ -95,6 +100,15 @@ function CreateProject() {
           </div>
           {/*--------------------------- Forms ------------------------------*/}
         </div>
+    
+
+        {/*------------------------- div txtAreaContainer ----------------------*/}
+        <div  className={styles.txtAreaContainer}>
+    <h1>Project description</h1>
+        </div>
+        {/*------------------------- div txtAreaContainer fin ----------------------*/}
+        </div>
+        {/* fin  div leftRightContainer */}
       </div>
     </div>
   );
