@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import styles from "../styles/SignUp.module.css";
 import Link from "next/link";
 import { Document, Page, pdfjs } from "react-pdf";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
@@ -26,6 +28,7 @@ function Signup() {
   const [counter, setCounter] = useState("0");
   const [errorCV, setErrorCV] = useState("");
   const [errorAvatar, setErrorAvatar] = useState("");
+  const [loader, setLoader] = useState(false);
 
   const cvClick = (e) => {
     e.preventDefault();
@@ -46,6 +49,7 @@ function Signup() {
 
   const confirmClick = (e) => {
     e.preventDefault();
+    setLoader(true);
 
     const data = {
       firstname: firstname,
@@ -69,7 +73,13 @@ function Signup() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setLoader(false);
+
+        if (data.result) {
+          location.href = "./lobby";
+        } else {
+          console.log(data.error);
+        }
       });
   };
 
@@ -326,12 +336,16 @@ function Signup() {
               {previewAvatar && popImg}
             </div>
           </div>
-          <button
-            onClick={(e) => confirmClick(e)}
-            className={styles.confirmButton}
-          >
-            CONFIRM
-          </button>
+
+          <div className={styles.confirmButtonContent}>
+            {loader && <FontAwesomeIcon size="2x" icon={faSpinner} spinPulse />}
+            <button
+              onClick={(e) => confirmClick(e)}
+              className={styles.confirmButton}
+            >
+              CONFIRM
+            </button>
+          </div>
         </div>
       </div>
     </form>
