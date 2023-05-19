@@ -2,46 +2,45 @@ import Link from "next/link";
 import styles from "../styles/CreateProject.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import{useState} from 'react' 
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 function CreateProject() {
+  const router = useRouter();
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
-  const [token, setToken] = useState("");  // Add this line to include token
+  // const [token, setToken] = useState(""); // ADDED: State for storing the user's token
+
+  const [counter, setCount] = useState(0); // initialization hook
 
   const clickCreatProject = () => {
     const data = {
       name: name,
       description: description,
-      start_date: start_date,
-      end_date: end_date,
-      token: token,  // Add this line to include token in the request body
+      start_date: null,
+      end_date: null,
+      // token: token, // ADDED: Including the user's token in the request body
     };
 
-    fetch("http://localhost:3000/addProject", {
+    fetch("http://localhost:3000/projects/addProject", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.result) {
-          location.href = "/lobby";
-          dispatch(login({ token: data.token }));
-        } else {
-          setError(`${data.error}`);
-          setName("");
-          setDescription("");
-          setStart_date("");
-          setEnd_date("");
-        }
-      });
-  };
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+    })
+
+          // dispatch(login({ token: data.token })); Uncomment this line after defining dispatch and login
+
+        
+      
+
   
-  // counter implementation 
-  const [counter, setCount] = useState(0);  // initialization hook
   
   const increment = () => {
     setCount(counter + 1);  // setter parameterization that increments counter
@@ -51,6 +50,7 @@ function CreateProject() {
     if (counter > 0) {
       setCount(counter - 1);   // setter parameterization that decrements the counter and prevents the counter from going below 0
     }
+  }
 
   }
   return (
@@ -163,7 +163,7 @@ function CreateProject() {
     <textarea 
     onChange={(e) => setDescription(e.target.value)}
     value={description}
-    maxLength="1000"
+    maxLength="2000"
     className={styles.txtArea} 
     placeholder="Enter project description"
     ></textarea>
