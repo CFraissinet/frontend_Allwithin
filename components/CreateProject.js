@@ -5,9 +5,41 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import{useState} from 'react' 
 
 function CreateProject() {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [start_date, setStart_date] = useState("");
+  const [end_date, setEnd_date] = useState("");
+  const [token, setToken] = useState("");  // Add this line to include token
 
+  const clickCreatProject = () => {
+    const data = {
+      name: name,
+      description: description,
+      start_date: start_date,
+      end_date: end_date,
+      token: token,  // Add this line to include token in the request body
+    };
 
-
+    fetch("http://localhost:3000/addProject", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result) {
+          location.href = "/lobby";
+          dispatch(login({ token: data.token }));
+        } else {
+          setError(`${data.error}`);
+          setName("");
+          setDescription("");
+          setStart_date("");
+          setEnd_date("");
+        }
+      });
+  };
+  
   // counter implementation 
   const [counter, setCount] = useState(0);  // initialization hook
   
