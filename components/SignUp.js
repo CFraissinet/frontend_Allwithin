@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import { login } from "../reducers/user";
+import { useDispatch } from "react-redux";
 
 function Signup() {
   const inputCVRef = useRef(null);
@@ -29,6 +31,7 @@ function Signup() {
   const [errorCV, setErrorCV] = useState("");
   const [errorAvatar, setErrorAvatar] = useState("");
   const [loader, setLoader] = useState(false);
+  const dispatch = useDispatch();
 
   const cvClick = (e) => {
     e.preventDefault();
@@ -76,6 +79,7 @@ function Signup() {
 
         if (data.result) {
           location.href = "./lobby";
+          dispatch(login({ token: data.token }));
         } else {
           console.log(data.error);
         }
