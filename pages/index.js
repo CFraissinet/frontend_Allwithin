@@ -5,7 +5,7 @@ import CreateProject from "../components/CreateProject";
 import NavBar from "../components/NavBar";
 
 function Index() {
-  return <NavBar />;
+  return <Home />;
 }
 
 export default Index;
