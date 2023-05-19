@@ -22,10 +22,16 @@
 .logoContainer {
   display: flex;
   align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  object-fit: contain;
+  background-color: #87c0cd;
+  padding: 20px;
 }
 
 .logo {
-  height: 7vh; /* Adjust this as per your logo's aspect ratio */
+  height: 60px;
+  width: 60px;
 }
 
 /* the positioning div that includes the 2 buttons */
