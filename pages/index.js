@@ -5,7 +5,7 @@ import CreateProject from "../components/CreateProject";
 import Join from "../components/Join";
 
 function Index() {
-  return <Join />;
+  return <CreateProject />;
 }
 
 export default Index;

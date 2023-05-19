@@ -2,8 +2,25 @@ import Link from "next/link";
 import styles from "../styles/CreateProject.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import{useState} from 'react' 
 
 function CreateProject() {
+
+
+
+  // counter implementation 
+  const [counter, setCount] = useState(0);  // initialization hook
+  
+  const increment = () => {
+    setCount(counter + 1);  // setter parameterization that increments counter
+  }
+  
+  const decrement = () => {
+    if (counter > 0) {
+      setCount(counter - 1);   // setter parameterization that decrements the counter and prevents the counter from going below 0
+    }
+
+  }
   return (
     <div className={styles.background}>
       <div className={styles.homeContainer}>
@@ -29,7 +46,7 @@ function CreateProject() {
         </div>
         {/* navbar end*/}
 
-{/* contien la div formContainer et txtAreaContainer */}
+{/* contains the div formContainer and txtAreaContainer */}
         <div className={styles.leftRightContainer}>
 
           <h1>Create Your Project</h1>
@@ -37,12 +54,13 @@ function CreateProject() {
         <div className={styles.formContainer}>
           {/*--------------------------- Nav ------------------------------*/}
 
-
           {/*--------------------------- Forms ------------------------------*/}
           <div className={styles.inputDiv}>
               <div className={`${styles.inputBox} ${styles.labelStyle}`}>
               <label htmlFor="projectName">Project Name:</label>
               <input
+              onChange={(e) => setName(e.target.value)}
+              value={name}
                 type="text"
                 id="projectName"
                 className={styles.input}
@@ -54,6 +72,8 @@ function CreateProject() {
             <div className={`${styles.inputBox} ${styles.labelStyle}`}>
                 <label htmlFor="startDate">Start Date:</label>
                 <input
+                 onChange={(e) => setStart_date(e.target.value)}
+                 value={start_date}
                   type="text"
                   id="startDate"
                   className={styles.endStart}
@@ -64,6 +84,8 @@ function CreateProject() {
               <div className={`${styles.inputBox} ${styles.labelStyle}`}>
                 <label htmlFor="endDate">End Date:</label>
                 <input
+                onChange={(e) => setEnd_date(e.target.value)}
+                value={end_date}
                   type="text"
                   id="endDate"
                   className={styles.endStart}
@@ -89,9 +111,9 @@ function CreateProject() {
               </div>      
                 <div className={styles.counter}>
                   <div>
-                    <button>-</button>
-                    <span>0</span>
-                    <button>+</button>
+                    <button onClick={() => decrement()} >-</button>
+                    <span>{counter}</span>
+                    <button onClick={() => increment()} >+</button>
                   </div>
                   <button>X</button>
                 </div>
@@ -107,18 +129,20 @@ function CreateProject() {
         <div  className={styles.txtAreaContainer}>
         <label className={styles.labelStyle} htmlFor="projectDescription">Project description:</label>
     <textarea 
+    onChange={(e) => setDescription(e.target.value)}
+    value={description}
     maxLength="1000"
     className={styles.txtArea} 
     placeholder="Enter project description"
     ></textarea>
     <div className={styles.btnCreatCountainer}>
-    <button className={styles.btnCreateProject}> CREATE PROJECT</button>
+    <button onClick={clickCreatProject}  className={styles.btnCreateProject}> CREATE PROJECT</button>
     </div>
         </div>
         </div>
-        {/*------------------------- div txtAreaContainer fin ----------------------*/}
+        {/*------------------------- div txtAreaContainer ----------------------*/}
         </div>
-        {/* fin  div leftRightContainer */}
+        {/* contains the div formContainer and txtAreaContainer */}
       </div>
     </div>
   );
