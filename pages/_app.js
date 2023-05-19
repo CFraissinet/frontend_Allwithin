@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import Head from "next/head";
+import NavBar from "../components/NavBar";
 
 import { persistStore, persistReducer } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
@@ -27,6 +28,7 @@ function App({ Component, pageProps }) {
         <Head>
           <title>Next.js App</title>
         </Head>
+        <NavBar />
         <Component {...pageProps} />
       </PersistGate>
     </Provider>

@@ -17,16 +17,18 @@ function SignIn() {
       email: email,
       password: password,
     };
-    
+
     /* Const for validate if that was a */
-    const verifEmail = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+    const verifEmail = new RegExp(
+      "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
+    );
 
     const validate = verifEmail.test(email);
-    if(!validate) {
+    if (!validate) {
       setError("Please enter a valid email");
       return;
     }
-    
+
     fetch("http://localhost:3000/users/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -47,17 +49,6 @@ function SignIn() {
 
   return (
     <div className={styles.main}>
-      <div className={styles.navBar}>
-        {/* LOGO */}
-        <div className={styles.button}>
-          <Link href="/">
-            <img src="logo.png" alt="Logo" className={styles.logo} />
-          </Link>
-        </div>
-        <Link href="/signUp">
-          <button className={styles.buttonSignUp}>Sign up</button>
-        </Link>
-      </div>
       <div className={styles.component}>
         {/* COMPOSANT LEFT */}
         <div className={styles.signIn}>
@@ -102,7 +93,9 @@ function SignIn() {
                 </h2>
               </div>
               <div className={styles.buttonCo}>
-                  <button onClick={clickSignIn} className={styles.buttonSignIn}>SIGN IN</button>
+                <button onClick={clickSignIn} className={styles.buttonSignIn}>
+                  SIGN IN
+                </button>
               </div>
 
               <h2 className={styles.noAccount}>

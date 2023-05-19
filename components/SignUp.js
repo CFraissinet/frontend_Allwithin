@@ -11,9 +11,7 @@ function Signup() {
   const inputCVRef = useRef(null);
   const inputPhotoRef = useRef(null);
 
-  const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-
   const [previewCV, setPreviewCV] = useState(false);
   const [previewAvatar, setPreviewAvatar] = useState(false);
   const [CV, setCV] = useState("");
@@ -29,6 +27,7 @@ function Signup() {
   const [errorCV, setErrorCV] = useState("");
   const [errorAvatar, setErrorAvatar] = useState("");
   const [loader, setLoader] = useState(false);
+  const [confirm, setConfirmError] = useState("");
 
   const cvClick = (e) => {
     e.preventDefault();
@@ -51,7 +50,7 @@ function Signup() {
     e.preventDefault();
     setLoader(true);
 
-    const data = {
+    const dataInfo = {
       firstname: firstname,
       name: name,
       email: email,
@@ -60,28 +59,53 @@ function Signup() {
       experiences: null,
     };
 
-    const formData = new FormData();
-    formData.append("cv", inputCVRef.current.files[0]);
-    formData.append("avatar", inputPhotoRef.current.files[0]);
-    // adds/append data object in formData stringified
-    formData.append("data", JSON.stringify(data));
-
     fetch("http://localhost:3000/users/signup", {
       method: "POST",
-      body: formData,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dataInfo),
     })
-      .then((res) => res.json())
+      .then((response) => response.json())
       .then((data) => {
-        setLoader(false);
-
         if (data.result) {
-          location.href = "./lobby";
+          if (inputCVRef.current.files[0]) {
+            console.log("have cv");
+            const formData = new FormData();
+            formData.append("cv", inputCVRef.current.files[0]);
+            formData.append("data", JSON.stringify(dataInfo));
+            fetch("http://localhost:3000/users/updateCV", {
+              method: "POST",
+              body: formData,
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("cv log", data);
+              });
+          }
+
+          if (inputPhotoRef.current.files[0]) {
+            console.log("have avatar");
+            const formData = new FormData();
+            formData.append("avatar", inputPhotoRef.current.files[0]);
+            formData.append("data", JSON.stringify(dataInfo));
+            fetch("http://localhost:3000/users/updateAvatar", {
+              method: "POST",
+              body: formData,
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("avatar log", data);
+              });
+          }
+          setLoader(false);
+          console.log("go to lobby", data);
+          // location.href = "./lobby";
         } else {
+          setLoader(false);
+          setConfirmError("");
           console.log(data.error);
         }
       });
   };
-
   // Generating a base64 version of a pdf file
   function generateCV(e) {
     //Read File
@@ -165,20 +189,6 @@ function Signup() {
   return (
     //Embedded all JSX code with "form" tag to collect all infos from inputs
     <div className={styles.mainContainer}>
-      {/* HEADER */}
-      <div className={styles.headerContainer}>
-        {/* LOGO */}
-        <div className={styles.button}>
-          <Link href="/">
-            <img src="logo.png" alt="Logo" className={styles.logo} />
-          </Link>
-        </div>
-        {/* BUTTON */}
-        <Link href="/signIn">
-          <button className={styles.signInbutton}>Sign in</button>
-        </Link>
-      </div>
-
       <form className={styles.formSignUp} encType="multipart/form-data">
         {/*BOT CONTAINER*/}
         <div className={styles.botContainer}>
@@ -300,7 +310,7 @@ function Signup() {
                     onClick={(e) => cvClick(e)}
                     className={styles.cvButton}
                   >
-                    Join your CV *
+                    Join your CV
                   </button>
 
                   <span className={styles.errorTxt} style={errorColorCV}>

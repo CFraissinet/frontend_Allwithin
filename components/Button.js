@@ -1,17 +1,24 @@
 import styles from "../styles/Button.module.css";
-import Link from "next/link";
+import { useState } from "react";
 
 function Button(props) {
-  // BUTTON PROPS WHEN CALLING BUTTON TAG ON OTHER COMPONENTS
-  const backgroundColor = { backgroundColor: props.backgroundColor };
-  const borderColor = { border: `3px solid ${props.borderColor}` };
-  const textColor = { color: props.textColor };
   const text = props.text;
+  const [isHovering, setIsHovering] = useState(false);
 
   return (
     <button
       className={styles.button}
-      style={{ ...backgroundColor, ...borderColor, ...textColor }}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+      style={{
+        backgroundColor: isHovering
+          ? `${props.backgroundColorHover}`
+          : `${props.backgroundColor}`,
+        color: isHovering ? `${props.textColorHover}` : `${props.textColor}`,
+        border: isHovering
+          ? `3px solid ${props.borderColorHover}`
+          : `3px solid ${props.borderColor}`,
+      }}
     >
       {text}
     </button>

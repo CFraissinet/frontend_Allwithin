@@ -3,23 +3,6 @@ import Link from "next/link";
 function Home() {
   return (
     <div className={styles.homeContainer}>
-      {/* background top */}
-      {/* navbar start*/}
-      <div className={styles.navbar}>
-        <div className={styles.logoContainer}>
-          <img className={styles.logo} src="logo.png" alt="Logo" />
-        </div>
-        <div className={styles.buttons}>
-          <Link href="/signIn">
-            <span className={styles.btnSIgnIn}>Sign In</span>
-          </Link>
-          <Link href="/signUp">
-            <button className={styles.btnSignUp}>Sign Up</button>
-          </Link>
-        </div>
-      </div>
-      {/* navbar end*/}
-
       {/* backgroundTop start*/}
       <div className={styles.backgroundTop}>
         <h1 className={styles.title}>

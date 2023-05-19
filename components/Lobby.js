@@ -49,13 +49,6 @@ function Lobby() {
   console.log(dataProjects);
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <div className={styles.buttonConnection}>
-          <button className={styles.button}>My lobby</button>
-          <button className={styles.button}>My messages</button>
-          <FontAwesomeIcon className={styles.userSection} icon={faUser} />
-        </div>
-      </div>
       <div className={styles.body}>
         <div className={styles.leftBody}>
           <div className={styles.topList}>
