@@ -6,8 +6,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import { useDispatch } from "react-redux";
+import { login } from "../reducers/user";
+import { useSelector } from "react-redux";
 
 function Signup() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
+  console.log(user);
+
   const inputCVRef = useRef(null);
   const inputPhotoRef = useRef(null);
 
@@ -97,8 +104,10 @@ function Signup() {
               });
           }
           setLoader(false);
+          dispatch(login({ token: data.user.token }));
           console.log("go to lobby", data);
-          // location.href = "./lobby";
+
+          location.href = "./lobby";
         } else {
           setLoader(false);
           setConfirmError("");
@@ -106,6 +115,7 @@ function Signup() {
         }
       });
   };
+
   // Generating a base64 version of a pdf file
   function generateCV(e) {
     //Read File
