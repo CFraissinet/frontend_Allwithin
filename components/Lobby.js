@@ -1,12 +1,14 @@
 import styles from "../styles/Lobby.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import {
   faUser,
   faArrowRight,
   faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
+import { addProject } from "../reducers/project";
 
 function Lobby() {
   const project = useSelector((state) => state.project.value);
@@ -15,6 +17,7 @@ function Lobby() {
   //hook for user's projects
   const [dataProjects, setDataProjects] = useState([]);
   const [selectProject, setSelectProject] = useState({});
+  const dispatch = useDispatch();
 
   // useEffect allowing to connect to the backend to retrieve the projects related to the person connected to the component loading
   useEffect(() => {
@@ -26,6 +29,11 @@ function Lobby() {
         setSelectProject(data.projects[0]);
       });
   }, []);
+
+  //To upload to the store and find the project in the project dashboard page
+  const sendProjectDasboard = (project) => {
+    dispatch(addProject(project));
+  }
 
   // browse the person's projects to view them
   const projectData = dataProjects.map((data, i) => {
@@ -40,6 +48,7 @@ function Lobby() {
     );
   });
 
+  
   function showProject(idProject) {
     setSelectProject(
       dataProjects[dataProjects.findIndex((data) => data._id === idProject)]
@@ -87,7 +96,9 @@ function Lobby() {
               placeholder="Project description"
               value={selectProject.description}
             ></textarea>
-            <button className={styles.buttonDashboard}>GO TO DASHBOARD</button>
+            <Link href="/dashboard">
+              <button onClick={() => sendProjectDasboard(selectProject)} className={styles.buttonDashboard}>GO TO DASHBOARD</button>
+            </Link>
           </div>
         </div>
       </div>

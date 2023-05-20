@@ -152,11 +152,19 @@
   box-shadow: -5px 5px #152232;
 }
 
+.ctnDescription {
+  padding-top: 5%;
+  font-size: x-large;
+  align-self: flex-start;
+  margin-left: 5%;
+  width: 90%;
+  height: 95%;
+}
+
 .txtDescription {
   padding-top: 5%;
   font-size: x-large;
   align-self: flex-start;
-  font-weight: bolder;
   margin-left: 5%;
   width: 90%;
   height: 95%;
@@ -164,7 +172,8 @@
 
 .containerStartBtn {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .btnStart {
