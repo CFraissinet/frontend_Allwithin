@@ -11,8 +11,11 @@ export const projectSlice = createSlice({
     addProject: (state, action) => {
       state.value.push(action.payload);
     },
+    removeProject: (state, action) => {
+			state.value = state.value.filter(project => project.name === action.payload.name);
+    }
   },
 });
 
-export const { addProject } = projectSlice.actions;
+export const { addProject, removeProject } = projectSlice.actions;
 export default projectSlice.reducer;
