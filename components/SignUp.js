@@ -9,6 +9,7 @@ import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/user";
 import { useSelector } from "react-redux";
+import Cookies from "js-cookie";
 
 function Signup() {
   const dispatch = useDispatch();
@@ -105,8 +106,8 @@ function Signup() {
           }
           setLoader(false);
           dispatch(login({ token: data.user.token }));
+          Cookies.set("token", data.token);
           console.log("go to lobby", data);
-
           location.href = "./lobby";
         } else {
           setLoader(false);
