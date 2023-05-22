@@ -3,6 +3,7 @@ import styles from "../styles/SignIn.module.css";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/user";
+import Cookies from "js-cookie";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -37,8 +38,9 @@ function SignIn() {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
-          location.href = "/lobby";
           dispatch(login({ token: data.token }));
+          Cookies.set("token", data.token);
+          location.href = "/lobby";
         } else {
           setError(`${data.error}`);
           setEmail("");
