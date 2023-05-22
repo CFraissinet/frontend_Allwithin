@@ -6,10 +6,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import { login } from "../reducers/user";
 import { useDispatch } from "react-redux";
+import { login } from "../reducers/user";
+import { useSelector } from "react-redux";
 
 function Signup() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
+  console.log(user);
+
   const inputCVRef = useRef(null);
   const inputPhotoRef = useRef(null);
 
@@ -69,6 +74,39 @@ function Signup() {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
+          if (inputCVRef.current.files[0]) {
+            console.log("have cv");
+            const formData = new FormData();
+            formData.append("cv", inputCVRef.current.files[0]);
+            formData.append("data", JSON.stringify(dataInfo));
+            fetch("http://localhost:3000/users/updateCV", {
+              method: "POST",
+              body: formData,
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("cv log", data);
+              });
+          }
+
+          if (inputPhotoRef.current.files[0]) {
+            console.log("have avatar");
+            const formData = new FormData();
+            formData.append("avatar", inputPhotoRef.current.files[0]);
+            formData.append("data", JSON.stringify(dataInfo));
+            fetch("http://localhost:3000/users/updateAvatar", {
+              method: "POST",
+              body: formData,
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("avatar log", data);
+              });
+          }
+          setLoader(false);
+          dispatch(login({ token: data.user.token }));
+          console.log("go to lobby", data);
+
           location.href = "./lobby";
         } else {
           setLoader(false);
@@ -77,6 +115,7 @@ function Signup() {
         }
       });
   };
+
   // Generating a base64 version of a pdf file
   function generateCV(e) {
     //Read File

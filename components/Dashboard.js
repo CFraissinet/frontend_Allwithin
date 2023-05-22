@@ -1,19 +1,30 @@
 import React, { useState } from "react";
 import styles from "../styles/Dashboard.module.css";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { removeProject } from "../reducers/project";
 
 function Dashboard() {
+  const project = useSelector((state) => state.project.value);
+  console.log(project);
   const [btnProject, setBtnProject] = useState(false);
+  const dispatch = useDispatch();
 
   const toolsBtn = (
     <>
-      <button className={styles.btnModal}> Chat</button>
+      <button className={styles.btnModal}>Chat</button>
       <button className={styles.btnModal}>Drive</button>
       <button className={styles.btnModal}>Github</button>
       <button className={styles.btnModal}>Calendar</button>
       <button className={styles.btnModal}>My team</button>
     </>
   );
+
+  //For clear store
+  const clearProject = (project) => {
+    dispatch(removeProject(project));
+    location.href = "/lobby";
+  };
 
   return (
     <div className={styles.main}>
@@ -32,7 +43,7 @@ function Dashboard() {
         <div className={styles.containerDashboard}>
           <div className={styles.dashboard}>
             <h2 className={styles.txtCard1}>
-              Project Name <b className={styles.aDashboard}>DASHBOARD</b>
+              {project[0].name} <b className={styles.aDashboard}>DASHBOARD</b>
             </h2>
             <div className={styles.midContainer}>
               <div className={styles.midCard}>
@@ -46,12 +57,21 @@ function Dashboard() {
                 </div>
               </div>
               <div className={styles.midCard}>
-                <div className={styles.txtDescription}>
+                <div className={styles.ctnDescription}>
                   <b>Description :</b>
+                  <div className={styles.txtDescription}>
+                    {project[0].description}
+                  </div>
                 </div>
               </div>
             </div>
             <div className={styles.containerStartBtn}>
+              <button
+                onClick={() => clearProject(project)}
+                className={styles.btnStart}
+              >
+                Back lobby
+              </button>
               <button
                 onClick={() => setBtnProject(true)}
                 className={styles.btnStart}
