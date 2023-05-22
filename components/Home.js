@@ -18,7 +18,9 @@ function Home() {
             <span className={styles.txtLeftCard}>
               Create your own project and costumize your staff
             </span>
+            <Link href="/createProject">
             <button className={styles.btnLeft}>Creat Project</button>
+            </Link>
           </div>
           <div className={styles.rightCard}>
             <span className={styles.txtRightCard}>
