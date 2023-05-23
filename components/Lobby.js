@@ -54,8 +54,6 @@ function Lobby() {
     );
   });
 
-  // browse the person's projects to view them
-
   function showProject(idProject) {
     setSelectProject(
       dataProjects[dataProjects.findIndex((data) => data._id === idProject)]
@@ -89,7 +87,9 @@ function Lobby() {
             <button className={styles.actionProject}>
               Create a new project
             </button>
-            <button className={styles.actionProject}>Join a project</button>
+            <Link href="/dashboard">
+              <button className={styles.actionProject}>Join a project</button>
+            </Link>
           </div>
         </div>
         <div className={styles.rightBody}>
