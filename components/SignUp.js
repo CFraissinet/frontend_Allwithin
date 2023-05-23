@@ -77,7 +77,7 @@ function Signup() {
       name: name,
       email: email,
       password: password,
-      job: null,
+      job: job,
       experiences: null,
     };
 
@@ -88,6 +88,7 @@ function Signup() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log("test", data);
         if (data.result) {
           if (inputCVRef.current.files[0]) {
             console.log("have cv");
@@ -118,11 +119,25 @@ function Signup() {
                 console.log("avatar log", data);
               });
           }
+
+          fetch("http://localhost:3000/users/jobs", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              userId: data.user._id,
+              jobId: data.user.job,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("JOB SENT", data);
+            });
+
           setLoader(false);
           dispatch(login({ token: data.user.token }));
           Cookies.set("token", data.token);
           console.log("go to lobby", data);
-          location.href = "./lobby";
+          // location.href = "./lobby";
         } else {
           setLoader(false);
           setConfirmError("");
