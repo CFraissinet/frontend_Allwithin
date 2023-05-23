@@ -17,11 +17,11 @@ export default async function middleware(request) {
   console.log(url);
 
   if (
-    (!verify &&
-      (url.includes("/lobby") ||
-        url.includes("/dashboard") ||
-        url.includes("/creatProject"))) ||
-    url.includes("/join")
+    !verify &&
+    (url.includes("/lobby") ||
+      url.includes("/dashboard") ||
+      url.includes("/creatProject") ||
+      url.includes("/join"))
   ) {
     return NextResponse.redirect("http://localhost:3001/signIn");
   }
