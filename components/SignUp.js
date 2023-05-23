@@ -46,11 +46,6 @@ function Signup() {
       });
   }, []);
 
-  // let jobs = [];
-  // jobs = jobData.map((data, i) => {
-  //   return jobs.push(<option value={data._id}>{data.name}</option>);
-  // });
-
   const cvClick = (e) => {
     e.preventDefault();
     // Click sur l'input moche masqué

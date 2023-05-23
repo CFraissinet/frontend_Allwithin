@@ -1,7 +1,7 @@
 import styles from "../styles/Join.module.css";
 import NavBar from "../components/NavBar";
 import Button from "../components/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
@@ -11,6 +11,18 @@ function Join() {
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [dataProjects, setDataProjects] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/projects/showProjects`)
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data.data);
+        setDataProjects(data.data);
+      });
+  }, []);
+
+  console.log("all projects", dataProjects);
 
   const openModal = () => {
     setIsOpen(true);
@@ -78,259 +90,31 @@ function Join() {
         </div>
 
         <div className={styles.projectContainer}>
-          <div className={styles.projectCard}>
-            <div className={styles.leftCard}>
-              <span className={styles.cardTitle}>Project name</span>
-              <span>Location :</span>
-              <span>Job position :</span>
-              <span>Start date 12/10/23 End date : 12/10/23</span>
-            </div>
-            <div className={styles.rigthCard}>
-              <span className={styles.postDate}>Post created: 12/05/23</span>
+          {dataProjects.map((data, i) => (
+            <div className={styles.projectCard}>
+              <div className={styles.leftCard}>
+                <span className={styles.cardTitle}>{data.name}</span>
+                <span>Location :</span>
+                <span>Job position :</span>
+                <span>Start date 12/10/23 End date : 12/10/23</span>
+              </div>
+              <div className={styles.rigthCard}>
+                <span className={styles.postDate}>Post created: 12/05/23</span>
 
-              <a onClick={() => console.log("yo")}>
-                <Button
-                  text="More details"
-                  backgroundColor="#87c0cd"
-                  borderColor="#87c0cd"
-                  textColor="#152232"
-                  backgroundColorHover="#87c0cd"
-                  borderColorHover="#87c0cd"
-                  textColorHover="white"
-                />
-              </a>
+                <a onClick={() => console.log("yo")}>
+                  <Button
+                    text="More details"
+                    backgroundColor="#87c0cd"
+                    borderColor="#87c0cd"
+                    textColor="#152232"
+                    backgroundColorHover="#87c0cd"
+                    borderColorHover="#87c0cd"
+                    textColorHover="white"
+                  />
+                </a>
+              </div>
             </div>
-          </div>
-          <div className={styles.projectCard}>
-            <div className={styles.leftCard}>
-              <span className={styles.cardTitle}>Project name</span>
-              <span>Location :</span>
-              <span>Job position :</span>
-              <span>Start date 12/10/23 End date : 12/10/23</span>
-            </div>
-            <div className={styles.rigthCard}>
-              <span className={styles.postDate}>Post created: 12/05/23</span>
-
-              <a onClick={() => console.log("yo")}>
-                <Button
-                  text="More details"
-                  backgroundColor="#87c0cd"
-                  borderColor="#87c0cd"
-                  textColor="#152232"
-                  backgroundColorHover="#87c0cd"
-                  borderColorHover="#87c0cd"
-                  textColorHover="white"
-                />
-              </a>
-            </div>
-          </div>
-          <div className={styles.projectCard}>
-            <div className={styles.leftCard}>
-              <span className={styles.cardTitle}>Project name</span>
-              <span>Location :</span>
-              <span>Job position :</span>
-              <span>Start date 12/10/23 End date : 12/10/23</span>
-            </div>
-            <div className={styles.rigthCard}>
-              <span className={styles.postDate}>Post created: 12/05/23</span>
-
-              <a onClick={() => console.log("yo")}>
-                <Button
-                  text="More details"
-                  backgroundColor="#87c0cd"
-                  borderColor="#87c0cd"
-                  textColor="#152232"
-                  backgroundColorHover="#87c0cd"
-                  borderColorHover="#87c0cd"
-                  textColorHover="white"
-                />
-              </a>
-            </div>
-          </div>
-          <div className={styles.projectCard}>
-            <div className={styles.leftCard}>
-              <span className={styles.cardTitle}>Project name</span>
-              <span>Location :</span>
-              <span>Job position :</span>
-              <span>Start date 12/10/23 End date : 12/10/23</span>
-            </div>
-            <div className={styles.rigthCard}>
-              <span className={styles.postDate}>Post created: 12/05/23</span>
-
-              <a onClick={() => console.log("yo")}>
-                <Button
-                  text="More details"
-                  backgroundColor="#87c0cd"
-                  borderColor="#87c0cd"
-                  textColor="#152232"
-                  backgroundColorHover="#87c0cd"
-                  borderColorHover="#87c0cd"
-                  textColorHover="white"
-                />
-              </a>
-            </div>
-          </div>
-          <div className={styles.projectCard}>
-            <div className={styles.leftCard}>
-              <span className={styles.cardTitle}>Project name</span>
-              <span>Location :</span>
-              <span>Job position :</span>
-              <span>Start date 12/10/23 End date : 12/10/23</span>
-            </div>
-            <div className={styles.rigthCard}>
-              <span className={styles.postDate}>Post created: 12/05/23</span>
-
-              <a onClick={() => console.log("yo")}>
-                <Button
-                  text="More details"
-                  backgroundColor="#87c0cd"
-                  borderColor="#87c0cd"
-                  textColor="#152232"
-                  backgroundColorHover="#87c0cd"
-                  borderColorHover="#87c0cd"
-                  textColorHover="white"
-                />
-              </a>
-            </div>
-          </div>
-          <div className={styles.projectCard}>
-            <div className={styles.leftCard}>
-              <span className={styles.cardTitle}>Project name</span>
-              <span>Location :</span>
-              <span>Job position :</span>
-              <span>Start date 12/10/23 End date : 12/10/23</span>
-            </div>
-            <div className={styles.rigthCard}>
-              <span className={styles.postDate}>Post created: 12/05/23</span>
-
-              <a onClick={() => console.log("yo")}>
-                <Button
-                  text="More details"
-                  backgroundColor="#87c0cd"
-                  borderColor="#87c0cd"
-                  textColor="#152232"
-                  backgroundColorHover="#87c0cd"
-                  borderColorHover="#87c0cd"
-                  textColorHover="white"
-                />
-              </a>
-            </div>
-          </div>
-          <div className={styles.projectCard}>
-            <div className={styles.leftCard}>
-              <span className={styles.cardTitle}>Project name</span>
-              <span>Location :</span>
-              <span>Job position :</span>
-              <span>Start date 12/10/23 End date : 12/10/23</span>
-            </div>
-            <div className={styles.rigthCard}>
-              <span className={styles.postDate}>Post created: 12/05/23</span>
-
-              <a onClick={() => console.log("yo")}>
-                <Button
-                  text="More details"
-                  backgroundColor="#87c0cd"
-                  borderColor="#87c0cd"
-                  textColor="#152232"
-                  backgroundColorHover="#87c0cd"
-                  borderColorHover="#87c0cd"
-                  textColorHover="white"
-                />
-              </a>
-            </div>
-          </div>
-          <div className={styles.projectCard}>
-            <div className={styles.leftCard}>
-              <span className={styles.cardTitle}>Project name</span>
-              <span>Location :</span>
-              <span>Job position :</span>
-              <span>Start date 12/10/23 End date : 12/10/23</span>
-            </div>
-            <div className={styles.rigthCard}>
-              <span className={styles.postDate}>Post created: 12/05/23</span>
-
-              <a onClick={() => console.log("yo")}>
-                <Button
-                  text="More details"
-                  backgroundColor="#87c0cd"
-                  borderColor="#87c0cd"
-                  textColor="#152232"
-                  backgroundColorHover="#87c0cd"
-                  borderColorHover="#87c0cd"
-                  textColorHover="white"
-                />
-              </a>
-            </div>
-          </div>
-          <div className={styles.projectCard}>
-            <div className={styles.leftCard}>
-              <span className={styles.cardTitle}>Project name</span>
-              <span>Location :</span>
-              <span>Job position :</span>
-              <span>Start date 12/10/23 End date : 12/10/23</span>
-            </div>
-            <div className={styles.rigthCard}>
-              <span className={styles.postDate}>Post created: 12/05/23</span>
-
-              <a onClick={() => console.log("yo")}>
-                <Button
-                  text="More details"
-                  backgroundColor="#87c0cd"
-                  borderColor="#87c0cd"
-                  textColor="#152232"
-                  backgroundColorHover="#87c0cd"
-                  borderColorHover="#87c0cd"
-                  textColorHover="white"
-                />
-              </a>
-            </div>
-          </div>
-          <div className={styles.projectCard}>
-            <div className={styles.leftCard}>
-              <span className={styles.cardTitle}>Project name</span>
-              <span>Location :</span>
-              <span>Job position :</span>
-              <span>Start date 12/10/23 End date : 12/10/23</span>
-            </div>
-            <div className={styles.rigthCard}>
-              <span className={styles.postDate}>Post created: 12/05/23</span>
-
-              <a onClick={() => console.log("yo")}>
-                <Button
-                  text="More details"
-                  backgroundColor="#87c0cd"
-                  borderColor="#87c0cd"
-                  textColor="#152232"
-                  backgroundColorHover="#87c0cd"
-                  borderColorHover="#87c0cd"
-                  textColorHover="white"
-                />
-              </a>
-            </div>
-          </div>
-          <div className={styles.projectCard}>
-            <div className={styles.leftCard}>
-              <span className={styles.cardTitle}>Project name</span>
-              <span>Location :</span>
-              <span>Job position :</span>
-              <span>Start date 12/10/23 End date : 12/10/23</span>
-            </div>
-            <div className={styles.rigthCard}>
-              <span className={styles.postDate}>Post created: 12/05/23</span>
-
-              <a onClick={() => console.log("yo")}>
-                <Button
-                  text="More details"
-                  backgroundColor="#87c0cd"
-                  borderColor="#87c0cd"
-                  textColor="#152232"
-                  backgroundColorHover="#87c0cd"
-                  borderColorHover="#87c0cd"
-                  textColorHover="white"
-                />
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className={styles.rightContainer}>
