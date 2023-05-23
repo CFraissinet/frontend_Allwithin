@@ -168,12 +168,15 @@ const addMemberClick = () => {
   );
 }
 
+// A React function component named JobCard is defined with three props: id, isFirst, removeJobCard
 function JobCard({ id, isFirst, removeJobCard }){
- 
-  const [counter, setCounter] = useState(0); // initialization hook
-  const [selectedOptions, setSelectedOptions] = useState([]); // initialization hook for the drop down menu with checkboxes
 
+   // Creating a state variable 'counter' with an initial value of 0. setCounter is a function that will be used to update this value
+  const [counter, setCounter] = useState(0); 
+  const [selectedOptions, setSelectedOptions] = useState([]); // Creating a state variable 'selectedOptions' with an initial value of empty array. setSelectedOptions is a function that will be used to update this value
+  
 
+  // The options available for job profile selection
   const options = [
     { value: 'frontend', label: 'Développeur Frontend' },
     { value: 'backend', label: 'Développeur Backend' },
