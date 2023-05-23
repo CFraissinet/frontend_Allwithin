@@ -1,0 +1,234 @@
+.mainContainer {
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  background-color: blue;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  padding: 10px 20px;
+  box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.button {
+  width: 150px;
+  height: 100%;
+  font-size: 100%;
+  font-weight: 600;
+  border: solid 1px #152232;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #152232;
+  cursor: pointer;
+}
+
+.profile {
+  flex: 1;
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 70px);
+  flex-direction: row;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #152232;
+  width: 40%;
+  height: 100%;
+  padding: 50px;
+}
+
+.titleBody {
+  margin: 0;
+  color: #ffffff;
+  font-size: 40px;
+  align-self: flex-start;
+}
+
+.profileEditButton {
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+  border: solid #152232 3px;
+  font-weight: bold;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom: 20px;
+}
+
+.presentation {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.image {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 250px;
+  height: 250px;
+  border-radius: 10px 10px 10px 10px;
+  border: solid #ffffff 3px;
+}
+
+.card {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: solid #ffffff 3px;
+  padding: 10px 0;
+  width: 50%;
+  height: 100%;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 1px;
+  color: black;
+  margin: 0px 20px 0px 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.firstName {
+  color: #152232;
+  font-weight: 800;
+  font-size: 25px;
+}
+
+.name {
+  color: #152232;
+  font-weight: 800;
+  font-size: 25px;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.location {
+  cursor: pointer;
+}
+
+.mailContact {
+  cursor: pointer;
+}
+
+.socialsNetwork a {
+  margin-right: 10px; /* Espacement horizontal entre les liens */
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 600;
+  color: blue;
+}
+
+.txtContent {
+  width: 100%;
+  padding: 5px 0;
+}
+
+.titleTxtContent {
+  color: #ffffff;
+  font-size: 20px;
+  align-self: flex-start;
+  text-align: left;
+  margin-top: 50px;
+}
+
+.counter {
+  color: rgb(200, 198, 198);
+  font-size: 12px;
+  align-self: flex-start;
+  text-align: left;
+  margin: 50px 20px 0px 20px;
+}
+
+.areaTxtContent {
+  font-weight: 300;
+  font-size: 15px;
+  color: #ffffff;
+  border-radius: 10px;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 0px;
+}
+
+.textArea {
+  height: 80%;
+  width: 100%;
+  background: #ffffff;
+  border: 3px solid #152232;
+  font-weight: bold;
+  font-size: medium;
+  box-shadow: -30px 30px #152232;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.availableButton {
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+  border: solid #152232 3px;
+  font-weight: bold;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+
+.hireButton {
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+  border: solid #152232 3px;
+  font-weight: bold;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(-150deg, #87c0cd 70%, white 30%);
+  width: 60%;
+  height: 100%;
+  padding: 0px 20px 30px;
+}
+
+/* .content {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 70%;
+  margin-top: 60px;
+} */
