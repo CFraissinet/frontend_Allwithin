@@ -21,7 +21,7 @@ function Lobby() {
 
   // useEffect allowing to connect to the backend to retrieve the projects related to the person connected to the component loading
   useEffect(() => {
-    fetch(`http://localhost:3000/projects/${user.token}`)
+    fetch(`http://localhost:3000/projects/token/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
