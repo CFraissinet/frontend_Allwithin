@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/SignIn.module.css";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../reducers/user";
 import Cookies from "js-cookie";
 
@@ -11,6 +11,7 @@ function SignIn() {
   const [error, setError] = useState("");
   const [token, setToken] = useState("");
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
 
   /* Fetch for connect to account and go to /Lobby */
   const clickSignIn = () => {

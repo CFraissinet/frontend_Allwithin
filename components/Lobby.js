@@ -14,6 +14,7 @@ function Lobby() {
   const project = useSelector((state) => state.project.value);
   //user reducer
   const user = useSelector((state) => state.user.value);
+  console.log("token", user.token);
   //hook for user's projects
   const [dataProjects, setDataProjects] = useState([]);
   const [selectProject, setSelectProject] = useState({});
@@ -24,19 +25,19 @@ function Lobby() {
     fetch(`http://localhost:3000/projects/token/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setDataProjects(data.projects);
-
         if (dataProjects.length !== 0) {
+          console.log("ok");
           setSelectProject(data.projects[0]);
         } else {
+          console.log("not");
           setSelectProject({ name: "", description: "" });
         }
       });
   }, []);
 
-  console.log(dataProjects);
-  console.log(selectProject);
+  console.log("all projects from user", dataProjects);
+  console.log("first project selected", selectProject);
   //To upload to the store and find the project in the project dashboard page
   const sendProjectDasboard = (project) => {
     dispatch(addProject(project));
@@ -64,7 +65,6 @@ function Lobby() {
   //   setSelectProject({ name: "", description: "" });
   // }
 
-  console.log(dataProjects);
   return (
     <div className={styles.container}>
       <div className={styles.body}>
