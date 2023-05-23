@@ -7,26 +7,22 @@ import { useRouter } from "next/router";
 import Select from 'react-select';// library to add the drop down menu with checkboxes
 
 
-
-
 function CreateProject() {
 
   const router = useRouter();
-
-
-  
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
   // const [token, setToken] = useState(""); // ADDED: State for storing the user's token
-  const [jobBox, setJobBox] = useState([<JobCard isFirst={true} />]);
+  const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true }]);
 
+  const removeJobCard = (id) => {
+    setJobBox(jobBox.filter((jobCard) => jobCard.id !== id));
+  };
 
   
-  
-
   const clickCreatProject = () => {
     const data = {
       name: name,
@@ -46,33 +42,12 @@ function CreateProject() {
         console.log(data);
       });
     };
-
-
-// const jobCard= (   <div className={styles.jobInputContainer}>
-//   <div className={`${styles.inputBox} ${styles.labelStyle}`}>
-//     <label htmlFor="jobProfile">Job Profile:</label>
-//     <input
-//       type="text"
-//       id="jobProfile"
-//       className={styles.jobProfile}
-//       placeholder="Enter job profile"
-//     />
-//   </div>
-//   <div className={styles.counter}>
-//     <div>
-//       <button onClick={() => decrement()}>-</button>
-//       <span> {counter} </span>
-//       <button onClick={() => increment()}>+</button>
-//     </div>
-//     <button>X</button>
-//   </div>
-// </div>)
-
   
 
 
 const addMemberClick = () => {
-setJobBox([...jobBox, <JobCard isFirst={false}/>])
+  setJobBox([...jobBox, { id: jobBox.length, isFirst: false }]);
+
   console.log("click1111111111111111");	
 
 };
@@ -155,7 +130,8 @@ setJobBox([...jobBox, <JobCard isFirst={false}/>])
                 
                 {/* input job Profile & member count */}
               <div className={styles.jobInputContainer}>
-               {jobBox}
+              {jobBox.map((jobCard) => <JobCard key={jobCard.id} id={jobCard.id} isFirst={jobCard.isFirst} removeJobCard={removeJobCard}/>)}
+
               </div>
               </div>
                 <button onClick={() => addMemberClick()}  className={styles.addButton}>Add Member</button>
@@ -192,12 +168,11 @@ setJobBox([...jobBox, <JobCard isFirst={false}/>])
   );
 }
 
-
-function JobCard(props) {
+function JobCard({ id, isFirst, removeJobCard }){
  
-  
   const [counter, setCounter] = useState(0); // initialization hook
   const [selectedOptions, setSelectedOptions] = useState([]); // initialization hook for the drop down menu with checkboxes
+
 
   const options = [
     { value: 'frontend', label: 'Développeur Frontend' },
@@ -237,7 +212,7 @@ return (
       <button onClick={() => increment()}>+</button>
     </div>
     {
-      !props.isFirst && <button >X</button>
+      !isFirst && <button onClick={() => removeJobCard(id)}>X</button>
     }
   </div>
   </div>
