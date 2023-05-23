@@ -1,7 +1,7 @@
 import styles from "../styles/Lobby.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   faUser,
   faArrowRight,
@@ -33,7 +33,7 @@ function Lobby() {
   //To upload to the store and find the project in the project dashboard page
   const sendProjectDasboard = (project) => {
     dispatch(addProject(project));
-  }
+  };
 
   // browse the person's projects to view them
   const projectData = dataProjects.map((data, i) => {
@@ -48,7 +48,6 @@ function Lobby() {
     );
   });
 
-  
   function showProject(idProject) {
     setSelectProject(
       dataProjects[dataProjects.findIndex((data) => data._id === idProject)]
@@ -78,7 +77,9 @@ function Lobby() {
             <button className={styles.actionProject}>
               Create a new project
             </button>
-            <button className={styles.actionProject}>Join a project</button>
+            <Link href="/dashboard">
+              <button className={styles.actionProject}>Join a project</button>
+            </Link>
           </div>
         </div>
         <div className={styles.rightBody}>
@@ -90,7 +91,12 @@ function Lobby() {
               value={selectProject.description}
             ></textarea>
             <Link href="/dashboard">
-              <button onClick={() => sendProjectDasboard(selectProject)} className={styles.buttonDashboard}>GO TO DASHBOARD</button>
+              <button
+                onClick={() => sendProjectDasboard(selectProject)}
+                className={styles.buttonDashboard}
+              >
+                GO TO DASHBOARD
+              </button>
             </Link>
           </div>
         </div>

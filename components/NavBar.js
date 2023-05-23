@@ -124,7 +124,7 @@ function NavBar() {
         <div className={styles.buttonContainer}>
           {/* BUTTON */}
           <Link href="/signIn">
-            <a>
+            <div>
               <Button
                 text="Sign In"
                 backgroundColor="white"
@@ -134,7 +134,7 @@ function NavBar() {
                 borderColorHover="#87c0cd"
                 textColorHover="white"
               />
-            </a>
+            </div>
           </Link>
         </div>
       </div>
