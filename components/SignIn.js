@@ -55,58 +55,58 @@ function SignIn() {
         {/* COMPOSANT LEFT */}
         <div className={styles.signIn}>
           {/* CATCH TEXT */}
-          <div className={styles.catchText}>
-            {" "}
-            Signing<b className={styles.a}>In</b>
-          </div>
-          <div className={styles.lineContainer}>
-            <div className={styles.line}></div>
-            <div className={styles.square}></div>
-          </div>
           <div>
-            <div className={styles.inputDiv}>
-              {/* DIV CONTAINER SIGN IN AND GO TO SIGN UP */}
-              <span className={styles.error}>{error}</span>
-              <div className={styles.emailInput}>
-                <span className={styles.textInput}>Enter your email :</span>
-                <input
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
-                  className={styles.inputEmail}
-                  type="email"
-                  placeholder="Work email address"
-                />
-              </div>
-              <div className={styles.passwordInput}>
-                <span className={styles.textInput}>Enter your password :</span>
-                <input
-                  onChange={(e) => setPassword(e.target.value)}
-                  // onChange={validate}
-                  value={password}
-                  className={styles.inputPassword}
-                  type="password"
-                  placeholder="Password"
-                />
-                <h2 className={styles.textNoAccount}>
-                  Forgot your password ?{" "}
-                  <Link href="/">
-                    <span className={styles.bNoAccount}>CLICK HERE</span>
-                  </Link>
-                </h2>
-              </div>
-              <div className={styles.buttonCo}>
-                <button onClick={clickSignIn} className={styles.buttonSignIn}>
-                  SIGN IN
-                </button>
-              </div>
-
-              <h2 className={styles.noAccount}>
-                No account yet ?{" "}
-                <Link href="/signUp">
-                  <span className={styles.bNoAccount}>SIGN UP HERE</span>
+            <div className={styles.catchText}>
+              {" "}
+              Signing<b className={styles.a}>In</b>
+            </div>
+            <div className={styles.lineContainer}>
+              <div className={styles.line}></div>
+              <div className={styles.square}></div>
+            </div>
+          </div>
+          <div className={styles.inputDiv}>
+            {/* DIV CONTAINER SIGN IN AND GO TO SIGN UP */}
+            <span className={styles.error}>{error}</span>
+            <div className={styles.emailInput}>
+              <span className={styles.textInput}>Enter your email :</span>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                className={styles.inputEmail}
+                type="email"
+                placeholder="Work email address"
+              />
+            </div>
+            <div className={styles.passwordInput}>
+              <span className={styles.textInput}>Enter your password :</span>
+              <input
+                onChange={(e) => setPassword(e.target.value)}
+                // onChange={validate}
+                value={password}
+                className={styles.inputPassword}
+                type="password"
+                placeholder="Password"
+              />
+              <h2 className={styles.textNoAccount}>
+                Forgot your password ?{" "}
+                <Link href="/">
+                  <span className={styles.bNoAccount}>CLICK HERE</span>
                 </Link>
               </h2>
             </div>
+            <div className={styles.buttonCo}>
+              <button onClick={clickSignIn} className={styles.buttonSignIn}>
+                SIGN IN
+              </button>
+            </div>
+
+            <h2 className={styles.noAccount}>
+              No account yet ?{" "}
+              <Link href="/signUp">
+                <span className={styles.bNoAccount}>SIGN UP HERE</span>
+              </Link>
+            </h2>
           </div>
         </div>
         <div className={styles.graph}>

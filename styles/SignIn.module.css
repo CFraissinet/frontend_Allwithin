@@ -6,42 +6,6 @@
   background-color: blue;
 }
 
-.navBar {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
-  height: 70px;
-  background-color: white;
-  padding: 10px 20px;
-  box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
-  z-index: 1;
-}
-
-.logo {
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
-}
-
-.buttonSignUp {
-  background-color: #152232;
-  color: #ffffff;
-  padding: 10px 0;
-  width: 150px;
-  border-radius: 10px;
-  border: solid #152232 3px;
-  font-weight: bold;
-  font-size: medium;
-  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.buttonSignUp:hover {
-  background-color: #87c0cd;
-  cursor: pointer;
-  color: #ffffff;
-}
-
 .component {
   display: flex;
   flex-direction: row;
@@ -49,6 +13,9 @@
 }
 
 .signIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   padding-top: 0%;
   width: 40%;
   background-color: #152232;
@@ -73,12 +40,12 @@
 }
 
 .inputDiv {
-  padding: 20% 6% 0 6%;
+  padding: 0 6%;
   display: flex;
   height: auto;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   gap: 3px;
 }
 
@@ -89,6 +56,7 @@
 
 .inputEmail,
 .inputPassword {
+  width: 100%;
   height: 40px;
   border: 2px solid #152232;
   box-shadow: -8px 10px 0px #87c0cd;
@@ -118,6 +86,7 @@
 .bNoAccount {
   color: #87c0cd;
   cursor: pointer;
+  font-size: medium;
 }
 
 .bNoPassword {
@@ -135,7 +104,7 @@
 
 .noAccount {
   font-weight: bold;
-  font-size: x-large;
+  font-size: large;
   color: white;
   padding-right: 30%;
 }

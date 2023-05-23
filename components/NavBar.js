@@ -109,6 +109,36 @@ function NavBar() {
         </div>
       </div>
     );
+  } else if (router.asPath === "/lobby") {
+    navBar = (
+      <div className={styles.headerContainer}>
+        {/* LOGO */}
+        <div className={styles.button}>
+          <Link href="/">
+            <a>
+              <img src="logo.png" alt="Logo" className={styles.logo} />
+            </a>
+          </Link>
+        </div>
+
+        <div className={styles.buttonContainer}>
+          {/* BUTTON */}
+          <Link href="/signIn">
+            <div>
+              <Button
+                text="Sign In"
+                backgroundColor="white"
+                borderColor="#152232"
+                textColor="#152232"
+                backgroundColorHover="#87c0cd"
+                borderColorHover="#87c0cd"
+                textColorHover="white"
+              />
+            </div>
+          </Link>
+        </div>
+      </div>
+    );
   } else if (router.asPath === "/join") {
     navBar = (
       <div className={styles.headerContainer}>
