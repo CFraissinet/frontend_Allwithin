@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import styles from "../styles/SignUp.module.css";
 import Link from "next/link";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -36,6 +36,20 @@ function Signup() {
   const [errorAvatar, setErrorAvatar] = useState("");
   const [loader, setLoader] = useState(false);
   const [confirm, setConfirmError] = useState("");
+  const [jobData, setJobData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/users/jobs")
+      .then((response) => response.json())
+      .then((data) => {
+        setJobData(data.jobs);
+      });
+  }, []);
+
+  // let jobs = [];
+  // jobs = jobData.map((data, i) => {
+  //   return jobs.push(<option value={data._id}>{data.name}</option>);
+  // });
 
   const cvClick = (e) => {
     e.preventDefault();
@@ -293,9 +307,12 @@ function Signup() {
                 <option value="" defaultValue>
                   Drop & Select
                 </option>
-                <option value="javascript">JavaScript</option>
-                <option value="python">Python</option>
-                <option value="c++">C++</option>
+
+                {jobData.map((data, i) => (
+                  <option key={i} value={data._id}>
+                    {data.name}
+                  </option>
+                ))}
               </select>
               {/* TEXT AREA */}
 
