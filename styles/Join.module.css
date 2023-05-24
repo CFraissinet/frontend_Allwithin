@@ -139,8 +139,8 @@
   margin-left: 50%;
   background-color: #87c0cd;
   transform: translate(-50%, -50%);
-  height: 60%;
-  width: 50%;
+  height: 70%;
+  width: 70%;
   border-radius: 20px;
 
   display: flex;
@@ -148,10 +148,11 @@
 }
 
 .modalTop {
+  display: flex;
   background-color: #152232;
   height: 80%;
   width: 100%;
-  padding: 20px;
+
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
@@ -163,4 +164,111 @@
   justify-content: flex-end;
   padding: 20px;
   gap: 10px;
+}
+
+.modalInputContainerLeft {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: space-between;
+}
+
+.input {
+  height: 40px;
+  border: 2px solid #152232;
+  box-shadow: -8px 10px 0px #87c0cd;
+}
+
+.inputBox {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin-bottom: 30px;
+  gap: 3px;
+}
+
+.labelTxt {
+  margin: 0;
+  font-weight: bold;
+  font-size: medium;
+  color: white;
+  font-size: medium;
+}
+
+.modalInputContainerRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 50%;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  gap: 3px;
+}
+
+.input {
+  height: 40px;
+  width: 100%;
+  border: 2px solid #152232;
+  box-shadow: -8px 10px 0px #87c0cd;
+}
+
+.dropMenuTxt {
+  margin: 0;
+  font-weight: 800;
+  font-size: small;
+  color: #152232;
+}
+
+.dropMenu:hover {
+  cursor: pointer;
+}
+
+.dropMenu {
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+  font-size: small;
+  color: #757575;
+  border: 2px solid #152232;
+  box-shadow: -8px 10px 0px #87c0cd;
+  margin-top: 3px;
+}
+
+.cvBtn {
+  align-self: flex-end;
+}
+
+.cvButtonContent {
+  display: flex;
+
+  align-items: center;
+  gap: 10px;
+}
+
+.cvButton {
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+  border: solid transparent 2px;
+  font-weight: bold;
+  background-color: #152232;
+  color: white;
+  margin-top: 40px;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.errorTxt {
+  /* color: red; */
+  font-size: xx-small;
+  font-weight: bold;
+  width: 150px;
+}
+
+.inputCV {
+  display: none;
 }

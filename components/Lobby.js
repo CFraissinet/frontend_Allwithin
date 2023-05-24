@@ -27,7 +27,7 @@ function Lobby() {
       .then((data) => {
         console.log(data);
         setDataProjects(data.projects);
-        if (dataProjects.length !== 0) {
+        if (data.projects.length !== 0) {
           console.log("ok");
           setSelectProject(data.projects[0]);
         } else {
