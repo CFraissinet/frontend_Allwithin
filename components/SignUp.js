@@ -66,15 +66,25 @@ function Signup() {
   const confirmClick = (e) => {
     e.preventDefault();
     setLoader(true);
-
-    const dataInfo = {
-      firstname: firstname,
-      name: name,
-      email: email,
-      password: password,
-      job: job,
-      experiences: null,
-    };
+    let dataInfo;
+    if (job) {
+      dataInfo = {
+        firstname: firstname,
+        name: name,
+        email: email,
+        password: password,
+        job: job,
+        experiences: null,
+      };
+    } else {
+      dataInfo = {
+        firstname: firstname,
+        name: name,
+        email: email,
+        password: password,
+        experiences: null,
+      };
+    }
 
     fetch("http://localhost:3000/users/signup", {
       method: "POST",
@@ -115,18 +125,18 @@ function Signup() {
               });
           }
 
-          fetch("http://localhost:3000/users/jobs", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              userId: data.user._id,
-              jobId: data.user.job,
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log("JOB SENT", data);
-            });
+          // fetch("http://localhost:3000/users/jobs", {
+          //   method: "POST",
+          //   headers: { "Content-Type": "application/json" },
+          //   body: JSON.stringify({
+          //     userId: data.user._id,
+          //     jobId: data.user.job,
+          //   }),
+          // })
+          //   .then((response) => response.json())
+          //   .then((data) => {
+          //     console.log("JOB SENT", data);
+          //   });
 
           setLoader(false);
           dispatch(login({ token: data.user.token }));
