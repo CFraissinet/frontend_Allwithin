@@ -138,6 +138,614 @@
 .post {
   height: 10%;
   width: 90%;
+  .main {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .navBar {
+    height: 70px;
+    background-color: white;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+  }
+
+  .btnContainer {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .btnNavBar {
+    font-size: large;
+    border: solid transparent 1px;
+    border-radius: 10px;
+    background-color: #152232;
+    color: white;
+    height: 50px;
+    width: 150px;
+  }
+
+  .btnNavBar:hover {
+    cursor: pointer;
+    background-color: #87c0cd;
+    border-color: #87c0cd;
+    transition: 0.3s;
+  }
+
+  .component {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+
+  .containerBtn {
+    background-color: #87c0cd;
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5%;
+    align-items: center;
+  }
+
+  .btnModal {
+    font-size: large;
+    border: solid transparent 1px;
+    border-radius: 10px;
+    background-color: #152232;
+    color: white;
+    height: 50px;
+    width: 150px;
+  }
+
+  .btnModal:hover {
+    cursor: pointer;
+    background-color: white;
+    border-color: white;
+    transition: 0.3s;
+    color: #152232;
+  }
+
+  .containerDashboard {
+    background-color: white;
+    width: 90%;
+    height: 100%;
+    padding: 2%;
+  }
+
+  .dashboard {
+    height: 100%;
+    width: 100%;
+    padding: 2%;
+    border: #152232 solid;
+    border-radius: 10px;
+    box-shadow: -15px 15px #152232;
+  }
+
+  .txtCard1 {
+    font-size: xx-large;
+  }
+
+  .aDashboard {
+    color: #87c0cd;
+    font-weight: bolder;
+  }
+
+  .midContainer {
+    padding-bottom: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 85%;
+    width: 100%;
+  }
+
+  .midCard {
+    border: solid #152232;
+    border-radius: 10px;
+    height: 100%;
+    width: 45%;
+    background-color: white;
+    margin: 1%;
+    box-shadow: #152232 -15px 10px;
+  }
+
+  .containerPost {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    gap: 7%;
+  }
+
+  .postPending {
+    padding-top: 5%;
+    font-size: x-large;
+    align-self: flex-start;
+    font-weight: bolder;
+    margin-left: 5%;
+  }
+
+  .post {
+    height: 10%;
+    width: 90%;
+    border-radius: 10px;
+    border: solid 3px #152232;
+    box-shadow: -5px 5px #87c0cd;
+    text-align: center;
+    padding: 2%;
+    font-weight: 700;
+  }
+
+  .post:hover {
+    background-color: #87c0cd;
+    border: solid 3px #152232;
+    box-shadow: -5px 5px #152232;
+  }
+
+  .ctnDescription {
+    padding-top: 5%;
+    font-size: x-large;
+    align-self: flex-start;
+    margin-left: 5%;
+    width: 90%;
+    height: 95%;
+  }
+
+  .txtDescription {
+    padding-top: 5%;
+    font-size: x-large;
+    align-self: flex-start;
+    margin-left: 5%;
+    width: 90%;
+    height: 95%;
+  }
+
+  .containerStartBtn {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .btnStart {
+    font-size: large;
+    border: solid transparent 1px;
+    border-radius: 10px;
+    background-color: #87c0cd;
+    color: white;
+    height: 50px;
+    width: 150px;
+  }
+
+  .btnStart:hover {
+    cursor: pointer;
+    background-color: white;
+    border: #152232 2px solid;
+    color: #152232;
+  }
+
+  .modalOpen {
+    background-color: white;
+    height: 65%;
+    width: 45%;
+    margin: 10% 30%;
+    border-radius: 10px;
+    border: solid #152232 2px;
+    box-shadow: -10px 10px #152232;
+  }
+
+  .container {
+    height: 95%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    align-items: center;
+  }
+
+  .b {
+    font-size: 25px;
+  }
+
+  .containerCard {
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    .main {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .navBar {
+      height: 70px;
+      background-color: white;
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 20px;
+      box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+      z-index: 1;
+    }
+
+    .btnContainer {
+      width: 20%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    .btnNavBar {
+      font-size: large;
+      border: solid transparent 1px;
+      border-radius: 10px;
+      background-color: #152232;
+      color: white;
+      height: 50px;
+      width: 150px;
+    }
+
+    .btnNavBar:hover {
+      cursor: pointer;
+      background-color: #87c0cd;
+      border-color: #87c0cd;
+      transition: 0.3s;
+    }
+
+    .component {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+    }
+
+    .containerBtn {
+      background-color: #87c0cd;
+      width: 10%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5%;
+      align-items: center;
+    }
+
+    .btnModal {
+      font-size: large;
+      border: solid transparent 1px;
+      border-radius: 10px;
+      background-color: #152232;
+      color: white;
+      height: 50px;
+      width: 150px;
+    }
+
+    .btnModal:hover {
+      cursor: pointer;
+      background-color: white;
+      border-color: white;
+      transition: 0.3s;
+      color: #152232;
+    }
+
+    .containerDashboard {
+      background-color: white;
+      width: 90%;
+      height: 100%;
+      padding: 2%;
+    }
+
+    .dashboard {
+      height: 100%;
+      width: 100%;
+      padding: 2%;
+      border: #152232 solid;
+      border-radius: 10px;
+      box-shadow: -15px 15px #152232;
+    }
+
+    .txtCard1 {
+      font-size: xx-large;
+    }
+
+    .aDashboard {
+      color: #87c0cd;
+      font-weight: bolder;
+    }
+
+    .midContainer {
+      padding-bottom: 3%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: 85%;
+      width: 100%;
+    }
+
+    .midCard {
+      border: solid #152232;
+      border-radius: 10px;
+      height: 100%;
+      width: 45%;
+      background-color: white;
+      margin: 1%;
+      box-shadow: #152232 -15px 10px;
+    }
+
+    .containerPost {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      align-items: center;
+      gap: 7%;
+    }
+
+    .postPending {
+      padding-top: 5%;
+      font-size: x-large;
+      align-self: flex-start;
+      font-weight: bolder;
+      margin-left: 5%;
+    }
+
+    .post {
+      height: 10%;
+      width: 90%;
+      border-radius: 10px;
+      border: solid 3px #152232;
+      box-shadow: -5px 5px #87c0cd;
+      text-align: center;
+      padding: 2%;
+      font-weight: 700;
+    }
+
+    .post:hover {
+      background-color: #87c0cd;
+      border: solid 3px #152232;
+      box-shadow: -5px 5px #152232;
+    }
+
+    .ctnDescription {
+      padding-top: 5%;
+      font-size: x-large;
+      align-self: flex-start;
+      margin-left: 5%;
+      width: 90%;
+      height: 95%;
+    }
+
+    .txtDescription {
+      padding-top: 5%;
+      font-size: x-large;
+      align-self: flex-start;
+      margin-left: 5%;
+      width: 90%;
+      height: 95%;
+    }
+
+    .containerStartBtn {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+
+    .btnStart {
+      font-size: large;
+      border: solid transparent 1px;
+      border-radius: 10px;
+      background-color: #87c0cd;
+      color: white;
+      height: 50px;
+      width: 150px;
+    }
+
+    .btnStart:hover {
+      cursor: pointer;
+      background-color: white;
+      border: #152232 2px solid;
+      color: #152232;
+    }
+
+    .modalOpen {
+      background-color: white;
+      height: 65%;
+      width: 45%;
+      margin: 10% 30%;
+      border-radius: 10px;
+      border: solid #152232 2px;
+      box-shadow: -10px 10px #152232;
+    }
+
+    .container {
+      height: 95%;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: space-around;
+      align-items: center;
+    }
+
+    .b {
+      font-size: 25px;
+    }
+
+    .containerCard {
+      display: flex;
+      flex-direction: row;
+      height: 90%;
+      width: 100%;
+      justify-content: space-around;
+    }
+
+    .card {
+      border: #152232 1px solid;
+      background-color: white;
+      height: 100%;
+      width: 30%;
+      border-radius: 10px;
+    }
+
+    .cardContainer {
+      height: 100%;
+      width: 100%;
+      gap: 10%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 15%;
+    }
+
+    .contact {
+      width: 10%;
+      height: auto;
+      color: #152232;
+    }
+
+    .contactGitHub {
+      width: 15%;
+      height: auto;
+    }
+
+    .photo {
+      height: 25%;
+      width: 50%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .btnClose {
+      align-self: flex-end;
+    }
+
+    .name {
+      color: #152232;
+    }
+
+    .containerContact {
+      display: flex;
+      flex-direction: column;
+      height: 50%;
+      width: 75%;
+      gap: 10%;
+    }
+
+    .gitHub {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 5%;
+    }
+
+    .mail {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 5%;
+    }
+
+    .tel {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 5%;
+    }
+
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .card {
+    border: #152232 1px solid;
+    background-color: white;
+    height: 100%;
+    width: 30%;
+    border-radius: 10px;
+  }
+
+  .cardContainer {
+    height: 100%;
+    width: 100%;
+    gap: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15%;
+  }
+
+  .contact {
+    width: 10%;
+    height: auto;
+    color: #152232;
+  }
+
+  .contactGitHub {
+    width: 15%;
+    height: auto;
+  }
+
+  .photo {
+    height: 25%;
+    width: 50%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .btnClose {
+    align-self: flex-end;
+  }
+
+  .name {
+    color: #152232;
+  }
+
+  .containerContact {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    width: 75%;
+    gap: 10%;
+  }
+
+  .gitHub {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5%;
+  }
+
+  .mail {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5%;
+  }
+
+  .tel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5%;
+  }
+
   border-radius: 10px;
   border: solid 3px #152232;
   box-shadow: -5px 5px #87c0cd;
@@ -259,6 +867,7 @@
   height: 25%;
   width: 50%;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .btnClose {
