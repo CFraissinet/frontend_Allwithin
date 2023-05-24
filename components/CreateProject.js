@@ -17,7 +17,6 @@ function CreateProject() {
   // const [crew, setCrew] = useState("");
   
 
-
   const user = useSelector((state) => state.user.value);
 console.log(user)
   const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true }]);
@@ -223,6 +222,7 @@ jobData.map((data, i) => {
     setSelectedOptions(selected);
   };
 
+  //component for menu selection with jobs and counter for each job
   return (
     <div>
       <div className={`${styles.inputBox} ${styles.labelStyle}`}>
