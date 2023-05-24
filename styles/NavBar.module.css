@@ -10,9 +10,11 @@
 }
 
 .logo {
-  height: 40px;
-  width: 40px;
+  height: 70px;
+  width: 70px;
   cursor: pointer;
+
+  object-fit: contain;
 }
 
 .buttonContainer {
