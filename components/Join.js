@@ -1,23 +1,47 @@
 import styles from "../styles/Join.module.css";
 import NavBar from "../components/NavBar";
 import Button from "../components/Button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
 import React from "react";
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
 function Join() {
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
   const [dataProjects, setDataProjects] = useState([]);
+  const [job, setJob] = useState("");
+  const [jobData, setJobData] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
 
+  const [firstname, setFirstname] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const inputCVRef = useRef(null);
+  const [previewCV, setPreviewCV] = useState(false);
+  const [CV, setCV] = useState("");
+  const [errorCV, setErrorCV] = useState("");
+
+  // FETCHING ALL JOBS
+  useEffect(() => {
+    fetch("http://localhost:3000/users/jobs")
+      .then((response) => response.json())
+      .then((data) => {
+        setJobData(data.jobs);
+      });
+  }, []);
+
+  // FETCHING ALL PROJECT FROM DATABASE
   useEffect(() => {
     fetch(`http://localhost:3000/projects/showProjects`)
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data.data);
         setDataProjects(data.data);
       });
   }, []);
@@ -28,13 +52,65 @@ function Join() {
     setIsOpen(true);
   };
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
-  }
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  const cvClick = (e) => {
+    e.preventDefault();
+    // Click sur l'input moche masqué
+    inputCVRef.current.click();
+  };
+
+  // Generating a base64 version of a pdf file
+  function generateCV(e) {
+    //Read File
+    let selectedFile = e.target.files;
+    //Check File is not Empty
+    if (selectedFile.length > 0) {
+      // Select the very first file from list
+      var fileToLoad = selectedFile[0];
+      // FileReader function for read the file.
+      var fileReader = new FileReader();
+      var base64;
+      // Onload of file read the file content
+      fileReader.onload = function (fileLoadedEvent) {
+        base64 = fileLoadedEvent.target.result;
+        // Print data in console
+        setCV(base64);
+      };
+      // Convert data to base64
+      fileReader.readAsDataURL(fileToLoad);
+    }
+  }
+
+  const handleOnChangeCV = (e) => {
+    if (e.target.value.includes(".pdf")) {
+      generateCV(e);
+      setPreviewCV(true);
+
+      setErrorCV(e.target.value.slice(12));
+    } else {
+      setPreviewCV(false);
+      setErrorCV("Only PDF files are accepted");
+    }
+  };
+
+  const popCV = (
+    <div className={styles.pdf}>
+      <Document file={CV}>
+        <Page height={100} pageNumber={pageNumber} renderTextLayer={false} />
+      </Document>
+    </div>
+  );
+
+  // Styling text color for error messages
+  let errorColorCV;
+  if (previewCV) {
+    errorColorCV = { color: "#152232" };
+  } else {
+    errorColorCV = { color: "#FF0000" };
+  }
 
   return (
     <div className={styles.mainContainer}>
@@ -152,11 +228,85 @@ function Join() {
         contentLabel="Example Modal"
       >
         <div className={styles.modalTop}>
-          <span>Hello</span>
+          <div className={styles.modalInputContainerLeft}>
+            <div className={styles.inputBox}>
+              <h2 className={styles.labelTxt}>Enter your firstname :</h2>
+              <input
+                name="firstname"
+                onChange={(e) => setFirstname(e.target.value)}
+                value={firstname}
+                className={styles.input}
+                placeholder="John"
+              ></input>
+            </div>
+            <div className={styles.inputBox}>
+              <h2 className={styles.labelTxt}>Enter your name :</h2>
+              <input
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                className={styles.input}
+                placeholder="Doe"
+              ></input>
+            </div>
+            <div className={styles.inputBox}>
+              <h2 className={styles.labelTxt}>Enter your e-mail :</h2>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                className={styles.input}
+                placeholder="email@gmail.com"
+              ></input>
+            </div>
+          </div>
+          <div className={styles.modalInputContainerRight}>
+            <div className={styles.inputBox}>
+              <h2 className={styles.labelTxt}>Enter your e-mail :</h2>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                className={styles.input}
+                placeholder="email@gmail.com"
+              ></input>
+            </div>
+            <div className={styles.inputBox}>
+              <h2 className={styles.labelTxt}>Select a job post :</h2>
+              <select
+                onChange={(e) => setJob(e.target.value)}
+                className={styles.dropMenu}
+                name="language"
+                id="language"
+              >
+                <option value="" defaultValue>
+                  Drop & Select
+                </option>
 
-          <div className={styles.modalInputContainer}>
-            <div className={styles.modalInputContainerLeft}></div>
-            <div className={styles.modalInputContainerRight}></div>
+                {jobData.map((data, i) => (
+                  <option key={i} value={data._id}>
+                    {data.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.cvButtonContent}>
+              {previewCV && popCV}
+              <button onClick={(e) => cvClick(e)} className={styles.cvButton}>
+                Join your CV
+              </button>
+
+              <span className={styles.errorTxt} style={errorColorCV}>
+                {errorCV}
+              </span>
+
+              <input
+                className={styles.inputCV}
+                ref={inputCVRef}
+                id="cv"
+                name="cv"
+                type="file"
+                accept="application/pdf"
+                onChange={(e) => handleOnChangeCV(e)}
+              />
+            </div>
           </div>
         </div>
         <div className={styles.modalBot}>
