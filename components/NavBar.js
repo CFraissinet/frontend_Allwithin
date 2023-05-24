@@ -13,15 +13,16 @@ function NavBar() {
   const dispatch = useDispatch();
   console.log(router.asPath);
 
-  useEffect(() => {
-    fetch(`http://localhost:3000/users/userData/${user.token}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setAvatar(data.user.photo);
-        console.log("data:", data);
-      });
-  }, []);
-
+  if (user.token) {
+    useEffect(() => {
+      fetch(`http://localhost:3000/users/userData/${user.token}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setAvatar(data.user.photo);
+          console.log("data:", data);
+        });
+    }, []);
+  }
   let navBar;
 
   const deconnection = () => {
