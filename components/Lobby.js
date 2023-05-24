@@ -25,8 +25,9 @@ function Lobby() {
     fetch(`http://localhost:3000/projects/token/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setDataProjects(data.projects);
-        if (dataProjects.length !== 0) {
+        if (data.projects.length !== 0) {
           console.log("ok");
           setSelectProject(data.projects[0]);
         } else {
