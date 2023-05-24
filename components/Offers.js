@@ -1,13 +1,13 @@
 import Link from "next/link";
-import styles from "../styles/CreateProject.module.css";
+import styles from "../styles/Offers.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
+import { useState , useEffect} from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select"; // library to add the drop down menu with checkboxes
 
-function CreateProject() {
+function Offers() {
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -15,9 +15,10 @@ function CreateProject() {
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
   // const [crew, setCrew] = useState("");
+  
 
   const user = useSelector((state) => state.user.value);
-  console.log(user);
+console.log(user)
   const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true }]);
 
   const removeJobCard = (id) => {
@@ -53,16 +54,37 @@ function CreateProject() {
   return (
     <div className={styles.background}>
       <div className={styles.homeContainer}>
+        <div className={styles.container}>
+          {/*--------------------------- Nav ------------------------------*/}
+          {/* <div className={styles.navbar}>
+            <div className={styles.logoContainer}>
+              <img
+                className={styles.logo}
+                src="/path/to/your/logo.png"
+                alt="Logo"
+              />
+            </div>
+            <div className={styles.buttons}>
+              <Link href="/lobby">
+                <button className={styles.btnNav}>My lobby</button>
+              </Link>
+              <Link href="/signUp">
+                <button className={styles.btnNav}>My messages</button>
+              </Link>
+            </div>
+          </div> */}
         {/*--------------------- Nav end*----------------------------*/}
+        </div>
 
         {/*contains the div formContainer and txtAreaContainer*/}
         <div className={styles.leftRightContainer}>
-          <h1>Create Your Project</h1>
+          <h1> Offers </h1>
           <div className={styles.leftRight}>
             <div className={styles.formContainer}>
+          
               {/*--------------------------- Forms ------------------------------*/}
               <div className={styles.inputDiv}>
-                <div className={`${styles.inputBox} ${styles.labelStyle}`}>
+                {/* <div className={`${styles.inputBox} ${styles.labelStyle}`}>
                   <label htmlFor="projectName">Project Name:</label>
                   <input
                     type="text"
@@ -72,9 +94,9 @@ function CreateProject() {
                     className={styles.input}
                     placeholder="Enter project name"
                   />
-                </div>
+                </div> */}
                 {/*input  Start Date & End Date FORMS */}
-                <div className={styles.endSartContainer}>
+                {/* <div className={styles.endSartContainer}>
                   <div className={`${styles.inputBox} ${styles.labelStyle}`}>
                     <label htmlFor="startDate">Start Date:</label>
                     <input
@@ -98,7 +120,7 @@ function CreateProject() {
                       placeholder="Enter end date"
                     />
                   </div>
-                </div>
+                </div> */}
                 {/* input Start Date & End Date FORMS */}
 
                 {/* input job Profile & member count */}
@@ -125,7 +147,7 @@ function CreateProject() {
             {/*------------------------- div txtAreaContainer ----------------------*/}
             <div className={styles.txtAreaContainer}>
               <label className={styles.labelStyle} htmlFor="projectDescription">
-                Project description:
+                Description:
               </label>
               <textarea
                 onChange={(e) => setDescription(e.target.value)}
@@ -170,14 +192,17 @@ function JobCard({ id, isFirst, removeJobCard }) {
         setJobData(data.jobs);
       });
   }, []);
-  console.log(jobData);
+console.log(jobData)
 
-  let options = [];
-  console.log("options", options);
 
-  jobData.map((data, i) => {
-    return options.push({ value: data._id, label: data.name });
-  });
+let options = [];
+console.log('options', options)
+
+jobData.map((data, i) => {
+   return options.push({ value: data._id, label: data.name })
+}
+)
+
 
   const increment = () => {
     setCounter(counter + 1); // setting of the switch that increments the counter of the jobCard drop-down menu
@@ -219,4 +244,5 @@ function JobCard({ id, isFirst, removeJobCard }) {
   );
 }
 
-export default CreateProject;
+export default Offers;
+
