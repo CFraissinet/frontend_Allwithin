@@ -2,12 +2,20 @@ import styles from "../styles/NavBar.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Button from "../components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../reducers/user";
 
 function NavBar() {
   const router = useRouter();
+  const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
   console.log(router.asPath);
 
   let navBar;
+
+  const deconnection = () => {
+    dispatch(logout());
+  };
 
   if (router.asPath === "/") {
     navBar = (
@@ -123,10 +131,10 @@ function NavBar() {
 
         <div className={styles.buttonContainer}>
           {/* BUTTON */}
-          <Link href="/signIn">
-            <div>
+          <Link href="/">
+            <div onClick={deconnection}>
               <Button
-                text="Sign In"
+                text="Log out"
                 backgroundColor="white"
                 borderColor="#152232"
                 textColor="#152232"
