@@ -160,6 +160,20 @@
   overflow-y: auto;
   flex-grow: 1;
 }
+
+/* .jobInputContainer::-webkit-scrollbar {
+  
+  width: 10px;
+}
+.jobInputContainer::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+.jobInputContainer::-webkit-scrollbar-track {
+  background-color: #152232;
+  border-radius: 10px;
+} */
+
 .jobProfile {
   box-sizing: border-box;
   max-width: 400px;
@@ -237,7 +251,8 @@
   height: 100%;
   width: 100%;
   background-color: red;
-  overflow-y: scroll;
+
+  overflow: hidden;
 }
 
 /* ------------------ Responsive Styles ------------------ */
