@@ -1,6 +1,6 @@
 .homeContainer {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
 }
@@ -57,7 +57,8 @@
   width: 50%;
   display: flex;
   flex-direction: column;
-  gap: 150px;
+  justify-content: space-between;
+  /* gap: 150px; */
   padding: 10px;
   /* background-color: coral; */
 }
@@ -100,6 +101,7 @@
   background-size: cover;
   background-position: center;
   background: linear-gradient(0.35turn, #87c0cd 75%, rgb(255, 255, 255) 50%);
+  height: calc(100vh - 70px);
 }
 .inputDiv {
   width: 86%;
@@ -107,7 +109,7 @@
   flex-direction: column;
   gap: 20px;
   padding: 30px;
-  height: 65%;
+  /* height: 65%; */
 }
 .addButton {
   box-sizing: border-box;
