@@ -2,6 +2,7 @@ import styles from "../styles/Join.module.css";
 import NavBar from "../components/NavBar";
 import Button from "../components/Button";
 import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Document, Page, pdfjs } from "react-pdf";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -18,15 +19,41 @@ function Join() {
   const [job, setJob] = useState("");
   const [jobData, setJobData] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
-
-  const [firstname, setFirstname] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-
   const inputCVRef = useRef(null);
   const [previewCV, setPreviewCV] = useState(false);
   const [CV, setCV] = useState("");
   const [errorCV, setErrorCV] = useState("");
+  const [userData, setUserData] = useState({});
+
+  const user = useSelector((state) => state.user.value);
+  console.log("store", user.token);
+  // FETCHING USER'S FULL DATA
+  useEffect(() => {
+    fetch(`http://localhost:3000/users/${user.token}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setUserData(data.userData);
+      });
+  }, []);
+  console.log("USERbitch", userData);
+
+  const handleChangeFirstname = (firstname) => {
+    setUserData({ ...userData, firstname });
+  };
+
+  const handleChangeName = (name) => {
+    setUserData({ ...userData, name });
+  };
+
+  const handleChangeEmail = (email) => {
+    setUserData({ ...userData, email });
+  };
+
+  const handleChangePhone = (phone) => {
+    setUserData({ ...userData, phone });
+  };
 
   // FETCHING ALL JOBS
   useEffect(() => {
@@ -45,8 +72,6 @@ function Join() {
         setDataProjects(data.data);
       });
   }, []);
-
-  console.log("all projects", dataProjects);
 
   const openModal = () => {
     setIsOpen(true);
@@ -107,7 +132,7 @@ function Join() {
   // Styling text color for error messages
   let errorColorCV;
   if (previewCV) {
-    errorColorCV = { color: "#152232" };
+    errorColorCV = { color: "#87c0cd" };
   } else {
     errorColorCV = { color: "#FF0000" };
   }
@@ -233,8 +258,8 @@ function Join() {
               <h2 className={styles.labelTxt}>Enter your firstname :</h2>
               <input
                 name="firstname"
-                onChange={(e) => setFirstname(e.target.value)}
-                value={firstname}
+                onChange={(e) => handleChangeFirstname(e.target.value)}
+                value={userData.firstname}
                 className={styles.input}
                 placeholder="John"
               ></input>
@@ -242,8 +267,8 @@ function Join() {
             <div className={styles.inputBox}>
               <h2 className={styles.labelTxt}>Enter your name :</h2>
               <input
-                onChange={(e) => setName(e.target.value)}
-                value={name}
+                onChange={(e) => handleChangeName(e.target.value)}
+                value={userData.name}
                 className={styles.input}
                 placeholder="Doe"
               ></input>
@@ -251,8 +276,8 @@ function Join() {
             <div className={styles.inputBox}>
               <h2 className={styles.labelTxt}>Enter your e-mail :</h2>
               <input
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                onChange={(e) => handleChangeEmail(e.target.value)}
+                value={userData.email}
                 className={styles.input}
                 placeholder="email@gmail.com"
               ></input>
@@ -260,12 +285,12 @@ function Join() {
           </div>
           <div className={styles.modalInputContainerRight}>
             <div className={styles.inputBox}>
-              <h2 className={styles.labelTxt}>Enter your e-mail :</h2>
+              <h2 className={styles.labelTxt}>Enter your phone number :</h2>
               <input
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                onChange={(e) => handleChangePhone(e.target.value)}
+                value={userData.phone}
                 className={styles.input}
-                placeholder="email@gmail.com"
+                placeholder="########"
               ></input>
             </div>
             <div className={styles.inputBox}>
@@ -288,11 +313,11 @@ function Join() {
               </select>
             </div>
             <div className={styles.cvButtonContent}>
-              {previewCV && popCV}
               <button onClick={(e) => cvClick(e)} className={styles.cvButton}>
                 Join your CV
               </button>
 
+              {previewCV && popCV}
               <span className={styles.errorTxt} style={errorColorCV}>
                 {errorCV}
               </span>
@@ -321,7 +346,7 @@ function Join() {
               textColorHover="#152232"
             />
           </a>
-          <a>
+          <a onClick={closeModal}>
             <Button
               text="Cancel"
               backgroundColor="#152232"
