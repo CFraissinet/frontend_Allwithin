@@ -6,7 +6,7 @@ import NavBar from "../components/NavBar";
 import Offers from "../components/Offers";
 
 function Index() {
-  return <Offers />;
+  return <Home />;
 }
 
 export default Index;

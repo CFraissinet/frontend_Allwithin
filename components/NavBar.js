@@ -18,15 +18,19 @@ function NavBar() {
       fetch(`http://localhost:3000/users/userData/${user.token}`)
         .then((response) => response.json())
         .then((data) => {
-          setAvatar(data.user.photo);
-          console.log("data:", data);
+          if (data.userData.photo) {
+            setAvatar(data.userData.photo);
+          } else {
+            setAvatar("Sample_User_Icon.png");
+          }
         });
     }, []);
   }
-  let navBar;
 
+  let navBar;
   const deconnection = () => {
     dispatch(logout());
+    location.href = "/";
   };
 
   if (router.asPath === "/") {
@@ -34,7 +38,11 @@ function NavBar() {
       <div className={styles.headerContainer}>
         {/* LOGO */}
         <div className={styles.button}>
-          <img src="logo.png" alt="Logo" className={styles.logo} />
+          <img
+            src="logo.png"
+            alt="Sample_User_Icon.png"
+            className={styles.logo}
+          />
         </div>
 
         <div className={styles.buttonContainer}>
@@ -76,7 +84,11 @@ function NavBar() {
         <div className={styles.button}>
           <Link href="/">
             <a>
-              <img src="logo.png" alt="Logo" className={styles.logo} />
+              <img
+                src="logo.png"
+                alt="Sample_User_Icon.png"
+                className={styles.logo}
+              />
             </a>
           </Link>
         </div>
@@ -106,7 +118,11 @@ function NavBar() {
         <div className={styles.button}>
           <Link href="/">
             <a>
-              <img src="logo.png" alt="Logo" className={styles.logo} />
+              <img
+                src="logo.png"
+                alt="Sample_User_Icon.png"
+                className={styles.logo}
+              />
             </a>
           </Link>
         </div>
@@ -134,30 +150,34 @@ function NavBar() {
       <div className={styles.headerContainer}>
         {/* LOGO */}
         <div className={styles.button}>
-          <Link href="/">
+          <Link href="/profile">
             <a>
-              <img src="logo.png" alt="Logo" className={styles.logo} />
+              <img
+                src="logo.png"
+                alt="Sample_User_Icon.png"
+                className={styles.logo}
+              />
             </a>
           </Link>
         </div>
 
         <div className={styles.buttonContainer}>
           {/* BUTTON */}
-          <Link href="/signIn">
-            <div onClick={deconnection}>
-              <Button
-                text="Log out"
-                backgroundColor="white"
-                borderColor="#152232"
-                textColor="#152232"
-                backgroundColorHover="#87c0cd"
-                borderColorHover="#87c0cd"
-                textColorHover="white"
-              />
-            </div>
-          </Link>
+
+          <a onClick={deconnection}>
+            <Button
+              text="Log out"
+              backgroundColor="white"
+              borderColor="#152232"
+              textColor="#152232"
+              backgroundColorHover="#87c0cd"
+              borderColorHover="#87c0cd"
+              textColorHover="white"
+            />
+          </a>
+
           <Link href="/profile">
-            <img className={styles.photoPreview} src={avatar} alt="photo" />
+            <img className={styles.photoPreview} src={avatar} alt="profile" />
           </Link>
         </div>
       </div>
@@ -169,17 +189,21 @@ function NavBar() {
         <div className={styles.button}>
           <Link href="/">
             <a>
-              <img src="logo.png" alt="Logo" className={styles.logo} />
+              <img
+                src="logo.png"
+                alt="Sample_User_Icon.png"
+                className={styles.logo}
+              />
             </a>
           </Link>
         </div>
 
         <div className={styles.buttonContainer}>
           {/* BUTTON */}
-          <Link href="/signIn">
+          <Link href="/lobby">
             <div>
               <Button
-                text="Sign In"
+                text="My lobby"
                 backgroundColor="white"
                 borderColor="#152232"
                 textColor="#152232"
@@ -203,7 +227,11 @@ function NavBar() {
             </div>
           </Link>
           <Link href="/profile">
-            <img className={styles.photoPreview} src={avatar} alt="photo" />
+            <img
+              className={styles.photoPreview}
+              src={avatar}
+              alt="Sample_User_Icon.png"
+            />
           </Link>
         </div>
       </div>
@@ -215,7 +243,11 @@ function NavBar() {
         <div className={styles.button}>
           <Link href="/">
             <a>
-              <img src="logo.png" alt="Logo" className={styles.logo} />
+              <img
+                src="logo.png"
+                alt="Sample_User_Icon.png"
+                className={styles.logo}
+              />
             </a>
           </Link>
         </div>
@@ -249,7 +281,11 @@ function NavBar() {
             </div>
           </Link>
           <Link href="/profile">
-            <img className={styles.photoPreview} src={avatar} alt="photo" />
+            <img
+              className={styles.photoPreview}
+              src={avatar}
+              alt="Sample_User_Icon.png"
+            />
           </Link>
         </div>
       </div>
@@ -261,17 +297,21 @@ function NavBar() {
         <div className={styles.button}>
           <Link href="/">
             <a>
-              <img src="logo.png" alt="Logo" className={styles.logo} />
+              <img
+                src="logo.png"
+                alt="Sample_User_Icon.png"
+                className={styles.logo}
+              />
             </a>
           </Link>
         </div>
 
         <div className={styles.buttonContainer}>
           {/* BUTTON */}
-          <Link href="/signIn">
+          <Link href="/lobby">
             <div>
               <Button
-                text="Sign In"
+                text="My lobby"
                 backgroundColor="white"
                 borderColor="#152232"
                 textColor="#152232"
@@ -295,7 +335,11 @@ function NavBar() {
             </div>
           </Link>
           <Link href="/profile">
-            <img className={styles.photoPreview} src={avatar} alt="photo" />
+            <img
+              className={styles.photoPreview}
+              src={avatar}
+              alt="Sample_User_Icon.png"
+            />
           </Link>
         </div>
       </div>
@@ -307,17 +351,21 @@ function NavBar() {
         <div className={styles.button}>
           <Link href="/">
             <a>
-              <img src="logo.png" alt="Logo" className={styles.logo} />
+              <img
+                src="logo.png"
+                alt="Sample_User_Icon.png"
+                className={styles.logo}
+              />
             </a>
           </Link>
         </div>
 
         <div className={styles.buttonContainer}>
           {/* BUTTON */}
-          <Link href="/signIn">
+          <Link href="/lobby">
             <div>
               <Button
-                text="Sign In"
+                text="My lobby"
                 backgroundColor="white"
                 borderColor="#152232"
                 textColor="#152232"

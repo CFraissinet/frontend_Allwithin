@@ -76,7 +76,7 @@ function Signup() {
         email: email,
         password: password,
         job: job,
-        experiences: null,
+        experiences: experiences,
         phone_number: phone,
         linkedin: linkedin,
         github: github,
@@ -87,7 +87,7 @@ function Signup() {
         name: name,
         email: email,
         password: password,
-        experiences: null,
+        experiences: experiences,
         phone_number: phone,
         linkedin: linkedin,
         github: github,
@@ -101,7 +101,6 @@ function Signup() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("test", data);
         if (data.result) {
           if (inputCVRef.current.files[0]) {
             console.log("have cv");
@@ -150,7 +149,7 @@ function Signup() {
           dispatch(login({ token: data.user.token }));
           Cookies.set("token", data.token);
           console.log("go to lobby", data);
-          // location.href = "./lobby";
+          location.href = "./lobby";
         } else {
           setLoader(false);
           setConfirmError("");

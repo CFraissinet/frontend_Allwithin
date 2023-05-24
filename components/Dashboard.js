@@ -6,7 +6,6 @@ import DashboardModal from "./DasboardModal";
 
 function Dashboard() {
   const project = useSelector((state) => state.project.value);
-  // console.log(project);
   const [btnProject, setBtnProject] = useState(false);
   const [projectData, setProjectData] = useState([]);
   const dispatch = useDispatch();
@@ -25,7 +24,6 @@ function Dashboard() {
 
   useEffect(() => {
     const idProject = project[0]._id;
-    console.log(idProject);
     fetch(`http://localhost:3000/offers/${idProject}`)
       .then((response) => response.json())
       .then((data) => {
@@ -69,18 +67,6 @@ function Dashboard() {
         />
       )}
 
-      <div className={styles.navBar}>
-        {/* NAV BAR */}
-        <div className={styles.btnContainer}>
-          <button
-            onClick={() => clearProject(project)}
-            className={styles.btnNavBar}
-          >
-            My lobby
-          </button>
-          <button className={styles.btnNavBar}>My message</button>
-        </div>
-      </div>
       <div className={styles.component}>
         {/* COMPONENT WITH BUTTON LEFT AND DASHBOARD */}
         <div className={styles.containerBtn}>{btnProject && toolsBtn}</div>
