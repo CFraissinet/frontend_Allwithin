@@ -170,7 +170,8 @@
   display: flex;
   flex-direction: column;
   width: 50%;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding: 20px;
 }
 
 .input {
@@ -198,9 +199,10 @@
 .modalInputContainerRight {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   height: 100%;
   width: 50%;
+  padding: 20px;
 }
 
 .inputBox {
@@ -256,7 +258,7 @@
   border-radius: 10px;
   border: solid transparent 2px;
   font-weight: bold;
-  background-color: #152232;
+  background-color: #87c0cd;
   color: white;
   margin-top: 40px;
   box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);

@@ -28,7 +28,9 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [linkedin, Setlinkedin] = useState("");
+  const [github, setGithub] = useState("");
   const [job, setJob] = useState("");
   const [experiences, setExperiences] = useState("");
   const [counter, setCounter] = useState("0");
@@ -75,6 +77,9 @@ function Signup() {
         password: password,
         job: job,
         experiences: null,
+        phone_number: phone,
+        linkedin: linkedin,
+        github: github,
       };
     } else {
       dataInfo = {
@@ -83,6 +88,9 @@ function Signup() {
         email: email,
         password: password,
         experiences: null,
+        phone_number: phone,
+        linkedin: linkedin,
+        github: github,
       };
     }
 
@@ -125,18 +133,18 @@ function Signup() {
               });
           }
 
-          // fetch("http://localhost:3000/users/jobs", {
-          //   method: "POST",
-          //   headers: { "Content-Type": "application/json" },
-          //   body: JSON.stringify({
-          //     userId: data.user._id,
-          //     jobId: data.user.job,
-          //   }),
-          // })
-          //   .then((response) => response.json())
-          //   .then((data) => {
-          //     console.log("JOB SENT", data);
-          //   });
+          fetch("http://localhost:3000/users/jobs", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              userId: data.user._id,
+              jobId: data.user.job,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("JOB SENT", data);
+            });
 
           setLoader(false);
           dispatch(login({ token: data.user.token }));
@@ -282,6 +290,16 @@ function Signup() {
               </div>
 
               <div className={styles.inputBox}>
+                <h2 className={styles.labelTxt}>Enter your phone number :</h2>
+                <input
+                  onChange={(e) => setPhone(e.target.value)}
+                  value={phone}
+                  className={styles.input}
+                  placeholder="########"
+                ></input>
+              </div>
+
+              <div className={styles.inputBox}>
                 <h2 className={styles.labelTxt}>Enter your password</h2>
 
                 <input
@@ -293,17 +311,6 @@ function Signup() {
                 ></input>
               </div>
 
-              <div className={styles.inputBox}>
-                <h2 className={styles.labelTxt}>Confirm you password</h2>
-
-                <input
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  type="password"
-                  value={confirmPassword}
-                  className={styles.input}
-                  placeholder="**********"
-                ></input>
-              </div>
               <h2 className={styles.accountReady}>
                 Already have an account ?{" "}
               </h2>
@@ -334,6 +341,34 @@ function Signup() {
                   </option>
                 ))}
               </select>
+
+              <div className={styles.linkContent}>
+                <div className={styles.inputBox}>
+                  <h2 className={styles.labelTxtLink}>
+                    Enter your LinkedIn address :
+                  </h2>
+                  <input
+                    name="linkedin"
+                    onChange={(e) => Setlinkedin(e.target.value)}
+                    value={linkedin}
+                    className={styles.inputLinks}
+                    placeholder="linkedin.com/in/.../"
+                  ></input>
+                </div>
+
+                <div className={styles.inputBox}>
+                  <h2 className={styles.labelTxtLink}>
+                    Enter your Github address :
+                  </h2>
+                  <input
+                    name="github"
+                    onChange={(e) => setGithub(e.target.value)}
+                    value={github}
+                    className={styles.inputLinks}
+                    placeholder="github.com/..."
+                  ></input>
+                </div>
+              </div>
               {/* TEXT AREA */}
 
               <div className={styles.areaTxtContent}>

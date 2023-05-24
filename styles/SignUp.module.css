@@ -66,33 +66,55 @@
   background: linear-gradient(-150deg, #87c0cd 70%, white 30%);
   width: 60%;
   height: 100%;
-  padding: 0px 20px 30px 0px;
+  padding: 0px 20px 0px 0px;
 }
 
 .inputContainer {
+  display: flex;
+  flex-direction: column;
   width: 70%;
   margin-top: 30px;
+  gap: 10px;
 }
 
 .inputBox {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   gap: 3px;
 }
 
 .labelTxt {
   margin: 0;
   font-weight: bold;
-  font-size: medium;
   color: white;
   font-size: medium;
+}
+
+.labelTxtLink {
+  margin: 0;
+  font-weight: bold;
+  color: #152232;
+  font-size: small;
+}
+
+.linkContent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 50%;
 }
 
 .input {
   height: 40px;
   border: 2px solid #152232;
   box-shadow: -8px 10px 0px #87c0cd;
+}
+
+.inputLinks {
+  height: 40px;
+  border: 2px solid #152232;
+  box-shadow: -8px 10px 0px #152232;
 }
 
 .accountReady {
@@ -117,7 +139,6 @@
   font-size: medium;
   box-shadow: -30px 30px #152232;
   border-radius: 10px;
-  padding: 20px;
 }
 
 .areaTxt {
@@ -133,22 +154,24 @@
   flex-direction: column;
   height: 80%;
   width: 70%;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .dropMenu {
   width: 50%;
-  height: 40px;
+  height: 100px;
   font-weight: bold;
   font-size: small;
   color: #757575;
   border: 2px solid #152232;
   box-shadow: -8px 10px 0px #152232;
   margin-top: 3px;
+  margin-bottom: 20px;
 }
 
 .dropMenuTxt {
   margin: 0;
+
   font-weight: 800;
   font-size: small;
   color: #152232;
