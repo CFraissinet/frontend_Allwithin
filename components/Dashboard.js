@@ -1,23 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "../styles/Dashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { removeProject } from "../reducers/project";
-import Modal from "react-modal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faXmark,
-  faEnvelope,
-  faPhone,
-} from "@fortawesome/free-solid-svg-icons";
+import DashboardModal from "./DasboardModal";
 
 function Dashboard() {
   const project = useSelector((state) => state.project.value);
   // console.log(project);
   const [btnProject, setBtnProject] = useState(false);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [jobTitle, setJobTitle] = useState("");
   const [projectData, setProjectData] = useState([]);
   const dispatch = useDispatch();
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalData, setModalData] = useState(null);
+
+  function openModal(data) {
+    setModalData(data);
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   useEffect(() => {
     const idProject = project[0]._id;
@@ -38,15 +42,6 @@ function Dashboard() {
 
   console.log(projectData);
 
-  function openModal(title) {
-    setJobTitle(title);
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
   const toolsBtn = (
     <>
       <button className={styles.btnModal}>Chat</button>
@@ -66,6 +61,14 @@ function Dashboard() {
 
   return (
     <div className={styles.main}>
+      {modalData && (
+        <DashboardModal
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+          data={modalData}
+        />
+      )}
+
       <div className={styles.navBar}>
         {/* NAV BAR */}
         <div className={styles.btnContainer}>
@@ -92,7 +95,7 @@ function Dashboard() {
                   <b className={styles.postPending}>Post Pending :</b>
                   {projectData.map((data, i) => (
                     <div
-                      onClick={() => openModal(data.name)}
+                      onClick={() => openModal(data)}
                       className={styles.post}
                       key={i}
                     >
@@ -121,58 +124,6 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <Modal
-        ariaHideApp={false}
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        className={styles.modalOpen}
-      >
-        <div className={styles.container}>
-          <FontAwesomeIcon
-            className={styles.btnClose}
-            onClick={closeModal}
-            icon={faXmark}
-          />
-          <b className={styles.b}>{jobTitle}</b>
-          <div className={styles.containerCard}>
-            {projectData.map((data, i) => (
-              <div className={styles.card} key={i}>
-                <div className={styles.cardContainer}>
-                  <img className={styles.photo} src={data.user_Id[0].photo} />
-                  <div className={styles.containerContact}>
-                    <b className={styles.name}>
-                      {data.user_Id[0].firstname} {data.user_Id[0].name}
-                    </b>
-                    <div className={styles.gitHub}>
-                      <img
-                        className={styles.contactGitHub}
-                        src="/images/github-mark.svg"
-                        alt="GitHub"
-                      />
-                      <b>TheRock</b>
-                    </div>
-                    <div className={styles.mail}>
-                      <FontAwesomeIcon
-                        className={styles.contact}
-                        color="black"
-                        icon={faEnvelope}
-                        alt="E-Mail"
-                      />
-                      <a href="mailto:{data.user_Id[0].email}">
-                        {data.user_Id[0].email}
-                      </a>
-                    </div>
-                    <div className={styles.tel}>
-                      <FontAwesomeIcon icon={faPhone} />
-                      <a href="tel:0609080706">06.09.08.07.06</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Modal>
     </div>
   );
 }
