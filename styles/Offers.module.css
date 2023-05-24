@@ -1,0 +1,336 @@
+.homeContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----------------navbar START----------------*/
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  background-color: #ffffff;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 5vh;
+}
+
+.buttons {
+  display: flex;
+  gap: 10%;
+  width: 40%;
+  height: 100%;
+  justify-content: flex-end;
+  padding: 10px 20px;
+}
+.btnNav {
+  width: 150px;
+  height: 100%;
+  font-size: 100%;
+  font-weight: 600;
+  border: solid 1px #152232;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #152232;
+  cursor: pointer;
+}
+
+.btnNav:hover {
+  background-color: #87c0cd;
+  color: #ffffff;
+  transition: 0.2s;
+  border: solid 1px #87c0cd;
+}
+/* ----------------navbar END----------------*/
+
+.formContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  padding: 10px;
+  /* background-color: coral; */
+}
+
+/* Project Name input */
+.input {
+  box-sizing: border-box;
+  height: 60px;
+  left: 32px;
+  background: #ffffff;
+  border: 3px solid #152232;
+  box-shadow: -8px 10px 0px #152232;
+  padding: 10px;
+}
+
+.counter {
+  display: flex;
+  flex-direction: row;
+  margin: 30px 4px 0px 30px;
+  height: 0%;
+  gap: 75px;
+}
+
+.counter button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #152232;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.counter span {
+  margin: 0 15px;
+  font-size: 20px;
+}
+/* backgound bi-color */
+.background {
+  background-size: cover;
+  background-position: center;
+  background: linear-gradient(0.35turn, #87c0cd 75%, rgb(255, 255, 255) 50%);
+}
+.inputDiv {
+  width: 86%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+  height: 65%;
+}
+.addButton {
+  box-sizing: border-box;
+  width: 150px;
+  height: 100px;
+  background: #152232;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: #87c0cd;
+  transition: 0.2s;
+}
+.endSartContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 6%;
+}
+
+.endSartContainer .inputBox {
+  flex-grow: 1;
+}
+
+.endStart {
+  box-sizing: border-box;
+  height: 60px;
+  left: 32px;
+  background: #ffffff;
+  border: 3px solid #152232;
+  box-shadow: -8px 10px 0px #152232;
+  padding: 10px;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+}
+.jobInputContainer {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 500px;
+  gap: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.jobInputContainer::-webkit-scrollbar {
+  /* display: none; */
+  width: 10px;
+}
+.jobInputContainer::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+.jobInputContainer::-webkit-scrollbar-track {
+  background-color: #152232;
+  border-radius: 10px;
+}
+
+.jobProfile {
+  box-sizing: border-box;
+  max-width: 400px;
+  height: 60px;
+  background: #ffffff;
+  border: 3px solid #152232;
+  box-shadow: -8px 10px 0px #152232;
+  padding: 10px;
+}
+.jobInput {
+  display: flex;
+  flex-direction: column;
+}
+.countForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.labelStyle {
+  font-weight: bold;
+}
+
+/*----------------- txt area -----------------*/
+.txtAreaContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.leftRightContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+
+  .leftRight {
+    display: flex;
+    height: 100%;
+  }
+}
+.txtArea {
+  height: 60%;
+  background: #ffffff;
+  border: 3px solid #152232;
+  box-shadow: -30px 30px #152232;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 3px;
+}
+.btnCreatCountainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 50px 20px;
+}
+.btnCreateProject {
+  width: 277px;
+  height: 93px;
+  left: 1614px;
+  top: 947px;
+  font-weight: 700;
+  background: #87c0cd;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+.btnCreateProject:hover {
+  background-color: #ffffff;
+  color: #152232;
+  transition: 0.2s;
+  border: solid 2px #152232;
+}
+
+.scrollJobBox {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.containerAreaJob {
+  height: 80%;
+  width: 90%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+}
+/* ------------------ Responsive Styles ------------------ */
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    padding: 10px;
+  }
+
+  .logoContainer {
+    margin-bottom: 20px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .formContainer {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .endSartContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .endStart {
+    width: 100%;
+  }
+
+  .jobInputContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .jobProfile {
+    width: 100%;
+  }
+
+  .counter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .txtAreaContainer {
+    width: 100%;
+  }
+
+  .btnCreatCountainer {
+    display: flex;
+    flex-direction: row;
+    padding: 50px 0px;
+    justify-content: center;
+  }
+
+  .btnCreateProject {
+    width: 40%;
+    height: 100%;
+  }
+}

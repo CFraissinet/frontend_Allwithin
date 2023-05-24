@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "../styles/CreateProject.module.css";
+import styles from "../styles/Offers.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState , useEffect} from "react";
@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select"; // library to add the drop down menu with checkboxes
 
-function CreateProject() {
+function Offers() {
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -51,19 +51,12 @@ console.log(user)
     console.log("click1111111111111111");
   };
 
-
-  
-
-
-
-
-
   return (
     <div className={styles.background}>
       <div className={styles.homeContainer}>
         <div className={styles.container}>
           {/*--------------------------- Nav ------------------------------*/}
-          <div className={styles.navbar}>
+          {/* <div className={styles.navbar}>
             <div className={styles.logoContainer}>
               <img
                 className={styles.logo}
@@ -79,19 +72,19 @@ console.log(user)
                 <button className={styles.btnNav}>My messages</button>
               </Link>
             </div>
-          </div>
-        </div>
+          </div> */}
         {/*--------------------- Nav end*----------------------------*/}
+        </div>
 
         {/*contains the div formContainer and txtAreaContainer*/}
         <div className={styles.leftRightContainer}>
-          <h1>Create Your Project</h1>
+          <h1> Offers </h1>
           <div className={styles.leftRight}>
             <div className={styles.formContainer}>
           
               {/*--------------------------- Forms ------------------------------*/}
               <div className={styles.inputDiv}>
-                <div className={`${styles.inputBox} ${styles.labelStyle}`}>
+                {/* <div className={`${styles.inputBox} ${styles.labelStyle}`}>
                   <label htmlFor="projectName">Project Name:</label>
                   <input
                     type="text"
@@ -101,9 +94,9 @@ console.log(user)
                     className={styles.input}
                     placeholder="Enter project name"
                   />
-                </div>
+                </div> */}
                 {/*input  Start Date & End Date FORMS */}
-                <div className={styles.endSartContainer}>
+                {/* <div className={styles.endSartContainer}>
                   <div className={`${styles.inputBox} ${styles.labelStyle}`}>
                     <label htmlFor="startDate">Start Date:</label>
                     <input
@@ -127,7 +120,7 @@ console.log(user)
                       placeholder="Enter end date"
                     />
                   </div>
-                </div>
+                </div> */}
                 {/* input Start Date & End Date FORMS */}
 
                 {/* input job Profile & member count */}
@@ -154,7 +147,7 @@ console.log(user)
             {/*------------------------- div txtAreaContainer ----------------------*/}
             <div className={styles.txtAreaContainer}>
               <label className={styles.labelStyle} htmlFor="projectDescription">
-                Project description:
+                Description:
               </label>
               <textarea
                 onChange={(e) => setDescription(e.target.value)}
@@ -251,5 +244,5 @@ jobData.map((data, i) => {
   );
 }
 
-export default CreateProject;
+export default Offers;
 
