@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "../styles/CreateProject.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select"; // library to add the drop down menu with checkboxes
@@ -15,6 +15,7 @@ function CreateProject() {
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
   // const [crew, setCrew] = useState("");
+  
 
   const user = useSelector((state) => state.user.value);
 console.log(user)
@@ -49,6 +50,13 @@ console.log(user)
 
     console.log("click1111111111111111");
   };
+
+
+  
+
+
+
+
 
   return (
     <div className={styles.background}>
@@ -179,10 +187,27 @@ function JobCard({ id, isFirst, removeJobCard }) {
   const [selectedOptions, setSelectedOptions] = useState([]); // Creating a state variable 'selectedOptions' with an initial value of empty array. setSelectedOptions is a function that will be used to update this value
 
   // The options available for job profile selection
-  const options = [
-    { value: "frontend", label: "Développeur Frontend" },
-    { value: "backend", label: "Développeur Backend" },
-  ];
+  const [jobData, setJobData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/users/jobs")
+      .then((response) => response.json())
+      .then((data) => {
+        setJobData(data.jobs);
+      });
+  }, []);
+console.log(jobData)
+
+
+let options = [];
+console.log('options', options)
+
+jobData.map((data, i) => {
+   return options.push({ value: data._id, label: data.name })
+}
+)
+
+
   const increment = () => {
     setCounter(counter + 1); // setting of the switch that increments the counter of the jobCard drop-down menu
   };
@@ -197,6 +222,7 @@ function JobCard({ id, isFirst, removeJobCard }) {
     setSelectedOptions(selected);
   };
 
+  //component for menu selection with jobs and counter for each job
   return (
     <div>
       <div className={`${styles.inputBox} ${styles.labelStyle}`}>
