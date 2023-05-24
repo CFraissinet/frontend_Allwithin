@@ -84,10 +84,12 @@ function Lobby() {
             </div>
           </div>
           <div className={styles.botList}>
-            <button className={styles.actionProject}>
-              Create a new project
-            </button>
-            <Link href="/dashboard">
+            <Link href="/createProject">
+              <button className={styles.actionProject}>
+                Create a new project
+              </button>
+            </Link>
+            <Link href="/join">
               <button className={styles.actionProject}>Join a project</button>
             </Link>
           </div>
