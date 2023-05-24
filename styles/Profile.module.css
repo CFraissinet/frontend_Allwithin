@@ -63,15 +63,21 @@
 }
 
 .profileEditButton {
-  height: 50px;
-  width: 150px;
+  padding: 8px 28px;
   border-radius: 10px;
-  border: solid #152232 3px;
   font-weight: bold;
   box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   align-self: flex-end;
+  transition: 0.2s;
+  background-color: #87c0cd;
+  color: #ffffff;
   margin-bottom: 20px;
+}
+
+.profileEditButton:hover {
+  background-color: white;
+  color: #152232;
 }
 
 .presentation {
@@ -80,6 +86,16 @@
   gap: 20px;
 }
 
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  border: solid #ffffff 3px;
+}
 .image {
   display: flex;
   flex-direction: column;
@@ -88,6 +104,40 @@
   height: 250px;
   border-radius: 10px 10px 10px 10px;
   border: solid #ffffff 3px;
+  cursor: pointer;
+}
+
+.cvButtonContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.cvButton {
+  height: 50px;
+  width: 150px;
+  margin-top: 40px;
+  padding: 8px 28px;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  align-self: center;
+  transition: 0.2s;
+  background-color: #87c0cd;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.cvButton:hover {
+  background-color: #ffffff;
+  cursor: pointer;
+  color: #152232;
+}
+
+.inputCV {
+  display: none;
 }
 
 .card {
@@ -108,7 +158,7 @@
   flex-direction: column;
   height: 100%;
   margin: 1px;
-  color: black;
+  color: #152232;
   margin: 0px 20px 0px 20px;
   justify-content: center;
   align-items: center;
@@ -127,38 +177,57 @@
   font-size: 25px;
 }
 
+.job {
+  color: #2861a7;
+  font-weight: 800;
+  font-size: 18px;
+}
+
 .icon {
   margin-right: 8px;
+  color: #2861a7;
 }
 
 .location {
   cursor: pointer;
+  color: black;
+}
+
+.phoneContact {
+  cursor: pointer;
+  color: #2861a7;
 }
 
 .mailContact {
   cursor: pointer;
+  color: #2861a7;
+  margin-bottom: 20px;
 }
 
 .socialsNetwork a {
-  margin-right: 10px; /* Espacement horizontal entre les liens */
+  margin-right: 10px;
   flex-direction: row;
   justify-content: space-between;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
-  color: blue;
+  color: #2861a7;
 }
 
 .txtContent {
   width: 100%;
-  padding: 5px 0;
+  padding: 1px 0;
+  margin-top: 20px;
 }
 
 .titleTxtContent {
   color: #ffffff;
   font-size: 20px;
+  margin-bottom: 8px;
+  padding-left: 8px;
+
   align-self: flex-start;
   text-align: left;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .counter {
@@ -178,57 +247,240 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin-top: 0px;
+  margin-bottom: 10px;
 }
 
 .textArea {
-  height: 80%;
+  height: 110%;
   width: 100%;
   background: #ffffff;
-  border: 3px solid #152232;
   font-weight: bold;
   font-size: medium;
-  box-shadow: -30px 30px #152232;
   border-radius: 10px;
   padding: 10px;
-}
-
-.availableButton {
-  height: 50px;
-  width: 150px;
-  border-radius: 10px;
-  border: solid #152232 3px;
-  font-weight: bold;
-  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  margin-bottom: 50px;
-}
-
-.hireButton {
-  height: 50px;
-  width: 150px;
-  border-radius: 10px;
-  border: solid #152232 3px;
-  font-weight: bold;
-  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  margin-bottom: 50px;
+  margin: 0;
 }
 
 .rightContainer {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  background: linear-gradient(-150deg, #87c0cd 70%, white 30%);
+  background: linear-gradient(150deg, #87c0cd 70%, white 30%);
   width: 60%;
   height: 100%;
-  padding: 0px 20px 30px;
+  padding: 20px 40px 40px 40px;
 }
 
-/* .content {
+.diplomaTxtContent {
+  width: 100%;
+  padding: 1px 0;
+  margin-top: 10px;
+}
+
+.diplomaTxt {
+  color: #152232;
+  font-size: 20px;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.counter {
+  color: rgb(200, 198, 198);
+  font-size: 12px;
+  align-self: flex-start;
+  text-align: left;
+  margin: 50px 20px 0px 20px;
+}
+
+.diplomaWordsTxt {
+  font-weight: 300;
+  font-size: 15px;
+  color: #ffffff;
+  border-radius: 10px;
+  height: 50%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  height: 80%;
-  width: 70%;
-  margin-top: 60px;
-} */
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.textDiploma {
+  height: 30%;
+  width: 50%;
+  background: #ffffff;
+  border: 3px solid #152232;
+  font-weight: bold;
+  font-size: medium;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: -8px 10px 0px #152232;
+}
+
+.experiencesTxtContent {
+  width: 100%;
+  padding: 1px 0;
+  margin-top: 10px;
+}
+
+.experiencesTxt {
+  color: #152232;
+  font-size: 20px;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.counter {
+  color: rgb(200, 198, 198);
+  font-size: 12px;
+  align-self: flex-start;
+  text-align: left;
+  margin: 50px 20px 0px 20px;
+}
+
+.experiencesWordsTxt {
+  font-weight: 300;
+  font-size: 15px;
+  color: #ffffff;
+  border-radius: 10px;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.textExperiences {
+  height: 30%;
+  width: 50%;
+  background: #ffffff;
+  border: 3px solid #152232;
+  font-weight: bold;
+  font-size: medium;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: -8px 10px 0px #152232;
+}
+
+.skillsTxtContent {
+  width: 100%;
+  padding: 1px 0;
+  margin-top: 10px;
+}
+
+.skillsTxt {
+  color: #152232;
+  font-size: 20px;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.counter {
+  color: rgb(200, 198, 198);
+  font-size: 12px;
+  align-self: flex-start;
+  text-align: left;
+  margin: 50px 20px 0px 20px;
+}
+
+.skillsWordsTxt {
+  font-weight: 300;
+  font-size: 15px;
+  color: #ffffff;
+  border-radius: 10px;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.textSkills {
+  height: 30%;
+  width: 50%;
+  background: #ffffff;
+  border: 3px solid #152232;
+  font-weight: bold;
+  font-size: medium;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: -8px 10px 0px #152232;
+}
+
+.projectsTxtContent {
+  width: 100%;
+  padding: 1px 0;
+  margin-top: 10px;
+}
+
+.projectsTxt {
+  color: #152232;
+  font-size: 20px;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.counter {
+  color: rgb(200, 198, 198);
+  font-size: 12px;
+  align-self: flex-start;
+  text-align: left;
+  margin: 50px 20px 0px 20px;
+}
+
+.projectsWordsTxt {
+  font-weight: 300;
+  font-size: 15px;
+  color: #ffffff;
+  border-radius: 10px;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.textProjects {
+  height: 30%;
+  width: 50%;
+  background: #ffffff;
+  border: 3px solid #152232;
+  font-weight: bold;
+  font-size: medium;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: -8px 10px 0px #152232;
+}
+
+.rowGroup {
+  display: flex;
+  width: 100%;
+  gap: 40px;
+}
+
+.rowGroup textarea {
+  width: 100%;
+  min-height: 200px;
+}
+
+.modalOpen {
+  height: 70%;
+  width: 50%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #87c0cd;
+  border: #152232 1px solid;
+  box-shadow: -8px 10px 0px #152232;
+  border-radius: 10px;
+}
+
+.btnClose {
+  color: #152232;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 1%;
+  float: right;
+}
