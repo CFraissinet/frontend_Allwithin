@@ -38,6 +38,8 @@ function CreateProject() {
       token: user.token,
     };
 
+    console.log(myData);
+
     fetch("http://localhost:3000/projects/addProject", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -45,7 +47,7 @@ function CreateProject() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("project", data.id);
+        console.log("project added", data);
         dispatch(emptyStore());
         dispatch(addProject(data.id));
         router.push("/offers");

@@ -10,10 +10,6 @@ import Select from "react-select"; // library to add the drop down menu with che
 function Offers() {
   const router = useRouter();
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [start_date, setStart_date] = useState("");
-  const [end_date, setEnd_date] = useState("");
-  // const [crew, setCrew] = useState("");
   const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true, jobData: [] }]);
   const [data, setData] = useState(null);
   const [jobData, setJobData] = useState([]);
@@ -45,8 +41,19 @@ function Offers() {
 
   const clickCreatProject = () => {
     const data = {
+      offers: jobsSelected,
       project: project[0],
     };
+
+    fetch("http://localhost:3000/projects/addProject", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   useEffect(() => {
@@ -114,16 +121,6 @@ function Offers() {
 
             {/*------------------------- div txtAreaContainer ----------------------*/}
             <div className={styles.txtAreaContainer}>
-              {/* <label className={styles.labelStyle} htmlFor="projectDescription">
-                Description:
-              </label> */}
-              {/* <textarea
-                onChange={(e) => setDescription(e.target.value)}
-                value={description}
-                maxLength="2500"
-                className={styles.txtArea}
-                placeholder="Enter project description"
-              ></textarea> */}
               <div className={styles.btnCreatCountainer}></div>
             </div>
           </div>
