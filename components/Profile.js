@@ -12,7 +12,7 @@ import {
   faLocationDot,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-
+import Button from "./Button";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 function Profile() {
@@ -34,11 +34,16 @@ function Profile() {
   const [errorCV, setErrorCV] = useState("");
   const [job, setJob] = useState("");
   const [location, setLocation] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [socialNetworks, setSocialNetworks] = useState("");
+  const [phoneContact, setPhoneContact] = useState("");
+  const [mailContact, setMailContact] = useState("");
+  const [gitHub, setGitHub] = useState("");
+  const [linkedin, setLinkedin] = useState("");
   const [avatar, setAvatar] = useState("");
   const [errorAvatar, setErrorAvatar] = useState("");
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [userName, setUserName] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [birthday, setBirthday] = useState("");
 
   function openModal() {
     setIsOpen(true);
@@ -64,6 +69,20 @@ function Profile() {
   };
 
   useEffect(() => {
+    fetch(`http://localhost:3000/users/userData/${user.token}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setUserName(data.user.name);
+        setFirstname(data.user.firstname);
+        setBirthday(data.user.birthday);
+        setPhoneContact(data.user.phoneContact);
+        setMailContact(data.user.mailContact);
+        setLocation(data.user.location);
+        setGitHub(data.user.gitHub);
+        setLinkedin(data.user.linkedin);
+      });
+
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost:3000/users/signup", {
@@ -138,12 +157,12 @@ function Profile() {
   let errorColorAvatar;
   // let errorColorAvatar;
   if (previewCV) {
-    errorColorCV = { color: "#152232" };
+    errorColorCV = { color: "white" };
   } else {
     errorColorCV = { color: "#FF0000" };
   }
   if (previewAvatar) {
-    errorColorAvatar = { color: "#152232" };
+    errorColorAvatar = { color: "white" };
   } else {
     errorColorAvatar = { color: "#FF0000" };
   }
@@ -181,7 +200,7 @@ function Profile() {
     ) {
       setAvatar(URL.createObjectURL(e.target.files[0]));
       setPreviewAvatar(true);
-      setErrorAvatar(e.target.value.slice(12));
+      // setErrorAvatar(e.target.value.slice(12));
     } else {
       setPreviewAvatar(false);
       setErrorAvatar("Only JPEG, JPG or PNG files are accepted");
@@ -208,80 +227,94 @@ function Profile() {
 
             <div className={styles.presentation}>
               {/* PICTURE */}
-              <div className={styles.imageContainer}>
-                <img
-                  onClick={(e) => photoClick(e)}
-                  className={styles.image}
-                  src="profilePicture.jpg"
-                  alt="Picture"
-                />
+              <div className={styles.presentationLeft}>
+                <div className={styles.imageContainer}>
+                  {avatar && (
+                    <img
+                      onClick={(e) => photoClick(e)}
+                      className={styles.image}
+                      src={avatar}
+                      alt="Picture"
+                    />
+                  )}
+
+                  <input
+                    className={styles.inputPicture}
+                    ref={inputPhotoRef}
+                    id="avatar"
+                    name="avatar"
+                    type="file"
+                    accept="image/png, image/jpeg,image/jpg"
+                    onChange={(e) => handleOnChangeAvatar(e)}
+                  />
+                </div>
                 <span className={styles.errorTxt} style={errorColorAvatar}>
                   {errorAvatar}
                 </span>
-                <input
-                  className={styles.inputPicture}
-                  ref={inputPhotoRef}
-                  id="avatar"
-                  name="avatar"
-                  type="file"
-                  accept="image/png, image/jpeg,image/jpg"
-                  onChange={(e) => handleOnChangeAvatar(e)}
-                />
 
                 {/* CV */}
-                <button onClick={(e) => cvClick(e)} className={styles.cvButton}>
-                  CV
-                </button>
-                <span className={styles.errorTxt} style={errorColorCV}>
-                  {errorCV}
-                </span>
-                <input
-                  className={styles.inputCV}
-                  ref={inputCVRef}
-                  id="cv"
-                  name="cv"
-                  type="file"
-                  accept="application/pdf"
-                  onChange={(e) => handleOnChangeCV(e)}
-                />
+                <div className={styles.cvContainer}>
+                  <button
+                    onClick={(e) => cvClick(e)}
+                    className={styles.cvButton}
+                  >
+                    CV
+                  </button>
+
+                  <input
+                    className={styles.inputCV}
+                    ref={inputCVRef}
+                    id="cv"
+                    name="cv"
+                    type="file"
+                    accept="application/pdf"
+                    onChange={(e) => handleOnChangeCV(e)}
+                  />
+                  {previewCV && popCV}
+                  <span className={styles.errorTxt} style={errorColorCV}>
+                    {errorCV}
+                  </span>
+                </div>
               </div>
-              {previewCV && popCV}
 
               {/* PROFILE CARD */}
               <div className={styles.card}>
                 <div className={styles.textContainer}>
-                  <span className={styles.firstName}>Maxime </span>
-                  <span className={styles.name}>GOMEZ-DURET</span>
-                  <span className={styles.birthday}>05/06/1992</span>
-                  <p className={styles.job}>Lead Developer</p>
+                  <span className={styles.firstname}>{firstname} </span>
+                  <span className={styles.name}>{userName}</span>
+                  <span className={styles.birthday}>{birthday}</span>
+                  <p className={styles.job}>{job}</p>
                   <p className={styles.location}>
                     <FontAwesomeIcon
                       className={styles.icon}
                       icon={faLocationDot}
                     />
-                    Le Tignet, Provence-Alpes-Côte d'Azur, France
+                    {location}
                   </p>
                   <p>
-                    <a href="tel:0605040302" className={styles.phoneContact}>
+                    <a
+                      href={`tel:${phoneContact}`}
+                      className={styles.phoneContact}
+                    >
                       <FontAwesomeIcon className={styles.icon} icon={faPhone} />
-                      06.05.04.03.02
+                      {phoneContact}
                     </a>
                   </p>
                   <a
-                    href="mailto:maxime.gomez-duret@gmail.com"
+                    href={`mail:${mailContact}`}
                     className={styles.mailContact}
                   >
                     <FontAwesomeIcon
                       className={styles.icon}
                       icon={faEnvelope}
                     />
-                    maxime.gomez-duret@gmail.com
+                    {mailContact}
                   </a>
                   <p className={styles.socialsNetwork}>
-                    <a href="https://github.com/my-profile">
+                    <a href={gitHub}>
                       <FontAwesomeIcon icon={faGithub} /> GitHub
                     </a>
-                    <a href="https://linkedin.com/in/my-profile-linkedin">
+                    <a href={linkedin}>
                       <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
                     </a>
                   </p>
@@ -312,7 +345,7 @@ function Profile() {
 
           {/* RIGHT PAGE STRUCTURE */}
           <div className={styles.rightContainer}>
-            <div className={styles.content}></div>
+            {/* <div className={styles.content}></div> */}
 
             <div className={styles.rowGroup}>
               {/* DIPLOMA CONTENT */}
@@ -384,6 +417,14 @@ function Profile() {
                 ></textarea>
               </div>
             </div>
+            {/* CONFIRM BUTTON */}
+
+            <button
+              onClick={(e) => confirmClick(e)}
+              className={styles.confirmButton}
+            >
+              Confirm
+            </button>
           </div>
 
           {/* PROFIL EDIT MODAL */}
