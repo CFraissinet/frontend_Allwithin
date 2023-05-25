@@ -8,6 +8,10 @@ import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select"; // library to add the drop down menu with checkboxes
 
 function Offers() {
+
+
+
+
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -15,13 +19,25 @@ function Offers() {
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
   // const [crew, setCrew] = useState("");
-  
+  const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true }]);
+const [data, setData] = useState(null);  
+
 
   const user = useSelector((state) => state.user.value);
-console.log(user)
-  const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true }]);
 
-  const removeJobCard = (id) => {
+
+
+
+useEffect(() => {
+
+if (router.query.myData) {
+  setData(JSON.parse(router.query.myData))
+};
+}, [router.query]);
+
+console.log(data);
+
+const removeJobCard = (id) => {
     setJobBox(jobBox.filter((jobCard) => jobCard.id !== id));
   };
 
@@ -192,11 +208,11 @@ function JobCard({ id, isFirst, removeJobCard }) {
         setJobData(data.jobs);
       });
   }, []);
-console.log(jobData)
+// console.log(jobData)
 
 
 let options = [];
-console.log('options', options)
+// console.log('options', options)
 
 jobData.map((data, i) => {
    return options.push({ value: data._id, label: data.name })
@@ -204,15 +220,7 @@ jobData.map((data, i) => {
 )
 
 
-  const increment = () => {
-    setCounter(counter + 1); // setting of the switch that increments the counter of the jobCard drop-down menu
-  };
-
-  const decrement = () => {
-    if (counter > 0) {
-      setCounter(counter - 1); // setter parameterization that decrements the counter and prevents the counter from going below 0
-    }
-  };
+ 
 
   const handleSelectChange = (selected) => {
     setSelectedOptions(selected);
@@ -227,17 +235,12 @@ jobData.map((data, i) => {
           id="jobProfile"
           className={styles.jobProfile}
           options={options}
-          isMulti
           value={selectedOptions}
           onChange={handleSelectChange}
         />
       </div>
       <div className={styles.counter}>
-        <div>
-          <button onClick={() => decrement()}>-</button>
-          <span> {counter} </span>
-          <button onClick={() => increment()}>+</button>
-        </div>
+
         {!isFirst && <button onClick={() => removeJobCard(id)}>X</button>}
       </div>
     </div>
