@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../reducers/user";
+import { removeProject } from "../reducers/project";
 import { useEffect, useState } from "react";
 
 function NavBar() {
@@ -31,6 +32,11 @@ function NavBar() {
   let navBar;
   const deconnection = () => {
     dispatch(logout());
+    location.href = "/";
+  };
+
+  const clearStoreProject = () => {
+    dispatch(removeProject());
     location.href = "/";
   };
 
@@ -256,7 +262,7 @@ function NavBar() {
         <div className={styles.buttonContainer}>
           {/* BUTTON */}
           <Link href="/lobby">
-            <div>
+            <div onClick={clearStoreProject}>
               <Button
                 text="Lobby"
                 backgroundColor="white"
