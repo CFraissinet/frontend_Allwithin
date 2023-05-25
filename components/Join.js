@@ -1,5 +1,5 @@
 import styles from "../styles/Join.module.css";
-import NavBar from "../components/NavBar";
+import Link from "next/link";
 import Button from "../components/Button";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -137,11 +137,15 @@ function Join() {
     errorColorCV = { color: "#FF0000" };
   }
 
+  const signInToApply = () => {
+    location.href = "/signIn";
+  };
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.leftContainer}>
         <div className={styles.searchBox}>
-          <div className={styles.inputBox}>
+          <div className={styles.doubleInputBox}>
             <input
               name="search"
               value={search}
@@ -232,17 +236,35 @@ function Join() {
             1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
           </p>
 
-          <a className={styles.applyBtn} onClick={openModal}>
-            <Button
-              text="Apply"
-              backgroundColor="#87c0cd"
-              borderColor="#87c0cd"
-              textColor="#152232"
-              backgroundColorHover="#87c0cd"
-              borderColorHover="#87c0cd"
-              textColorHover="white"
-            />
-          </a>
+          {user.token
+            ? [
+                <a className={styles.applyBtn} onClick={openModal}>
+                  <Button
+                    text="Apply"
+                    backgroundColor="#87c0cd"
+                    borderColor="#87c0cd"
+                    textColor="#152232"
+                    backgroundColorHover="#87c0cd"
+                    borderColorHover="#87c0cd"
+                    textColorHover="white"
+                  />
+                </a>,
+              ]
+            : [
+                <Link href="/signIn">
+                  <div className={styles.applyBtn}>
+                    <Button
+                      text="Sign in to apply"
+                      backgroundColor="#87c0cd"
+                      borderColor="#87c0cd"
+                      textColor="#152232"
+                      backgroundColorHover="#87c0cd"
+                      borderColorHover="#87c0cd"
+                      textColorHover="white"
+                    />
+                  </div>
+                </Link>,
+              ]}
         </div>
       </div>
       <Modal

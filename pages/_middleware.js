@@ -20,8 +20,7 @@ export default async function middleware(request) {
     !verify &&
     (url.includes("/lobby") ||
       url.includes("/dashboard") ||
-      url.includes("/creatProject") ||
-      url.includes("/join"))
+      url.includes("/creatProject"))
   ) {
     return NextResponse.redirect("http://localhost:3001/signIn");
   }
