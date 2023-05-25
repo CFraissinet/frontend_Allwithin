@@ -255,10 +255,10 @@ function NavBar() {
 
         <div className={styles.buttonContainer}>
           {/* BUTTON */}
-          <Link href="/signIn">
+          <Link href="/lobby">
             <div>
               <Button
-                text="Sign In"
+                text="Lobby"
                 backgroundColor="white"
                 borderColor="#152232"
                 textColor="#152232"
