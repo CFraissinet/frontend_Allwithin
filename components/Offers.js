@@ -45,7 +45,7 @@ function Offers() {
       project: project[0],
     };
 
-    fetch("http://localhost:3000/projects/addProject", {
+    fetch("http://localhost:3000/offers/newOffer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

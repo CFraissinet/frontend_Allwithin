@@ -38,8 +38,6 @@ function CreateProject() {
       token: user.token,
     };
 
-    console.log(myData);
-
     fetch("http://localhost:3000/projects/addProject", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -59,7 +57,6 @@ function CreateProject() {
     fetch("http://localhost:3000/locations/allLocation")
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data.Locations);
         let formattedData = data.Locations.map((data) => {
           return { value: data._id, label: data.name };
         });
@@ -68,7 +65,6 @@ function CreateProject() {
   }, []);
 
   const handleSelectChange = (selected) => {
-    console.log(selected);
     setLocation(selected.value);
   };
 

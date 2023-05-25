@@ -14,7 +14,6 @@ function Lobby() {
   const project = useSelector((state) => state.project.value);
   //user reducer
   const user = useSelector((state) => state.user.value);
-  console.log("token", user.token);
   //hook for user's projects
   const [dataProjects, setDataProjects] = useState([]);
   const [selectProject, setSelectProject] = useState({});

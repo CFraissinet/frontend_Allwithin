@@ -12,14 +12,13 @@ function NavBar() {
   const user = useSelector((state) => state.user.value);
   const [avatar, setAvatar] = useState("");
   const dispatch = useDispatch();
-  console.log(router.asPath);
+  console.log("TOKEN FROM USER NAV", user.token);
 
   useEffect(() => {
     if (user.token) {
       fetch(`http://localhost:3000/users/userData/${user.token}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           if (data.userData.photo) {
             setAvatar(data.userData.photo);
           } else {
