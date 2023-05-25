@@ -13,19 +13,20 @@ function NavBar() {
   const dispatch = useDispatch();
   console.log(router.asPath);
 
-  if (user.token) {
-    useEffect(() => {
+  useEffect(() => {
+    if (user.token) {
       fetch(`http://localhost:3000/users/userData/${user.token}`)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           if (data.userData.photo) {
             setAvatar(data.userData.photo);
           } else {
             setAvatar("Sample_User_Icon.png");
           }
         });
-    }, []);
-  }
+    }
+  }, [user]);
 
   let navBar;
   const deconnection = () => {
@@ -150,7 +151,7 @@ function NavBar() {
       <div className={styles.headerContainer}>
         {/* LOGO */}
         <div className={styles.button}>
-          <Link href="/profile">
+          <Link href="/">
             <a>
               <img
                 src="logo.png"

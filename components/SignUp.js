@@ -39,6 +39,9 @@ function Signup() {
   const [loader, setLoader] = useState(false);
   const [confirm, setConfirmError] = useState("");
   const [jobData, setJobData] = useState([]);
+  const [uploadImg, setUploadImg] = useState(false);
+  const [birthdate, setBirthdate] = useState("");
+  console.log(typeof birthdate);
 
   useEffect(() => {
     fetch("http://localhost:3000/users/jobs")
@@ -80,6 +83,7 @@ function Signup() {
         phone_number: phone,
         linkedin: linkedin,
         github: github,
+        birthdate: birthdate,
       };
     } else {
       dataInfo = {
@@ -91,6 +95,7 @@ function Signup() {
         phone_number: phone,
         linkedin: linkedin,
         github: github,
+        birthdate: birthdate,
       };
     }
 
@@ -118,6 +123,7 @@ function Signup() {
           }
 
           if (inputPhotoRef.current.files[0]) {
+            setUploadImg(true);
             console.log("have avatar");
             const formData = new FormData();
             formData.append("avatar", inputPhotoRef.current.files[0]);
@@ -129,6 +135,7 @@ function Signup() {
               .then((res) => res.json())
               .then((data) => {
                 console.log("avatar log", data);
+                location.href = "./lobby";
               });
           }
 
@@ -148,8 +155,10 @@ function Signup() {
           setLoader(false);
           dispatch(login({ token: data.user.token }));
           Cookies.set("token", data.token);
+          if (!uploadImg) {
+            location.href = "./lobby";
+          }
           console.log("go to lobby", data);
-          location.href = "./lobby";
         } else {
           setLoader(false);
           setConfirmError("");
@@ -341,6 +350,17 @@ function Signup() {
                 ))}
               </select>
 
+              <div className={styles.inputBox}>
+                <h2 className={styles.labelTxtLink}>Enter your birthdate :</h2>
+                <input
+                  type="date"
+                  id="birthdate"
+                  onChange={(e) => setBirthdate(e.target.value)}
+                  value={birthdate}
+                  className={styles.inputLinksDate}
+                  placeholder="Enter start date"
+                />
+              </div>
               <div className={styles.linkContent}>
                 <div className={styles.inputBox}>
                   <h2 className={styles.labelTxtLink}>
