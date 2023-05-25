@@ -63,7 +63,9 @@
 }
 
 .profileEditButton {
-  padding: 8px 28px;
+  padding: 10px 0;
+  width: 150px;
+  text-align: center;
   border-radius: 10px;
   font-weight: bold;
   box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
@@ -88,23 +90,41 @@
 
 .imageContainer {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  width: 250px;
-  height: 250px;
-  border-radius: 10px;
-  border: solid #ffffff 3px;
-}
-.image {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 250px;
-  height: 250px;
+  width: 255px;
+  height: 255px;
   border-radius: 10px 10px 10px 10px;
   border: solid #ffffff 3px;
   cursor: pointer;
+}
+
+.image {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px 10px 10px 10px;
+  object-fit: cover;
+}
+
+.inputPicture {
+  width: 250px;
+  height: 250px;
+  cursor: pointer;
+}
+
+.presentationLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputPicture {
+  opacity: 0;
+}
+
+.cvContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .cvButtonContent {
@@ -115,12 +135,12 @@
 }
 
 .cvButton {
-  height: 50px;
+  height: 40px;
   width: 150px;
   margin-top: 40px;
   padding: 8px 28px;
   border-radius: 10px;
-  font-weight: bold;
+  font-weight: 900;
   box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   align-self: center;
@@ -165,7 +185,7 @@
   text-align: center;
 }
 
-.firstName {
+.firstname {
   color: #152232;
   font-weight: 800;
   font-size: 25px;
@@ -264,12 +284,12 @@
 .rightContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   background: linear-gradient(150deg, #87c0cd 70%, white 30%);
   width: 60%;
   height: 100%;
-  padding: 20px 40px 40px 40px;
+  padding: 50px;
 }
 
 .diplomaTxtContent {
@@ -461,6 +481,25 @@
 .rowGroup textarea {
   width: 100%;
   min-height: 200px;
+}
+
+.confirmButton {
+  padding: 8px 28px;
+  width: 150px;
+  align-self: flex-end;
+  font-size: 100%;
+  font-weight: 600;
+  border: solid 3px #152232;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #152232;
+  cursor: pointer;
+}
+
+.confirmButton:hover {
+  background-color: #87c0cd;
+  border: solid 3px #87c0cd;
+  color: #ffffff;
 }
 
 .modalOpen {
