@@ -12,10 +12,15 @@ export const projectSlice = createSlice({
       state.value.push(action.payload);
     },
     removeProject: (state, action) => {
-			state.value = state.value.filter(project => project.name === action.payload.name);
-    }
+      state.value = state.value.filter(
+        (project) => project.name === action.payload.name
+      );
+    },
+    emptyStore: (state, action) => {
+      state.value = [];
+    },
   },
 });
 
-export const { addProject, removeProject } = projectSlice.actions;
+export const { addProject, removeProject, emptyStore } = projectSlice.actions;
 export default projectSlice.reducer;

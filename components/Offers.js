@@ -20,12 +20,7 @@ function Offers() {
   const [jobsSelected, setJobsSelected] = useState([]);
 
   const user = useSelector((state) => state.user.value);
-
-  useEffect(() => {
-    if (router.query.myData) {
-      setData(JSON.parse(router.query.myData));
-    }
-  }, [router.query]);
+  const project = useSelector((state) => state.project.value);
 
   console.log(data);
 
@@ -46,26 +41,12 @@ function Offers() {
       setJobsSelected([...jobsSelected, { job, jobCardId }]);
     }
   };
-  console.log(jobsSelected);
+  console.log("jobtable", jobsSelected);
 
   const clickCreatProject = () => {
     const data = {
-      name: name,
-      description: description,
-      start_date: start_date,
-      end_date: end_date,
-      token: user.token,
+      project: project[0],
     };
-
-    fetch("http://localhost:3000/projects/addProject", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
   };
 
   useEffect(() => {
@@ -84,8 +65,6 @@ function Offers() {
       ...jobBox,
       { id: jobBox.length, isFirst: false, jobData: jobData },
     ]);
-
-    console.log("click1111111111111111");
   };
 
   return (
@@ -114,21 +93,21 @@ function Offers() {
               </div>
 
               <div className={styles.containerBtnOffers}>
-              <button
-                onClick={() => addMemberClick()}
-                className={styles.addButton}
-              >
-                Add Member
-              </button>
-
-              <Link href="/lobby">
                 <button
+                  onClick={() => addMemberClick()}
                   className={styles.addButton}
-                  onClick={() => clickCreatProject()}
                 >
-                  Create Project
+                  Add Member
                 </button>
-              </Link>
+
+                <Link href="/lobby">
+                  <button
+                    className={styles.addButton}
+                    onClick={() => clickCreatProject()}
+                  >
+                    Create Project
+                  </button>
+                </Link>
               </div>
             </div>
             {/*--------------------------- Forms ------------------------------*/}
@@ -176,10 +155,8 @@ function JobCard({ id, isFirst, removeJobCard, addJobToParent }) {
         setJobData(formattedData);
       });
   }, []);
-  // console.log(jobData)
 
   let options = [];
-  // console.log('options', options)
 
   jobData.map((data, i) => {
     return options.push({ value: data._id, label: data.name });

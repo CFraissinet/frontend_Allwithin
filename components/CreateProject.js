@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select"; // library to add the drop down menu with checkboxes
+import { addProject, emptyStore } from "../reducers/project";
 
 function CreateProject() {
   const router = useRouter();
@@ -14,17 +15,18 @@ function CreateProject() {
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
   const [locationData, setLocationData] = useState([]);
-  const [location, setLocation] = useState(""); 
+  const [location, setLocation] = useState("");
 
   // const [crew, setCrew] = useState("");
 
   const user = useSelector((state) => state.user.value);
+  const project = useSelector((state) => state.project.value);
   const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true }]);
 
   const removeJobCard = (id) => {
     setJobBox(jobBox.filter((jobCard) => jobCard.id !== id));
   };
-
+  const dispatch = useDispatch();
   const clickCreatProject = (e) => {
     e.preventDefault();
     const myData = {
@@ -43,13 +45,13 @@ function CreateProject() {
     })
       .then((response) => response.json())
       .then((data) => {
-        router.push({
-          pathname: "/offers",
-          query: { project: data.id },
-        });
-        console.log(data);
+        console.log("project", data.id);
+        dispatch(emptyStore());
+        dispatch(addProject(data.id));
+        router.push("/offers");
       });
   };
+  console.log("store", project);
 
   useEffect(() => {
     fetch("http://localhost:3000/locations/allLocation")
@@ -63,11 +65,6 @@ function CreateProject() {
       });
   }, []);
 
-  // const addMemberClick = () => {
-  //   setJobBox([...jobBox, { id: jobBox.length, isFirst: false }]);
-
-  //   console.log("click1111111111111111");
-  // };
   const handleSelectChange = (selected) => {
     console.log(selected);
     setLocation(selected.value);
