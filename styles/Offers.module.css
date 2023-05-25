@@ -201,6 +201,10 @@
   font-weight: bold;
 }
 
+.containerBtnOffers {
+  display: flex;
+  gap: 180px;
+}
 /*----------------- txt area -----------------*/
 .txtAreaContainer {
   width: 50%;

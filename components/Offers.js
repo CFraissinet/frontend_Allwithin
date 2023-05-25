@@ -14,7 +14,7 @@ function Offers() {
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
   // const [crew, setCrew] = useState("");
-  const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true, jobData:[] }]);
+  const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true, jobData: [] }]);
   const [data, setData] = useState(null);
   const [jobData, setJobData] = useState([]);
   const [jobsSelected, setJobsSelected] = useState([]);
@@ -32,20 +32,20 @@ function Offers() {
   const removeJobCard = (id) => {
     setJobsSelected(jobsSelected.filter((job) => job.jobCardId !== id));
     setJobBox(jobBox.filter((jobCard) => jobCard.id !== id));
-
   };
 
-  const addJobToParent = (job, jobCardId) => {  
-    let findJobIndex = jobsSelected.findIndex(job => job.jobCardId === jobCardId);
-    if(findJobIndex !== -1) {
+  const addJobToParent = (job, jobCardId) => {
+    let findJobIndex = jobsSelected.findIndex(
+      (job) => job.jobCardId === jobCardId
+    );
+    if (findJobIndex !== -1) {
       let temp = jobsSelected;
       temp[findJobIndex].job = job;
       setJobsSelected([...temp]);
     } else {
-      setJobsSelected([...jobsSelected, {job, jobCardId}]);
-
+      setJobsSelected([...jobsSelected, { job, jobCardId }]);
     }
-  }
+  };
   console.log(jobsSelected);
 
   const clickCreatProject = () => {
@@ -56,8 +56,6 @@ function Offers() {
       end_date: end_date,
       token: user.token,
     };
-
-    
 
     fetch("http://localhost:3000/projects/addProject", {
       method: "POST",
@@ -82,7 +80,10 @@ function Offers() {
   }, []);
 
   const addMemberClick = () => {
-    setJobBox([...jobBox, { id: jobBox.length, isFirst: false, jobData:jobData }]);
+    setJobBox([
+      ...jobBox,
+      { id: jobBox.length, isFirst: false, jobData: jobData },
+    ]);
 
     console.log("click1111111111111111");
   };
@@ -90,27 +91,7 @@ function Offers() {
   return (
     <div className={styles.background}>
       <div className={styles.homeContainer}>
-        <div className={styles.container}>
-          {/*--------------------------- Nav ------------------------------*/}
-          {/* <div className={styles.navbar}>
-            <div className={styles.logoContainer}>
-              <img
-                className={styles.logo}
-                src="/path/to/your/logo.png"
-                alt="Logo"
-              />
-            </div>
-            <div className={styles.buttons}>
-              <Link href="/lobby">
-                <button className={styles.btnNav}>My lobby</button>
-              </Link>
-              <Link href="/signUp">
-                <button className={styles.btnNav}>My messages</button>
-              </Link>
-            </div>
-          </div> */}
-          {/*--------------------- Nav end*----------------------------*/}
-        </div>
+        <div className={styles.container}></div>
 
         {/*contains the div formContainer and txtAreaContainer*/}
         <div className={styles.leftRightContainer}>
@@ -131,35 +112,40 @@ function Offers() {
                   ))}
                 </div>
               </div>
+
+              <div className={styles.containerBtnOffers}>
               <button
                 onClick={() => addMemberClick()}
                 className={styles.addButton}
               >
                 Add Member
               </button>
+
+              <Link href="/lobby">
+                <button
+                  className={styles.addButton}
+                  onClick={() => clickCreatProject()}
+                >
+                  Create Project
+                </button>
+              </Link>
+              </div>
             </div>
             {/*--------------------------- Forms ------------------------------*/}
 
             {/*------------------------- div txtAreaContainer ----------------------*/}
             <div className={styles.txtAreaContainer}>
-              <label className={styles.labelStyle} htmlFor="projectDescription">
+              {/* <label className={styles.labelStyle} htmlFor="projectDescription">
                 Description:
-              </label>
-              <textarea
+              </label> */}
+              {/* <textarea
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}
                 maxLength="2500"
                 className={styles.txtArea}
                 placeholder="Enter project description"
-              ></textarea>
-              <div className={styles.btnCreatCountainer}>
-                <button
-                  onClick={() => clickCreatProject()}
-                  className={styles.btnCreateProject}
-                >
-                  CREATE PROJECT
-                </button>
-              </div>
+              ></textarea> */}
+              <div className={styles.btnCreatCountainer}></div>
             </div>
           </div>
           {/*------------------------- div txtAreaContainer fin ----------------------*/}

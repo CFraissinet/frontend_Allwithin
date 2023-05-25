@@ -13,8 +13,8 @@ function CreateProject() {
   const [description, setDescription] = useState("");
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
-  const [location, setLocation] = useState("");
-  const [jobData, setJobData] = useState([]);
+  const [locationData, setLocationData] = useState([]);
+  const [location, setLocation] = useState(""); 
 
   // const [crew, setCrew] = useState("");
 
@@ -52,13 +52,14 @@ function CreateProject() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/jobs")
+    fetch("http://localhost:3000/locations/allLocation")
       .then((response) => response.json())
       .then((data) => {
-        let formattedData = data.jobs.map((job) => {
-          return { value: job._id, label: job.name };
+        // console.log(data.Locations);
+        let formattedData = data.Locations.map((data) => {
+          return { value: data._id, label: data.name };
         });
-        setJobData(formattedData);
+        setLocationData(formattedData);
       });
   }, []);
 
@@ -108,7 +109,6 @@ function CreateProject() {
                       placeholder="Enter start date"
                     />
                   </div>
-
                   <div className={`${styles.inputBox} ${styles.labelStyle}`}>
                     <label htmlFor="endDate">End Date:</label>
                     <input
@@ -132,7 +132,7 @@ function CreateProject() {
                         id="jobProfile"
                         className={styles.jobProfile}
                         // devra etre remplacé par les data de location
-                        options={jobData}
+                        options={locationData}
                         onChange={handleSelectChange}
                       />
                     </div>
@@ -182,6 +182,6 @@ function CreateProject() {
     </div>
   );
 }
-/************************ section for the logical part of the job component *************************************/
+/************************ section for the logical part of the job component ******************************/
 
 export default CreateProject;
