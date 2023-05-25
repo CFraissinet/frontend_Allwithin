@@ -2,28 +2,51 @@ import Link from "next/link";
 import styles from "../styles/Offers.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select"; // library to add the drop down menu with checkboxes
 
 function Offers() {
   const router = useRouter();
-
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
   // const [crew, setCrew] = useState("");
-  
+  const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true, jobData:[] }]);
+  const [data, setData] = useState(null);
+  const [jobData, setJobData] = useState([]);
+  const [jobsSelected, setJobsSelected] = useState([]);
 
   const user = useSelector((state) => state.user.value);
-console.log(user)
-  const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true }]);
+
+  useEffect(() => {
+    if (router.query.myData) {
+      setData(JSON.parse(router.query.myData));
+    }
+  }, [router.query]);
+
+  console.log(data);
 
   const removeJobCard = (id) => {
+    setJobsSelected(jobsSelected.filter((job) => job.jobCardId !== id));
     setJobBox(jobBox.filter((jobCard) => jobCard.id !== id));
+
   };
+
+  const addJobToParent = (job, jobCardId) => {  
+    let findJobIndex = jobsSelected.findIndex(job => job.jobCardId === jobCardId);
+    if(findJobIndex !== -1) {
+      let temp = jobsSelected;
+      temp[findJobIndex].job = job;
+      setJobsSelected([...temp]);
+    } else {
+      setJobsSelected([...jobsSelected, {job, jobCardId}]);
+
+    }
+  }
+  console.log(jobsSelected);
 
   const clickCreatProject = () => {
     const data = {
@@ -33,6 +56,8 @@ console.log(user)
       end_date: end_date,
       token: user.token,
     };
+
+    
 
     fetch("http://localhost:3000/projects/addProject", {
       method: "POST",
@@ -45,8 +70,19 @@ console.log(user)
       });
   };
 
+  useEffect(() => {
+    fetch("http://localhost:3000/users/jobs")
+      .then((response) => response.json())
+      .then((data) => {
+        let formattedData = data.jobs.map((job) => {
+          return { value: job._id, label: job.name };
+        });
+        setJobData(formattedData);
+      });
+  }, []);
+
   const addMemberClick = () => {
-    setJobBox([...jobBox, { id: jobBox.length, isFirst: false }]);
+    setJobBox([...jobBox, { id: jobBox.length, isFirst: false, jobData:jobData }]);
 
     console.log("click1111111111111111");
   };
@@ -73,7 +109,7 @@ console.log(user)
               </Link>
             </div>
           </div> */}
-        {/*--------------------- Nav end*----------------------------*/}
+          {/*--------------------- Nav end*----------------------------*/}
         </div>
 
         {/*contains the div formContainer and txtAreaContainer*/}
@@ -81,52 +117,12 @@ console.log(user)
           <h1> Offers </h1>
           <div className={styles.leftRight}>
             <div className={styles.formContainer}>
-          
               {/*--------------------------- Forms ------------------------------*/}
               <div className={styles.inputDiv}>
-                {/* <div className={`${styles.inputBox} ${styles.labelStyle}`}>
-                  <label htmlFor="projectName">Project Name:</label>
-                  <input
-                    type="text"
-                    id="projectName"
-                    onChange={(e) => setName(e.target.value)}
-                    value={name}
-                    className={styles.input}
-                    placeholder="Enter project name"
-                  />
-                </div> */}
-                {/*input  Start Date & End Date FORMS */}
-                {/* <div className={styles.endSartContainer}>
-                  <div className={`${styles.inputBox} ${styles.labelStyle}`}>
-                    <label htmlFor="startDate">Start Date:</label>
-                    <input
-                      type="date"
-                      id="startDate"
-                      onChange={(e) => setStart_date(e.target.value)}
-                      value={start_date}
-                      className={styles.endStart}
-                      placeholder="Enter start date"
-                    />
-                  </div>
-
-                  <div className={`${styles.inputBox} ${styles.labelStyle}`}>
-                    <label htmlFor="endDate">End Date:</label>
-                    <input
-                      type="date"
-                      id="endDate"
-                      onChange={(e) => setEnd_date(e.target.value)}
-                      value={end_date}
-                      className={styles.endStart}
-                      placeholder="Enter end date"
-                    />
-                  </div>
-                </div> */}
-                {/* input Start Date & End Date FORMS */}
-
-                {/* input job Profile & member count */}
                 <div className={styles.jobInputContainer}>
                   {jobBox.map((jobCard) => (
                     <JobCard
+                      addJobToParent={addJobToParent}
                       key={jobCard.id}
                       id={jobCard.id}
                       isFirst={jobCard.isFirst}
@@ -177,9 +173,8 @@ console.log(user)
 /************************ section for the logical part of the job component *************************************/
 
 // A React function component named JobCard is defined with three props: id, isFirst, removeJobCard
-function JobCard({ id, isFirst, removeJobCard }) {
+function JobCard({ id, isFirst, removeJobCard, addJobToParent }) {
   // Creating a state variable 'counter' with an initial value of 0. setCounter is a function that will be used to update this value
-  const [counter, setCounter] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState([]); // Creating a state variable 'selectedOptions' with an initial value of empty array. setSelectedOptions is a function that will be used to update this value
 
   // The options available for job profile selection
@@ -189,33 +184,24 @@ function JobCard({ id, isFirst, removeJobCard }) {
     fetch("http://localhost:3000/users/jobs")
       .then((response) => response.json())
       .then((data) => {
-        setJobData(data.jobs);
+        let formattedData = data.jobs.map((job) => {
+          return { value: job._id, label: job.name };
+        });
+        setJobData(formattedData);
       });
   }, []);
-console.log(jobData)
+  // console.log(jobData)
 
+  let options = [];
+  // console.log('options', options)
 
-let options = [];
-console.log('options', options)
-
-jobData.map((data, i) => {
-   return options.push({ value: data._id, label: data.name })
-}
-)
-
-
-  const increment = () => {
-    setCounter(counter + 1); // setting of the switch that increments the counter of the jobCard drop-down menu
-  };
-
-  const decrement = () => {
-    if (counter > 0) {
-      setCounter(counter - 1); // setter parameterization that decrements the counter and prevents the counter from going below 0
-    }
-  };
+  jobData.map((data, i) => {
+    return options.push({ value: data._id, label: data.name });
+  });
 
   const handleSelectChange = (selected) => {
     setSelectedOptions(selected);
+    addJobToParent(selected, id);
   };
 
   //component for menu selection with jobs and counter for each job
@@ -226,18 +212,12 @@ jobData.map((data, i) => {
         <Select
           id="jobProfile"
           className={styles.jobProfile}
-          options={options}
-          isMulti
+          options={jobData}
           value={selectedOptions}
           onChange={handleSelectChange}
         />
       </div>
       <div className={styles.counter}>
-        <div>
-          <button onClick={() => decrement()}>-</button>
-          <span> {counter} </span>
-          <button onClick={() => increment()}>+</button>
-        </div>
         {!isFirst && <button onClick={() => removeJobCard(id)}>X</button>}
       </div>
     </div>
@@ -245,4 +225,3 @@ jobData.map((data, i) => {
 }
 
 export default Offers;
-

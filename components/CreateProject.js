@@ -9,45 +9,67 @@ import Select from "react-select"; // library to add the drop down menu with che
 
 function CreateProject() {
   const router = useRouter();
-
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
+  const [location, setLocation] = useState("");
+  const [jobData, setJobData] = useState([]);
+
   // const [crew, setCrew] = useState("");
 
   const user = useSelector((state) => state.user.value);
-  console.log(user);
   const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true }]);
 
   const removeJobCard = (id) => {
     setJobBox(jobBox.filter((jobCard) => jobCard.id !== id));
   };
 
-  const clickCreatProject = () => {
-    const data = {
+  const clickCreatProject = (e) => {
+    e.preventDefault();
+    const myData = {
       name: name,
       description: description,
       start_date: start_date,
       end_date: end_date,
+      location: location,
       token: user.token,
     };
 
     fetch("http://localhost:3000/projects/addProject", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(myData),
     })
       .then((response) => response.json())
       .then((data) => {
+        router.push({
+          pathname: "/offers",
+          query: { project: data.id },
+        });
         console.log(data);
       });
   };
 
-  const addMemberClick = () => {
-    setJobBox([...jobBox, { id: jobBox.length, isFirst: false }]);
+  useEffect(() => {
+    fetch("http://localhost:3000/users/jobs")
+      .then((response) => response.json())
+      .then((data) => {
+        let formattedData = data.jobs.map((job) => {
+          return { value: job._id, label: job.name };
+        });
+        setJobData(formattedData);
+      });
+  }, []);
 
-    console.log("click1111111111111111");
+  // const addMemberClick = () => {
+  //   setJobBox([...jobBox, { id: jobBox.length, isFirst: false }]);
+
+  //   console.log("click1111111111111111");
+  // };
+  const handleSelectChange = (selected) => {
+    console.log(selected);
+    setLocation(selected.value);
   };
 
   return (
@@ -59,7 +81,7 @@ function CreateProject() {
         <div className={styles.leftRightContainer}>
           <h1>Create Your Project</h1>
           <div className={styles.leftRight}>
-            <div className={styles.formContainer}>
+            <form className={styles.formContainer}>
               {/*--------------------------- Forms ------------------------------*/}
               <div className={styles.inputDiv}>
                 <div className={`${styles.inputBox} ${styles.labelStyle}`}>
@@ -103,46 +125,55 @@ function CreateProject() {
 
                 {/* input job Profile & member count */}
                 <div className={styles.jobInputContainer}>
-                  {jobBox.map((jobCard) => (
-                    <JobCard
-                      key={jobCard.id}
-                      id={jobCard.id}
-                      isFirst={jobCard.isFirst}
-                      removeJobCard={removeJobCard}
-                    />
-                  ))}
+                  <div>
+                    <div className={`${styles.inputBox} ${styles.labelStyle}`}>
+                      <label htmlFor="jobProfile">Location:</label>
+                      <Select
+                        id="jobProfile"
+                        className={styles.jobProfile}
+                        // devra etre remplacé par les data de location
+                        options={jobData}
+                        onChange={handleSelectChange}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <button
+                {/* old button that was used to add the job div */}
+                {/* <button
                 onClick={() => addMemberClick()}
                 className={styles.addButton}
               >
                 Add Member
-              </button>
-            </div>
-            {/*--------------------------- Forms ------------------------------*/}
-
-            {/*------------------------- div txtAreaContainer ----------------------*/}
-            <div className={styles.txtAreaContainer}>
-              <label className={styles.labelStyle} htmlFor="projectDescription">
-                Project description:
-              </label>
-              <textarea
-                onChange={(e) => setDescription(e.target.value)}
-                value={description}
-                maxLength="2500"
-                className={styles.txtArea}
-                placeholder="Enter project description"
-              ></textarea>
-              <div className={styles.btnCreatCountainer}>
-                <button
-                  onClick={() => clickCreatProject()}
-                  className={styles.btnCreateProject}
-                >
-                  CREATE PROJECT
-                </button>
+              </button> */}
+                {/* old button that was used to add the job div */}
               </div>
-            </div>
+              {/*--------------------------- Forms ------------------------------*/}
+
+              {/*------------------------- div txtAreaContainer ----------------------*/}
+              <div className={styles.txtAreaContainer}>
+                <label
+                  className={styles.labelStyle}
+                  htmlFor="projectDescription"
+                >
+                  Project description:
+                </label>
+                <textarea
+                  onChange={(e) => setDescription(e.target.value)}
+                  value={description}
+                  maxLength="2500"
+                  className={styles.txtArea}
+                  placeholder="Enter project description"
+                ></textarea>
+                <div className={styles.btnCreatCountainer}>
+                  <button
+                    onClick={(e) => clickCreatProject(e)}
+                    className={styles.btnCreateProject}
+                  >
+                    Next Step ADD Members
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
           {/*------------------------- div txtAreaContainer fin ----------------------*/}
         </div>
@@ -151,72 +182,6 @@ function CreateProject() {
     </div>
   );
 }
-
 /************************ section for the logical part of the job component *************************************/
-
-// A React function component named JobCard is defined with three props: id, isFirst, removeJobCard
-function JobCard({ id, isFirst, removeJobCard }) {
-  // Creating a state variable 'counter' with an initial value of 0. setCounter is a function that will be used to update this value
-  const [counter, setCounter] = useState(0);
-  const [selectedOptions, setSelectedOptions] = useState([]); // Creating a state variable 'selectedOptions' with an initial value of empty array. setSelectedOptions is a function that will be used to update this value
-
-  // The options available for job profile selection
-  const [jobData, setJobData] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/users/jobs")
-      .then((response) => response.json())
-      .then((data) => {
-        setJobData(data.jobs);
-      });
-  }, []);
-  console.log(jobData);
-
-  let options = [];
-  console.log("options", options);
-
-  jobData.map((data, i) => {
-    return options.push({ value: data._id, label: data.name });
-  });
-
-  const increment = () => {
-    setCounter(counter + 1); // setting of the switch that increments the counter of the jobCard drop-down menu
-  };
-
-  const decrement = () => {
-    if (counter > 0) {
-      setCounter(counter - 1); // setter parameterization that decrements the counter and prevents the counter from going below 0
-    }
-  };
-
-  const handleSelectChange = (selected) => {
-    setSelectedOptions(selected);
-  };
-
-  //component for menu selection with jobs and counter for each job
-  return (
-    <div>
-      <div className={`${styles.inputBox} ${styles.labelStyle}`}>
-        <label htmlFor="jobProfile">Job Profile:</label>
-        <Select
-          id="jobProfile"
-          className={styles.jobProfile}
-          options={options}
-          isMulti
-          value={selectedOptions}
-          onChange={handleSelectChange}
-        />
-      </div>
-      <div className={styles.counter}>
-        <div>
-          <button onClick={() => decrement()}>-</button>
-          <span> {counter} </span>
-          <button onClick={() => increment()}>+</button>
-        </div>
-        {!isFirst && <button onClick={() => removeJobCard(id)}>X</button>}
-      </div>
-    </div>
-  );
-}
 
 export default CreateProject;
