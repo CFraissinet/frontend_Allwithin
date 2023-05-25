@@ -32,6 +32,7 @@ function Profile() {
   const [pageNumber, setPageNumber] = useState(1);
   const [previewCV, setPreviewCV] = useState(false);
   const [previewAvatar, setPreviewAvatar] = useState(false);
+
   const [CV, setCV] = useState("");
   const [errorCV, setErrorCV] = useState("");
   const [job, setJob] = useState("");
@@ -42,10 +43,9 @@ function Profile() {
   const [linkedin, setLinkedin] = useState("");
   const [avatar, setAvatar] = useState("");
   const [errorAvatar, setErrorAvatar] = useState("");
-  const [profilePicture, setProfilePicture] = useState(null);
   const [userName, setUserName] = useState("");
   const [firstname, setFirstname] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [birthdate, setBirthdate] = useState("");
 
   function openModal() {
     setIsOpen(true);
@@ -75,14 +75,24 @@ function Profile() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        let birthdateUser = new Date(data.userData.birthdate);
+        birthdateUser = birthdateUser.toLocaleDateString();
+        console.log(birthdateUser);
         setUserName(data.userData.name);
         setFirstname(data.userData.firstname);
-        setBirthday(data.userData.birthday);
+        setBirthdate(birthdateUser);
         setPhoneContact(data.userData.phone_number);
         setMailContact(data.userData.email);
         setLocation(data.userData.location);
         setGitHub(data.userData.github);
         setLinkedin(data.userData.linkedin);
+        setJob(data.userData.job.name);
+
+        if (data.userData.photo !== null) {
+          setAvatar(data.userData.photo);
+        } else {
+          setAvatar("Sample_User_Icon.png");
+        }
       });
 
     const fetchData = async () => {
@@ -231,14 +241,14 @@ function Profile() {
               {/* PICTURE */}
               <div className={styles.presentationLeft}>
                 <div className={styles.imageContainer}>
-                  {avatar && (
-                    <img
-                      onClick={(e) => photoClick(e)}
-                      className={styles.image}
-                      src={avatar}
-                      alt="Picture"
-                    />
-                  )}
+                  {/* {avatar && ( */}
+                  <img
+                    onClick={(e) => photoClick(e)}
+                    className={styles.image}
+                    src={avatar}
+                    alt="Picture"
+                  />
+                  {/* )} */}
 
                   <input
                     className={styles.inputPicture}
@@ -284,7 +294,7 @@ function Profile() {
                 <div className={styles.textContainer}>
                   <span className={styles.firstname}>{firstname} </span>
                   <span className={styles.name}>{userName}</span>
-                  <span className={styles.birthday}>{birthday}</span>
+                  <span className={styles.birthday}>{birthdate}</span>
                   <p className={styles.job}>{job}</p>
                   <p className={styles.location}>
                     <FontAwesomeIcon
