@@ -9,7 +9,6 @@ import Select from "react-select"; // library to add the drop down menu with che
 
 function CreateProject() {
   const router = useRouter();
-
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [start_date, setStart_date] = useState("");
@@ -36,22 +35,21 @@ function CreateProject() {
       location: location,
       token: user.token,
     };
-    
+
     fetch("http://localhost:3000/projects/addProject", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(myData),
     })
-    .then((response) => response.json())
-    .then((data) => {
-      router.push({
-        pathname: '/offers',
-        query: {project : data.id},
-    });
-      console.log(data);
+      .then((response) => response.json())
+      .then((data) => {
+        router.push({
+          pathname: "/offers",
+          query: { project: data.id },
+        });
+        console.log(data);
       });
   };
-
 
   useEffect(() => {
     fetch("http://localhost:3000/users/jobs")
@@ -61,7 +59,6 @@ function CreateProject() {
           return { value: job._id, label: job.name };
         });
         setJobData(formattedData);
-        
       });
   }, []);
 
@@ -71,10 +68,9 @@ function CreateProject() {
   //   console.log("click1111111111111111");
   // };
   const handleSelectChange = (selected) => {
-    console.log(selected);  
+    console.log(selected);
     setLocation(selected.value);
   };
-
 
   return (
     <div className={styles.background}>
@@ -85,7 +81,7 @@ function CreateProject() {
         <div className={styles.leftRightContainer}>
           <h1>Create Your Project</h1>
           <div className={styles.leftRight}>
-          <form className={styles.formContainer}>
+            <form className={styles.formContainer}>
               {/*--------------------------- Forms ------------------------------*/}
               <div className={styles.inputDiv}>
                 <div className={`${styles.inputBox} ${styles.labelStyle}`}>
@@ -129,52 +125,54 @@ function CreateProject() {
 
                 {/* input job Profile & member count */}
                 <div className={styles.jobInputContainer}>
-                <div>
-                  <div className={`${styles.inputBox} ${styles.labelStyle}`}>
-                    <label htmlFor="jobProfile">Location:</label>
-                    <Select
-                      id="jobProfile"
-                      className={styles.jobProfile}
-                      options={jobData}
-                      onChange={handleSelectChange}
-                    />
+                  <div>
+                    <div className={`${styles.inputBox} ${styles.labelStyle}`}>
+                      <label htmlFor="jobProfile">Location:</label>
+                      <Select
+                        id="jobProfile"
+                        className={styles.jobProfile}
+                        // devra etre remplacé par les data de location
+                        options={jobData}
+                        onChange={handleSelectChange}
+                      />
+                    </div>
                   </div>
                 </div>
-                </div>
-              {/* old button that was used to add the job div */}
-              {/* <button
+                {/* old button that was used to add the job div */}
+                {/* <button
                 onClick={() => addMemberClick()}
                 className={styles.addButton}
               >
                 Add Member
               </button> */}
-              {/* old button that was used to add the job div */}
-            </div>
-            {/*--------------------------- Forms ------------------------------*/}
+                {/* old button that was used to add the job div */}
+              </div>
+              {/*--------------------------- Forms ------------------------------*/}
 
-            {/*------------------------- div txtAreaContainer ----------------------*/}
-            <div className={styles.txtAreaContainer}>
-              <label className={styles.labelStyle} htmlFor="projectDescription">
-                Project description:
-              </label>
-              <textarea
-                onChange={(e) => setDescription(e.target.value)}
-                value={description}
-                maxLength="2500"
-                className={styles.txtArea}
-                placeholder="Enter project description"
-              ></textarea>
-              <div className={styles.btnCreatCountainer}>
-                
+              {/*------------------------- div txtAreaContainer ----------------------*/}
+              <div className={styles.txtAreaContainer}>
+                <label
+                  className={styles.labelStyle}
+                  htmlFor="projectDescription"
+                >
+                  Project description:
+                </label>
+                <textarea
+                  onChange={(e) => setDescription(e.target.value)}
+                  value={description}
+                  maxLength="2500"
+                  className={styles.txtArea}
+                  placeholder="Enter project description"
+                ></textarea>
+                <div className={styles.btnCreatCountainer}>
                   <button
                     onClick={(e) => clickCreatProject(e)}
                     className={styles.btnCreateProject}
                   >
                     Next Step ADD Members
                   </button>
-               
+                </div>
               </div>
-            </div>
             </form>
           </div>
           {/*------------------------- div txtAreaContainer fin ----------------------*/}
@@ -185,6 +183,5 @@ function CreateProject() {
   );
 }
 /************************ section for the logical part of the job component *************************************/
-
 
 export default CreateProject;
