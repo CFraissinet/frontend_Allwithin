@@ -6,6 +6,7 @@ import Link from "next/link";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { useSelector, useDispatch } from "react-redux";
 import {
   faEnvelope,
   faPhone,
@@ -16,6 +17,7 @@ import Button from "./Button";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 function Profile() {
+  const user = useSelector((state) => state.user.value);
   const inputCVRef = useRef(null);
   const inputPhotoRef = useRef(null);
 
@@ -73,14 +75,14 @@ function Profile() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setUserName(data.user.name);
-        setFirstname(data.user.firstname);
-        setBirthday(data.user.birthday);
-        setPhoneContact(data.user.phoneContact);
-        setMailContact(data.user.mailContact);
-        setLocation(data.user.location);
-        setGitHub(data.user.gitHub);
-        setLinkedin(data.user.linkedin);
+        setUserName(data.userData.name);
+        setFirstname(data.userData.firstname);
+        setBirthday(data.userData.birthday);
+        setPhoneContact(data.userData.phone_number);
+        setMailContact(data.userData.email);
+        setLocation(data.userData.location);
+        setGitHub(data.userData.github);
+        setLinkedin(data.userData.linkedin);
       });
 
     const fetchData = async () => {
@@ -465,9 +467,9 @@ function Profile() {
             <div className={styles.inputPhoneNumber}>
               <h2 className={styles.labelTxt}>Change your phone number :</h2>
               <input
-                name="phoneNumber"
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                value={phoneNumber}
+                name="phoneContact"
+                onChange={(e) => setPhoneContact(e.target.value)}
+                value={phoneContact}
                 className={styles.input}
                 placeholder="Phone Number"
               ></input>
@@ -475,9 +477,9 @@ function Profile() {
             <div className={styles.inputEmail}>
               <h2 className={styles.labelTxt}>Change your email :</h2>
               <input
-                name="Email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                name="MailContact"
+                onChange={(e) => setMailContact(e.target.value)}
+                value={mailContact}
                 className={styles.input}
                 placeholder="Email"
               ></input>
@@ -488,22 +490,15 @@ function Profile() {
               </h2>
               <input
                 name="SocialNetworks"
-                onChange={(e) => setSocialNetworks(e.target.value)}
-                value={socialNetworks}
+                onChange={(e) => setGitHub(e.target.value)}
+                value={gitHub}
                 className={styles.input}
                 placeholder="Link to social profile link"
               ></input>
               <input
                 name="SocialNetworks"
-                onChange={(e) => setSocialNetworks(e.target.value)}
-                value={socialNetworks}
-                className={styles.input}
-                placeholder="Link to social profile link"
-              ></input>
-              <input
-                name="SocialNetworks"
-                onChange={(e) => setSocialNetworks(e.target.value)}
-                value={socialNetworks}
+                onChange={(e) => setLinkedin(e.target.value)}
+                value={linkedin}
                 className={styles.input}
                 placeholder="Link to social profile link"
               ></input>
