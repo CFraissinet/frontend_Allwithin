@@ -196,11 +196,7 @@ function NavBar() {
         <div className={styles.button}>
           <Link href="/">
             <a>
-              <img
-                src="logo.png"
-                alt="Sample_User_Icon.png"
-                className={styles.logo}
-              />
+              <img src="logo.png" alt="logo" className={styles.logo} />
             </a>
           </Link>
         </div>
@@ -233,13 +229,18 @@ function NavBar() {
               />
             </div>
           </Link>
-          <Link href="/profile">
-            <img
-              className={styles.photoPreview}
-              src={avatar}
-              alt="Sample_User_Icon.png"
-            />
-          </Link>
+
+          {user.token
+            ? [
+                <Link href="/profile">
+                  <img
+                    className={styles.photoPreview}
+                    src={avatar}
+                    alt="Sample_User_Icon.png"
+                  />
+                </Link>,
+              ]
+            : [<></>]}
         </div>
       </div>
     );
@@ -351,6 +352,53 @@ function NavBar() {
         </div>
       </div>
     );
+  } else if (router.asPath === "/offers") {
+    navBar = (
+      <div className={styles.headerContainer}>
+        {/* LOGO */}
+        <div className={styles.button}>
+          <Link href="/">
+            <a>
+              <img
+                src="logo.png"
+                alt="Sample_User_Icon.png"
+                className={styles.logo}
+              />
+            </a>
+          </Link>
+        </div>
+
+        <div className={styles.buttonContainer}>
+          {/* BUTTON */}
+          <Link href="/lobby">
+            <div>
+              <Button
+                text="My lobby"
+                backgroundColor="white"
+                borderColor="#152232"
+                textColor="#152232"
+                backgroundColorHover="#87c0cd"
+                borderColorHover="#87c0cd"
+                textColorHover="white"
+              />
+            </div>
+          </Link>
+          <Link href="/signIn">
+            <div onClick={deconnection}>
+              <Button
+                text="Log out"
+                backgroundColor="white"
+                borderColor="#152232"
+                textColor="#152232"
+                backgroundColorHover="#87c0cd"
+                borderColorHover="#87c0cd"
+                textColorHover="white"
+              />
+            </div>
+          </Link>
+        </div>
+      </div>
+    );
   } else if (router.asPath === "/profile") {
     navBar = (
       <div className={styles.headerContainer}>
@@ -399,6 +447,7 @@ function NavBar() {
       </div>
     );
   }
+
   return <>{navBar}</>;
 }
 
