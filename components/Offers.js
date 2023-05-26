@@ -40,6 +40,7 @@ function Offers() {
   console.log("jobtable", jobsSelected);
 
   const clickCreatProject = () => {
+    console.log("project", project);
     const data = {
       offers: jobsSelected,
       project: project[0],

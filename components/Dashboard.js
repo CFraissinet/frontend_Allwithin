@@ -21,14 +21,14 @@ function Dashboard() {
   function closeModal() {
     setIsOpen(false);
   }
+  console.log("projectData", projectData);
 
   useEffect(() => {
     const idProject = project[0]._id;
     fetch(`http://localhost:3000/offers/${idProject}`)
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data.projectData);
-        setProjectData(data.projectData);
+        setProjectData(data.projectData[0].offers);
         console.log(data.projectData);
         // if (dataProjects.length !== 0) {
         //   setSelectProject(data.projects[0]);
@@ -51,11 +51,19 @@ function Dashboard() {
   );
 
   //For clear store
-  const clearProject = (project) => {
-    dispatch(removeProject(project));
-    setProjectData([]);
-    location.href = "/lobby";
-  };
+  // const clearProject = (project) => {
+  //   dispatch(removeProject(project));
+  //   setProjectData([]);
+  //   location.href = "/lobby";
+  // };
+
+  // if (projectData.length === 0) {
+  //   return (
+  //     <div>
+  //       <h1>Loading</h1>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className={styles.main}>
@@ -85,7 +93,7 @@ function Dashboard() {
                       className={styles.post}
                       key={i}
                     >
-                      {data.name}
+                      {data.job.label}
                     </div>
                   ))}
                 </div>
