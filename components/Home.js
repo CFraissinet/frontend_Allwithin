@@ -1,6 +1,16 @@
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 function Home() {
+  const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
+  let connection;
+  if (user.token) {
+    connection = "/createProject";
+  } else {
+    connection = "/signIn";
+  }
   return (
     <div className={styles.homeContainer}>
       {/* backgroundTop start*/}
@@ -18,7 +28,7 @@ function Home() {
             <span className={styles.txtLeftCard}>
               Create your own project and costumize your staff
             </span>
-            <Link href="/createProject">
+            <Link href={connection}>
               <button className={styles.btnLeft}>Create Project</button>
             </Link>
           </div>
