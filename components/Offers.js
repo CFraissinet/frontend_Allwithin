@@ -41,20 +41,22 @@ function Offers() {
 
   const clickCreatProject = () => {
     console.log("project", project);
-    const data = {
-      offers: jobsSelected,
-      project: project[0],
-    };
+    jobsSelected.map((data) => {
+      let dataPush = {
+        offers: data,
+        project: project[0],
+      };
 
-    fetch("http://localhost:3000/offers/newOffer", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
+      fetch("http://localhost:3000/offers/newOffer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataPush),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        });
+    });
   };
 
   useEffect(() => {
