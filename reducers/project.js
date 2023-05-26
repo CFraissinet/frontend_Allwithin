@@ -9,7 +9,7 @@ export const projectSlice = createSlice({
   initialState,
   reducers: {
     addProject: (state, action) => {
-      state.value.push(action.payload);
+      state.value = [action.payload];
     },
     removeProject: (state, action) => {
       state.value = state.value.filter(

@@ -34,10 +34,10 @@ function NavBar() {
     location.href = "/";
   };
 
-  const clearStoreProject = () => {
-    dispatch(removeProject());
-    location.href = "/lobby";
-  };
+  // const clearStoreProject = () => {
+  //   dispatch(removeProject());
+  //   location.href = "/";
+  // };
 
   if (router.asPath === "/") {
     navBar = (
@@ -262,7 +262,7 @@ function NavBar() {
         <div className={styles.buttonContainer}>
           {/* BUTTON */}
           <Link href="/lobby">
-            <div onClick={clearStoreProject}>
+            <div>
               <Button
                 text="Lobby"
                 backgroundColor="white"

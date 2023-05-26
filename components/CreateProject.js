@@ -46,8 +46,8 @@ function CreateProject() {
       .then((response) => response.json())
       .then((data) => {
         console.log("project added", data);
-        dispatch(emptyStore());
-        dispatch(addProject(data.id));
+        // dispatch(emptyStore());
+        dispatch(addProject(data.data._id));
         router.push("/offers");
       });
   };

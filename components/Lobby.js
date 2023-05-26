@@ -35,6 +35,7 @@ function Lobby() {
 
   //To upload to the store and find the project in the project dashboard page
   const sendProjectDasboard = (project) => {
+    console.log(project);
     dispatch(addProject(project));
   };
 
