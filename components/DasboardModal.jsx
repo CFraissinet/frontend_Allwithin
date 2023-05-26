@@ -4,6 +4,7 @@ import {
   faXmark,
   faEnvelope,
   faPhone,
+  faFile,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/Dashboard.module.css";
 
@@ -15,21 +16,17 @@ function DashboardModal(props) {
       onRequestClose={props.closeModal}
       className={styles.modalOpen}
     >
+      <FontAwesomeIcon
+        className={styles.btnClose}
+        onClick={props.closeModal}
+        icon={faXmark}
+      />
       <div className={styles.container}>
-        <FontAwesomeIcon
-          className={styles.btnClose}
-          onClick={props.closeModal}
-          icon={faXmark}
-        />
-        <b className={styles.b}>{props.data.jobTitle}</b>
         <div className={styles.containerCard}>
           {props.data.user_Id.map((data) => (
             <div className={styles.card}>
               <div className={styles.cardContainer}>
-                <img
-                  className={styles.photo}
-                  src={data.photo ? data.photo : "images/the-rock.webp"}
-                />
+                <img className={styles.photo} src={data.photo} />
                 <div className={styles.containerContact}>
                   <b className={styles.name}>
                     {data.firstname} {data.name}
@@ -37,10 +34,18 @@ function DashboardModal(props) {
                   <div className={styles.gitHub}>
                     <img
                       className={styles.contactGitHub}
-                      src="/images/github-mark.svg"
+                      src="/images/github.svg"
                       alt="GitHub"
                     />
-                    <b>TheRock</b>
+                    <a href={data.github}>Voir le profil</a>
+                  </div>
+                  <div className={styles.linkLinkedin}>
+                    <img
+                      className={styles.linkedin}
+                      src="/images/linkedin.png"
+                      alt="GitHub"
+                    />
+                    <a href={data.linkedin}>Voir le profil</a>
                   </div>
                   <div className={styles.mail}>
                     <FontAwesomeIcon
@@ -52,8 +57,19 @@ function DashboardModal(props) {
                     <a href="mailto:{data.email}">{data.email}</a>
                   </div>
                   <div className={styles.tel}>
-                    <FontAwesomeIcon icon={faPhone} />
-                    <a href="tel:0609080706">06.09.08.07.06</a>
+                    <FontAwesomeIcon
+                      className={styles.contact}
+                      icon={faPhone}
+                    />
+                    <a href="tel: `${data.phone_number}`">
+                      {data.phone_number}
+                    </a>
+                  </div>
+                  <div className={styles.cv}>
+                    <FontAwesomeIcon className={styles.contact} icon={faFile} />
+                    <a className={styles.cvLink} href={data.cv}>
+                      Voir CV
+                    </a>
                   </div>
                 </div>
               </div>
