@@ -188,12 +188,7 @@ function Join() {
           </div>
         </div>
 
-        <div className={styles.filterContent}>
-          <div className={styles.filter}>
-            <span>Front</span>
-            <FontAwesomeIcon icon={faXmark} />
-          </div>
-        </div>
+        <div className={styles.filterContent}></div>
 
         <div className={styles.projectContainer}>
           {dataOffers.map((data, i) => (
@@ -232,12 +227,49 @@ function Join() {
                     Offer available : {""}
                     {selectProject.offers.job.label}
                   </h1>
-                  <p>{selectProject.project.description}</p>
+                  <p>
+                    Project desciption : {selectProject.project.description}
+                  </p>
+                  <p>Start {selectProject.project.start_date}</p>
+                  <p>End date : {selectProject.project.end_date}</p>
+
+                  {user.token
+                    ? [
+                        <a
+                          className={styles.applyBtn}
+                          onClick={() => handleApplyBtn(selectProject)}
+                        >
+                          <Button
+                            text="Apply"
+                            backgroundColor="#87c0cd"
+                            borderColor="#87c0cd"
+                            textColor="#152232"
+                            backgroundColorHover="#87c0cd"
+                            borderColorHover="#87c0cd"
+                            textColorHover="white"
+                          />
+                        </a>,
+                      ]
+                    : [
+                        <Link href="/signIn">
+                          <div className={styles.applyBtn}>
+                            <Button
+                              text="Sign in to apply"
+                              backgroundColor="#87c0cd"
+                              borderColor="#87c0cd"
+                              textColor="#152232"
+                              backgroundColorHover="#87c0cd"
+                              borderColorHover="#87c0cd"
+                              textColorHover="white"
+                            />
+                          </div>
+                        </Link>,
+                      ]}
                 </div>,
               ]
             : [<h1>Select a project</h1>]}
 
-          {user.token
+          {/* {user.token
             ? [
                 <a
                   className={styles.applyBtn}
@@ -268,7 +300,7 @@ function Join() {
                     />
                   </div>
                 </Link>,
-              ]}
+              ]} */}
         </div>
       </div>
       <Modal
