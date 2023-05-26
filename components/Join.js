@@ -15,7 +15,7 @@ function Join() {
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [dataProjects, setDataProjects] = useState([]);
+  const [dataOffers, setDataOffers] = useState([]);
   const [job, setJob] = useState("");
   const [jobData, setJobData] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
@@ -26,18 +26,26 @@ function Join() {
   const [CV, setCV] = useState("");
   const [errorCV, setErrorCV] = useState("");
   const [userData, setUserData] = useState({});
+  const [selectProject, setSelectProject] = useState({});
+  console.log("SELECT", selectProject);
 
   const user = useSelector((state) => state.user.value);
-  console.log("store", user.token);
   // FETCHING USER'S FULL DATA
+  // FETCHING ALL OFFERS FROM DATABASE
   useEffect(() => {
-    fetch(`http://localhost:3000/users/${user.token}`)
+    fetch(`http://localhost:3000/users/userData/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
         setUserData(data.userData);
       });
+
+    fetch(`http://localhost:3000/offers/allOffers`)
+      .then((response) => response.json())
+      .then((data) => {
+        setDataOffers(data.allOffers);
+        console.log("ALL OFFERS", data.allOffers);
+      });
   }, []);
-  console.log("USERbitch", userData);
 
   const handleChangeFirstname = (firstname) => {
     setUserData({ ...userData, firstname });
@@ -55,26 +63,19 @@ function Join() {
     setUserData({ ...userData, phone });
   };
 
-  // FETCHING ALL JOBS
-  useEffect(() => {
-    fetch("http://localhost:3000/users/jobs")
+  const handleApplyBtn = (selectProject) => {
+    fetch("http://localhost:3000/offers/addUserIdOnOffer", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token: user.token,
+        offerId: selectProject.offers.job.value,
+      }),
+    })
       .then((response) => response.json())
       .then((data) => {
-        setJobData(data.jobs);
+        alert(data.msg);
       });
-  }, []);
-
-  // FETCHING ALL PROJECT FROM DATABASE
-  useEffect(() => {
-    fetch(`http://localhost:3000/projects/showProjects`)
-      .then((response) => response.json())
-      .then((data) => {
-        setDataProjects(data.data);
-      });
-  }, []);
-
-  const openModal = () => {
-    setIsOpen(true);
   };
 
   const closeModal = () => {
@@ -195,18 +196,18 @@ function Join() {
         </div>
 
         <div className={styles.projectContainer}>
-          {dataProjects.map((data, i) => (
+          {dataOffers.map((data, i) => (
             <div className={styles.projectCard}>
               <div className={styles.leftCard}>
-                <span className={styles.cardTitle}>{data.name}</span>
-                <span>Location :</span>
-                <span>Job position :</span>
-                <span>Start date 12/10/23 End date : 12/10/23</span>
+                <span className={styles.cardTitle}>{data.project.name}</span>
+                <span>Offer : {data.offers.job.label}</span>
+                <span>
+                  Start {data.project.start_date} End date :{" "}
+                  {data.project.end_date}
+                </span>
               </div>
               <div className={styles.rigthCard}>
-                <span className={styles.postDate}>Post created: 12/05/23</span>
-
-                <a onClick={() => console.log("yo")}>
+                <a onClick={() => setSelectProject(data)}>
                   <Button
                     text="More details"
                     backgroundColor="#87c0cd"
@@ -224,21 +225,24 @@ function Join() {
       </div>
       <div className={styles.rightContainer}>
         <div className={styles.projectContent}>
-          <h1>Project Name :</h1>
-          <p>
-            Contrary to popular belief, Lorem Ipsum is not simply random text.
-            It has roots in a piece of classical Latin literature from 45 BC,
-            making it over 2000 years old. Richard McClintock, a Latin professor
-            at Hampden-Sydney College in Virginia, looked up one of the more
-            obscure Latin words, consectetur, from a Lorem Ipsum passage, and
-            going through the cites of the word in classical literature,
-            discovered the undoubtable source. Lorem Ipsum comes from sections
-            1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-          </p>
+          {selectProject.offers
+            ? [
+                <div>
+                  <h1>
+                    Offer available : {""}
+                    {selectProject.offers.job.label}
+                  </h1>
+                  <p>{selectProject.project.description}</p>
+                </div>,
+              ]
+            : [<h1>Select a project</h1>]}
 
           {user.token
             ? [
-                <a className={styles.applyBtn} onClick={openModal}>
+                <a
+                  className={styles.applyBtn}
+                  onClick={() => handleApplyBtn(selectProject)}
+                >
                   <Button
                     text="Apply"
                     backgroundColor="#87c0cd"

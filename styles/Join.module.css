@@ -92,6 +92,7 @@
   box-shadow: -8px 10px 0px #152232;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 .applyBtn {
@@ -273,4 +274,17 @@
 
 .inputCV {
   display: none;
+}
+
+.offerCard {
+  height: 100px;
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  background-color: #87c0cd;
+  border-radius: 10px;
+  box-shadow: -8px 10px 0px #152232;
+  border: #152232 solid 3px;
+  margin-bottom: 20px;
+  justify-content: center;
 }
