@@ -75,21 +75,21 @@ function Profile() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        let birthdateUser = new Date(data.userData.birthdate);
+        let birthdateUser = new Date(data.userData[0].birthdate);
         birthdateUser = birthdateUser.toLocaleDateString();
         console.log(birthdateUser);
-        setUserName(data.userData.name);
-        setFirstname(data.userData.firstname);
+        setUserName(data.userData[0].name);
+        setFirstname(data.userData[0].firstname);
         setBirthdate(birthdateUser);
-        setPhoneContact(data.userData.phone_number);
-        setMailContact(data.userData.email);
-        setLocation(data.userData.location);
-        setGitHub(data.userData.github);
-        setLinkedin(data.userData.linkedin);
-        setJob(data.userData.job.name);
+        setPhoneContact(data.userData[0].phone_number);
+        setMailContact(data.userData[0].email);
+        setLocation(data.userData[0].location);
+        setGitHub(data.userData[0].github);
+        setLinkedin(data.userData[0].linkedin);
+        setJob(data.userData[0].job.name);
 
         if (data.userData.photo !== null) {
-          setAvatar(data.userData.photo);
+          setAvatar(data.userData[0].photo);
         } else {
           setAvatar("Sample_User_Icon.png");
         }
