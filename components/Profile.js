@@ -74,7 +74,7 @@ function Profile() {
     fetch(`http://localhost:3000/users/userData/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log("lol", data);
         let birthdateUser = new Date(data.userData[0].birthdate);
         birthdateUser = birthdateUser.toLocaleDateString();
         console.log(birthdateUser);
@@ -86,7 +86,7 @@ function Profile() {
         setLocation(data.userData[0].location);
         setGitHub(data.userData[0].github);
         setLinkedin(data.userData[0].linkedin);
-        setJob(data.userData[0].job.name);
+        setJob(data.userData[0].job);
 
         if (data.userData.photo !== null) {
           setAvatar(data.userData[0].photo);
