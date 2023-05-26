@@ -25,7 +25,7 @@ function Dashboard() {
 
   useEffect(() => {
     const idProject = project[0]._id;
-    fetch(`http://localhost:3000/offers/${idProject}`)
+    fetch(`http://localhost:3000/offers/project/${idProject}`)
       .then((response) => response.json())
       .then((data) => {
         setProjectData(data.projectData[0].offers);
