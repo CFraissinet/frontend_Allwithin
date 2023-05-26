@@ -75,6 +75,7 @@
   justify-content: space-between;
   margin-top: 20px;
   height: 80%;
+  overflow-y: scroll;
 }
 
 .projectList {
