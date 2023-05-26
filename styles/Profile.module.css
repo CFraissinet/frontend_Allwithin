@@ -103,6 +103,12 @@
   height: 250px;
   border-radius: 10px 10px 10px 10px;
   object-fit: cover;
+  filter: brightness(100%);
+  transition: filter 0.3s ease;
+}
+
+.image:hover {
+  filter: brightness(50%);
 }
 
 .inputPicture {
