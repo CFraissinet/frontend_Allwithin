@@ -37,7 +37,7 @@ function NavBar() {
 
   const clearStoreProject = () => {
     dispatch(removeProject());
-    location.href = "/";
+    location.href = "/lobby";
   };
 
   if (router.asPath === "/") {

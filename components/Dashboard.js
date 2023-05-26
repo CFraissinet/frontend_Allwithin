@@ -38,8 +38,6 @@ function Dashboard() {
       });
   }, []);
 
-  console.log(projectData);
-
   const toolsBtn = (
     <>
       <button className={styles.btnModal}>Chat</button>

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 70px);
 }
 
 .navBar {
@@ -201,10 +201,12 @@
   border-radius: 10px;
   border: solid #152232 2px;
   box-shadow: -10px 10px #152232;
+  position: relative;
 }
 
 .container {
-  height: 95%;
+  height: 100%;
+  position: inherit;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -223,47 +225,66 @@
   flex-direction: row;
   height: 90%;
   width: 100%;
-  justify-content: space-around;
+  overflow-x: auto;
+  justify-content: flex-start;
+}
+
+.containerCard::-webkit-scrollbar {
+  /* display: none; */
+  width: 10px;
+}
+.containerCard::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+.containerCard::-webkit-scrollbar-track {
+  background-color: #152232;
+  border-radius: 10px;
 }
 
 .card {
   border: #152232 1px solid;
   background-color: white;
-  height: 100%;
-  width: 30%;
+  height: 95%;
   border-radius: 10px;
+  margin: 0 15px;
 }
 
 .cardContainer {
   height: 100%;
-  width: 100%;
+  width: 350px;
   gap: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15%;
+  padding-top: 30px;
 }
 
 .contact {
-  width: 10%;
+  width: 30px;
   height: auto;
   color: #152232;
 }
 
 .contactGitHub {
-  width: 15%;
+  width: 30px;
   height: auto;
 }
 
 .photo {
-  height: 25%;
-  width: 50%;
+  height: 125px;
+  width: 125px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .btnClose {
-  align-self: flex-end;
+  position: absolute;
+  top: 8px;
+  font-size: 20px;
+  right: 8px;
+  cursor: pointer;
+  z-index: 50;
 }
 
 .name {
@@ -301,4 +322,30 @@
   justify-content: flex-start;
   align-items: center;
   gap: 5%;
+}
+
+.cv {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5%;
+}
+
+.cvLink {
+  width: 100%;
+}
+
+.linkLinkedin {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5%;
+}
+
+.linkedin {
+  width: 30px;
+  height: auto;
+  color: #152232;
 }
