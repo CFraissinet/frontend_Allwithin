@@ -19,8 +19,10 @@ function NavBar() {
       fetch(`http://localhost:3000/users/userData/${user.token}`)
         .then((response) => response.json())
         .then((data) => {
-          if (data.userData.photo) {
-            setAvatar(data.userData.photo);
+          console.log("Image avatar", data);
+          if (data.userData[0].photo) {
+            console.log(data.userData[0].photo);
+            setAvatar(data.userData[0].photo);
           } else {
             setAvatar("Sample_User_Icon.png");
           }
