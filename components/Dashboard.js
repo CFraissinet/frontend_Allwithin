@@ -21,14 +21,13 @@ function Dashboard() {
   function closeModal() {
     setIsOpen(false);
   }
-  console.log("projectData", projectData);
 
   useEffect(() => {
     const idProject = project[0]._id;
     fetch(`http://localhost:3000/offers/project/${idProject}`)
       .then((response) => response.json())
       .then((data) => {
-        setProjectData(data.projectData[0].offers);
+        setProjectData(data.projectData);
         console.log(data.projectData);
         // if (dataProjects.length !== 0) {
         //   setSelectProject(data.projects[0]);
@@ -37,6 +36,8 @@ function Dashboard() {
         // }
       });
   }, []);
+
+  console.log(projectData);
 
   const toolsBtn = (
     <>
@@ -91,7 +92,7 @@ function Dashboard() {
                       className={styles.post}
                       key={i}
                     >
-                      {data.job.label}
+                      {data.offers.job.label}
                     </div>
                   ))}
                 </div>
