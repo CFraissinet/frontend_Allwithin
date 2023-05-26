@@ -5,6 +5,14 @@
   height: calc(100vh - 70px);
 }
 
+.noFriend {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .navBar {
   height: 70px;
   background-color: white;
