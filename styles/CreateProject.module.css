@@ -5,54 +5,6 @@
   flex-direction: column;
 }
 
-/* ----------------navbar START----------------*/
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 70px;
-  background-color: #ffffff;
-}
-
-.logoContainer {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  height: 5vh;
-}
-
-.buttons {
-  display: flex;
-  gap: 10%;
-  width: 40%;
-  height: 100%;
-  justify-content: flex-end;
-  padding: 10px 20px;
-}
-.btnNav {
-  width: 150px;
-  height: 100%;
-  font-size: 100%;
-  font-weight: 600;
-  border: solid 1px #152232;
-  border-radius: 10px;
-  color: #ffffff;
-  background-color: #152232;
-  cursor: pointer;
-}
-
-.btnNav:hover {
-  background-color: #87c0cd;
-  color: #ffffff;
-  transition: 0.2s;
-  border: solid 1px #87c0cd;
-}
-/* ----------------navbar END----------------*/
-
 .formContainer {
   width: 100%;
   display: flex;
@@ -144,6 +96,11 @@
   border: 3px solid #152232;
   box-shadow: -8px 10px 0px #152232;
   padding: 10px;
+}
+
+.errorTxt {
+  font-size: small;
+  color: red;
 }
 
 .inputBox {

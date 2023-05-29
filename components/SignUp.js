@@ -52,7 +52,7 @@ function Signup() {
     date = "0" + date;
   }
 
-  let month = dateToday.getMonth();
+  let month = dateToday.getMonth() + 1;
   month = month.toString();
   if (month.length === 1) {
     month = "0" + month;
