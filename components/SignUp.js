@@ -12,13 +12,6 @@ import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
 
 function Signup() {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.value);
-  console.log(user);
-
-  const inputCVRef = useRef(null);
-  const inputPhotoRef = useRef(null);
-
   const [pageNumber, setPageNumber] = useState(1);
   const [previewCV, setPreviewCV] = useState(false);
   const [previewAvatar, setPreviewAvatar] = useState(false);
@@ -41,7 +34,39 @@ function Signup() {
   const [jobData, setJobData] = useState([]);
   const [uploadImg, setUploadImg] = useState(false);
   const [birthdate, setBirthdate] = useState("");
-  console.log(typeof birthdate);
+
+  // SETTING UP MIN & MAX DATE FOR BIRTHDATE (18years old min and 65 years old max)
+  let now = Date.now();
+  let dateToday = new Date(now);
+
+  let date = dateToday.getDate();
+  date = date.toString();
+  if (date.length === 1) {
+    date = "0" + date;
+  }
+
+  let month = dateToday.getMonth();
+  month = month.toString();
+  if (month.length === 1) {
+    month = "0" + month;
+  }
+
+  let year = dateToday.getFullYear();
+  let yearMax = year - 18;
+  let yearMin = year - 65;
+  year = year.toString();
+
+  let dateMax = yearMax + "-" + month + "-" + date;
+  let dateMin = yearMin + "-" + month + "-" + date;
+
+  /////////////////////////////////////////////////////
+
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
+  console.log(user);
+
+  const inputCVRef = useRef(null);
+  const inputPhotoRef = useRef(null);
 
   useEffect(() => {
     fetch("http://localhost:3000/users/jobs")
@@ -358,6 +383,8 @@ function Signup() {
                   onChange={(e) => setBirthdate(e.target.value)}
                   value={birthdate}
                   className={styles.inputLinksDate}
+                  min={dateMin}
+                  max={dateMax}
                   placeholder="Enter start date"
                 />
               </div>
