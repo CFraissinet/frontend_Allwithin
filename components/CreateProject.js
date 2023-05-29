@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { addProject } from "../reducers/project";
+import Button from "../components/Button";
 
 function CreateProject() {
   const [name, setName] = useState("");
@@ -117,110 +118,89 @@ function CreateProject() {
   };
 
   return (
-    <div className={styles.background}>
-      <div className={styles.homeContainer}>
-        {/*--------------------- Nav end*----------------------------*/}
-
-        {/*contains the div formContainer and txtAreaContainer*/}
-        <div className={styles.leftRightContainer}>
-          <h1>Create Your Project</h1>
-          <div className={styles.leftRight}>
-            <form className={styles.formContainer}>
-              {/*--------------------------- Forms ------------------------------*/}
-              <div className={styles.inputDiv}>
-                <div className={`${styles.inputBox} ${styles.labelStyle}`}>
-                  <label htmlFor="projectName">Project Name:</label>
-                  <input
-                    type="text"
-                    id="projectName"
-                    onChange={(e) => setName(e.target.value)}
-                    value={name}
-                    className={styles.input}
-                    placeholder="Enter project name"
-                  />
-                </div>
-                {/*input  Start Date & End Date FORMS */}
-                <div className={styles.endSartContainer}>
-                  <div className={`${styles.inputBox} ${styles.labelStyle}`}>
-                    <label htmlFor="startDate">Start Date:</label>
-                    <input
-                      type="date"
-                      id="startDate"
-                      onChange={(e) => setStartDate(e.target.value)}
-                      value={startDate}
-                      className={styles.endStart}
-                      placeholder="Enter start date"
-                      min={dayStartStr}
-                    />
-                  </div>
-                  <div className={`${styles.inputBox} ${styles.labelStyle}`}>
-                    <label htmlFor="endDate">
-                      End Date:{" "}
-                      <span className={styles.errorTxt}>{endDateError}</span>
-                    </label>
-                    <input
-                      type="date"
-                      id="endDate"
-                      onChange={(e) => handleEndDate(e.target.value)}
-                      onClick={() => setEndDateError("")}
-                      value={endDate}
-                      className={styles.endStart}
-                      placeholder="Enter end date"
-                      min={dayEndStr}
-                    />
-                  </div>
-                </div>
-                {/* input Start Date & End Date FORMS */}
-
-                {/* input job Profile & member count */}
-                <div className={styles.jobInputContainer}>
-                  <div>
-                    <div className={`${styles.inputBox} ${styles.labelStyle}`}>
-                      <label htmlFor="jobProfile">Location:</label>
-                      <Select
-                        id="jobProfile"
-                        className={styles.jobProfile}
-                        // devra etre remplacé par les data de location
-                        options={locationData}
-                        onChange={handleSelectChange}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/*--------------------------- Forms ------------------------------*/}
-
-              {/*------------------------- div txtAreaContainer ----------------------*/}
-              <div className={styles.txtAreaContainer}>
-                <label
-                  className={styles.labelStyle}
-                  htmlFor="projectDescription"
-                >
-                  Project description:
-                </label>
-                <textarea
-                  onChange={(e) => setDescription(e.target.value)}
-                  value={description}
-                  maxLength="2500"
-                  className={styles.txtArea}
-                  placeholder="Enter project description"
-                ></textarea>
-                <div className={styles.btnCreatCountainer}>
-                  <button
-                    onClick={(e) => clickCreatProject(e)}
-                    className={styles.btnCreateProject}
-                  >
-                    Next Step ADD Members
-                  </button>
-                </div>
-              </div>
-            </form>
+    <form className={styles.mainContainer}>
+      {/*contains the div formContainer and txtAreaContainer*/}
+      <h1 className={styles.title}>Create Your Project</h1>
+      <div className={styles.contentContainer}>
+        <div className={styles.leftDiv}>
+          <div className={`${styles.inputBox} ${styles.labelStyle}`}>
+            <label>Project Name:</label>
+            <input
+              type="text"
+              id="projectName"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              className={styles.input}
+              placeholder="Enter project name"
+            />
           </div>
-          {/*------------------------- div txtAreaContainer fin ----------------------*/}
+
+          <div className={`${styles.inputBox} ${styles.labelStyle}`}>
+            <label>Start Date:</label>
+            <input
+              type="date"
+              id="startDate"
+              onChange={(e) => setStartDate(e.target.value)}
+              value={startDate}
+              className={styles.input}
+              placeholder="Enter start date"
+              min={dayStartStr}
+            />
+          </div>
+
+          <div className={`${styles.inputBox} ${styles.labelStyle}`}>
+            <label>
+              End Date: <span className={styles.errorTxt}>{endDateError}</span>
+            </label>
+            <input
+              type="date"
+              id="endDate"
+              onChange={(e) => handleEndDate(e.target.value)}
+              onClick={() => setEndDateError("")}
+              value={endDate}
+              className={styles.input}
+              placeholder="Enter end date"
+              min={dayEndStr}
+            />
+          </div>
+
+          <div className={`${styles.inputBox} ${styles.labelStyle}`}>
+            <label>Location:</label>
+            <Select
+              id="jobProfile"
+              className={styles.input}
+              options={locationData}
+              onChange={handleSelectChange}
+            />
+          </div>
         </div>
-        {/* contains the div formContainer and txtAreaContainer */}
+
+        {/*--------------------------- Forms ------------------------------*/}
+
+        {/*------------------------- div txtAreaContainer ----------------------*/}
+        <div className={styles.rightDiv}>
+          <label className={styles.labelStyle}>Project description:</label>
+          <textarea
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+            maxLength="2500"
+            className={styles.txtArea}
+            placeholder="Enter project description"
+          ></textarea>
+        </div>
       </div>
-    </div>
+      <a className={styles.nextStepBtn} onClick={(e) => clickCreatProject(e)}>
+        <Button
+          text="Next Step"
+          backgroundColor="#87c0cd"
+          borderColor="#87c0cd"
+          textColor="#152232"
+          backgroundColorHover="#white"
+          borderColorHover="#white"
+          textColorHover="white"
+        />
+      </a>
+    </form>
   );
 }
 
