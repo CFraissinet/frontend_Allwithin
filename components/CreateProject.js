@@ -1,15 +1,11 @@
-import Link from "next/link";
 import styles from "../styles/CreateProject.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import Select from "react-select"; // library to add the drop down menu with checkboxes
+import Select from "react-select";
 import { addProject, emptyStore } from "../reducers/project";
 
 function CreateProject() {
-  const router = useRouter();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [start_date, setStart_date] = useState("");
@@ -17,12 +13,16 @@ function CreateProject() {
   const [end_dateError, setEnd_dateError] = useState("");
   const [locationData, setLocationData] = useState([]);
   const [location, setLocation] = useState("");
+  const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true }]);
+  let test = new Date(start_date);
+  test = test.setDate(test.getDate() + 7);
+  test = new Date();
 
-  // const [crew, setCrew] = useState("");
+  console.log(test);
 
+  const router = useRouter();
   const user = useSelector((state) => state.user.value);
   const project = useSelector((state) => state.project.value);
-  const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true }]);
 
   const removeJobCard = (id) => {
     setJobBox(jobBox.filter((jobCard) => jobCard.id !== id));
@@ -47,7 +47,6 @@ function CreateProject() {
       .then((response) => response.json())
       .then((data) => {
         console.log("project added", data);
-        // dispatch(emptyStore());
         dispatch(addProject(data.data._id));
         router.push("/offers");
       });
@@ -72,6 +71,7 @@ function CreateProject() {
   // SETTING UP START & END DATE FOR PROJECT
   let now = Date.now();
   let dateToday = new Date(now);
+  let startingDate = new Date(start_date);
 
   let dayStart = dateToday.setDate(dateToday.getDate() + 7);
   dayStart = new Date(dayStart);
@@ -92,7 +92,7 @@ function CreateProject() {
   let yearStart = dayStart.getFullYear();
   yearStart = yearStart.toString();
 
-  let dayEnd = dateToday.setDate(dateToday.getDate() + 7);
+  let dayEnd = startingDate.setDate(startingDate.getDate() + 7);
   dayEnd = new Date(dayEnd);
 
   let dateEnd = dayEnd.getDate();
