@@ -34,6 +34,13 @@ function Signup() {
   const [jobData, setJobData] = useState([]);
   const [uploadImg, setUploadImg] = useState(false);
   const [birthdate, setBirthdate] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+  const [wrongGithub, setWrongGithub] = useState("");
+  const [wrongLinkedin, setWrongLinkedin] = useState("");
+  const [wrongNumber, setWrongNumber] = useState("");
+  const [userExist, setUserExist] = useState("");
+
 
   // SETTING UP MIN & MAX DATE FOR BIRTHDATE (18years old min and 65 years old max)
   let now = Date.now();
@@ -68,6 +75,26 @@ function Signup() {
   const inputCVRef = useRef(null);
   const inputPhotoRef = useRef(null);
 
+
+  /* Const for validate if that was a valid email*/
+  const verifEmail = new RegExp(
+    "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
+  );
+
+  /* Const for validate if that was a valid password*/
+  const verifPassword = new RegExp("(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$");
+
+  /* Const for validate if that was a valid linkedin account*/
+  const verifLinkedin = new RegExp(
+  "^https?://((www|\w\w)\.)?linkedin.com/((in/[^/]+/?)|(pub/[^/]+/((\w|\d)+/?){3}))$");
+
+  /* Const for validate if that was a valid account Git Hub*/
+  const verifGithub = new RegExp("^https?://github.com/[A-Za-z0-9_-]+$");
+
+  /* Const for validate if that was a valid french phone number*/
+  const verifNumber = new RegExp(
+    "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$");
+
   useEffect(() => {
     fetch("http://localhost:3000/users/jobs")
       .then((response) => response.json())
@@ -97,6 +124,34 @@ function Signup() {
     e.preventDefault();
     setLoader(true);
     let dataInfo;
+
+    const validate1 = verifEmail.test(email);
+    const validate2 = verifPassword.test(password);
+    const validate3 = verifGithub.test(github);
+    const validate4 = verifLinkedin.test(linkedin);
+    const validate5 = verifNumber.test(phone);
+
+    if (!validate1) {
+      setErrorEmail("Please enter a valid email");
+      setLoader(false);
+      return
+    } else if (!validate5) {
+      setWrongNumber("Please add a french phone number");
+      setLoader(false);
+      return
+    } else if (!validate2) {
+      setErrorPassword("Password need 1 number, 1 lower, 1 upper case and 1 special caracter");
+      setLoader(false);
+      return
+    } else if (!validate4) {
+      setWrongLinkedin("Please add a valid Linkedin account");
+      setLoader(false);
+      return
+    } else if (!validate3) {
+      setWrongGithub("Please add a valid Git Hub account");
+      setLoader(false);
+      return}
+
     if (job) {
       dataInfo = {
         firstname: firstname,
@@ -188,6 +243,7 @@ function Signup() {
           setLoader(false);
           setConfirmError("");
           console.log(data.error);
+          setUserExist(data.error)
         }
       });
   };
@@ -299,6 +355,7 @@ function Signup() {
                   value={firstname}
                   className={styles.input}
                   placeholder="John"
+                  required
                 ></input>
               </div>
 
@@ -309,31 +366,43 @@ function Signup() {
                   value={name}
                   className={styles.input}
                   placeholder="Doe"
+                  required
                 ></input>
               </div>
 
               <div className={styles.inputBox}>
-                <h2 className={styles.labelTxt}>Enter your e-mail :</h2>
+                <h2 className={styles.labelTxt}>
+                  Enter your e-mail :
+                  <span className={styles.error}> {errorEmail}</span>
+                </h2>
                 <input
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                   className={styles.input}
                   placeholder="email@gmail.com"
+                  required
                 ></input>
               </div>
 
               <div className={styles.inputBox}>
-                <h2 className={styles.labelTxt}>Enter your phone number :</h2>
+                <h2 className={styles.labelTxt}>
+                  Enter your phone number :{" "}
+                  <span className={styles.error}> {wrongNumber}</span>
+                </h2>
                 <input
                   onChange={(e) => setPhone(e.target.value)}
                   value={phone}
                   className={styles.input}
                   placeholder="########"
+                  required
                 ></input>
               </div>
 
               <div className={styles.inputBox}>
-                <h2 className={styles.labelTxt}>Enter your password</h2>
+                <h2 className={styles.labelTxt}>
+                  Enter your password{" "}
+                  <span className={styles.error}> {errorPassword}</span>
+                </h2>
 
                 <input
                   onChange={(e) => setPassword(e.target.value)}
@@ -341,6 +410,7 @@ function Signup() {
                   value={password}
                   className={styles.input}
                   placeholder="**********"
+                  required
                 ></input>
               </div>
 
@@ -392,6 +462,7 @@ function Signup() {
                 <div className={styles.inputBox}>
                   <h2 className={styles.labelTxtLink}>
                     Enter your LinkedIn address :
+                    <span className={styles.error}> {wrongLinkedin}</span>
                   </h2>
                   <input
                     name="linkedin"
@@ -405,6 +476,7 @@ function Signup() {
                 <div className={styles.inputBox}>
                   <h2 className={styles.labelTxtLink}>
                     Enter your Github address :
+                    <span className={styles.error}> {wrongGithub}</span>
                   </h2>
                   <input
                     name="github"
@@ -487,6 +559,7 @@ function Signup() {
               {loader && (
                 <FontAwesomeIcon size="2x" icon={faSpinner} spinPulse />
               )}
+              <span className={styles.error}> {userExist}</span>
               <button
                 onClick={(e) => confirmClick(e)}
                 className={styles.confirmButton}

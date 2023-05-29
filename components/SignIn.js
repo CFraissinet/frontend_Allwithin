@@ -13,6 +13,8 @@ function SignIn() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
 
+  console.log(setError);
+
   /* Fetch for connect to account and go to /Lobby */
   const clickSignIn = () => {
     const data = {
