@@ -42,49 +42,89 @@ function NavBar() {
   // };
 
   if (router.asPath === "/") {
-    navBar = (
-      <div className={styles.headerContainer}>
-        {/* LOGO */}
-        <div className={styles.button}>
-          <img
-            src="logo.png"
-            alt="Sample_User_Icon.png"
-            className={styles.logo}
-          />
-        </div>
+    if (!user.token) {
+      navBar = (
+        <div className={styles.headerContainer}>
+          {/* LOGO */}
+          <div className={styles.button}>
+            <img
+              src="logo.png"
+              alt="Sample_User_Icon.png"
+              className={styles.logo}
+            />
+          </div>
 
-        <div className={styles.buttonContainer}>
-          {/* BUTTON */}
-          <Link href="/signIn">
-            <a>
-              <Button
-                text="Sign In"
-                backgroundColor="white"
-                borderColor="#152232"
-                textColor="#152232"
-                backgroundColorHover="#87c0cd"
-                borderColorHover="#87c0cd"
-                textColorHover="white"
-              />
-            </a>
-          </Link>
+          <div className={styles.buttonContainer}>
+            {/* BUTTON */}
+            <Link href="/signIn">
+              <a>
+                <Button
+                  text="Sign In"
+                  backgroundColor="white"
+                  borderColor="#152232"
+                  textColor="#152232"
+                  backgroundColorHover="#87c0cd"
+                  borderColorHover="#87c0cd"
+                  textColorHover="white"
+                />
+              </a>
+            </Link>
 
-          <Link href="/signUp">
-            <a>
-              <Button
-                text="Sign Up"
-                backgroundColor="#152232"
-                borderColor="#152232"
-                textColor="white"
-                backgroundColorHover="#87c0cd"
-                borderColorHover="#87c0cd"
-                textColorHover="white"
-              />
-            </a>
-          </Link>
+            <Link href="/signUp">
+              <a>
+                <Button
+                  text="Sign Up"
+                  backgroundColor="#152232"
+                  borderColor="#152232"
+                  textColor="white"
+                  backgroundColorHover="#87c0cd"
+                  borderColorHover="#87c0cd"
+                  textColorHover="white"
+                />
+              </a>
+            </Link>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      navBar = (
+        <div className={styles.headerContainer}>
+          {/* LOGO */}
+          <div className={styles.button}>
+            <img
+              src="logo.png"
+              alt="Sample_User_Icon.png"
+              className={styles.logo}
+            />
+          </div>
+
+          <div className={styles.buttonContainer}>
+            {/* BUTTON */}
+            <Link href="/signIn">
+              <div onClick={deconnection}>
+                <Button
+                  text="Log out"
+                  backgroundColor="white"
+                  borderColor="#152232"
+                  textColor="#152232"
+                  backgroundColorHover="#87c0cd"
+                  borderColorHover="#87c0cd"
+                  textColorHover="white"
+                />
+              </div>
+            </Link>
+
+            <Link href="/profile">
+              <img
+                className={styles.photoPreview}
+                src={avatar}
+                alt="Sample_User_Icon.png"
+              />
+            </Link>
+          </div>
+        </div>
+      );
+    }
   } else if (router.asPath === "/signIn") {
     navBar = (
       <div className={styles.headerContainer}>
