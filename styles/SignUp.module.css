@@ -291,6 +291,13 @@
   margin-top: 40px;
 }
 
+.error {
+  color: red;
+  font-size: small;
+  font-weight: bold;
+  width: 150px;
+}
+
 .errorTxt {
   /* color: red; */
   font-size: xx-small;
