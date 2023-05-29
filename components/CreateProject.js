@@ -3,22 +3,17 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
-import { addProject, emptyStore } from "../reducers/project";
+import { addProject } from "../reducers/project";
 
 function CreateProject() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [start_date, setStart_date] = useState("");
-  const [end_date, setEnd_date] = useState("");
-  const [end_dateError, setEnd_dateError] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [endDateError, setEndDateError] = useState("");
   const [locationData, setLocationData] = useState([]);
   const [location, setLocation] = useState("");
   const [jobBox, setJobBox] = useState([{ id: 0, isFirst: true }]);
-  let test = new Date(start_date);
-  test = test.setDate(test.getDate() + 7);
-  test = new Date();
-
-  console.log(test);
 
   const router = useRouter();
   const user = useSelector((state) => state.user.value);
@@ -33,8 +28,8 @@ function CreateProject() {
     const myData = {
       name: name,
       description: description,
-      start_date: start_date,
-      end_date: end_date,
+      startDate: startDate,
+      endDate: endDate,
       location: location,
       token: user.token,
     };
@@ -51,7 +46,6 @@ function CreateProject() {
         router.push("/offers");
       });
   };
-  console.log("store", project);
 
   useEffect(() => {
     fetch("http://localhost:3000/locations/allLocation")
@@ -71,14 +65,13 @@ function CreateProject() {
   // SETTING UP START & END DATE FOR PROJECT
   let now = Date.now();
   let dateToday = new Date(now);
-  let startingDate = new Date(start_date);
+  let startingDate = new Date(startDate);
 
   let dayStart = dateToday.setDate(dateToday.getDate() + 7);
   dayStart = new Date(dayStart);
 
   let dateStart = dayStart.getDate();
   dateStart = dateStart.toString();
-
   if (dateStart.length === 1) {
     dateStart = "0" + dateStart;
   }
@@ -97,7 +90,6 @@ function CreateProject() {
 
   let dateEnd = dayEnd.getDate();
   dateEnd = dateEnd.toString();
-
   if (dateEnd.length === 1) {
     dateEnd = "0" + dateEnd;
   }
@@ -113,16 +105,16 @@ function CreateProject() {
   let dayStartStr = yearStart + "-" + monthStart + "-" + dateStart;
   let dayEndStr = yearEnd + "-" + monthEnd + "-" + dateEnd;
 
+  /////////////////////////////////////////////////////
+
   const handleEndDate = (change) => {
-    if (!start_date) {
-      setEnd_dateError("Please select a starting date first");
+    if (!startDate) {
+      setEndDateError("Please select a starting date first");
       return;
     } else {
-      setEnd_date(change);
+      setEndDate(change);
     }
   };
-
-  /////////////////////////////////////////////////////
 
   return (
     <div className={styles.background}>
@@ -154,8 +146,8 @@ function CreateProject() {
                     <input
                       type="date"
                       id="startDate"
-                      onChange={(e) => setStart_date(e.target.value)}
-                      value={start_date}
+                      onChange={(e) => setStartDate(e.target.value)}
+                      value={startDate}
                       className={styles.endStart}
                       placeholder="Enter start date"
                       min={dayStartStr}
@@ -164,14 +156,14 @@ function CreateProject() {
                   <div className={`${styles.inputBox} ${styles.labelStyle}`}>
                     <label htmlFor="endDate">
                       End Date:{" "}
-                      <span className={styles.errorTxt}>{end_dateError}</span>
+                      <span className={styles.errorTxt}>{endDateError}</span>
                     </label>
                     <input
                       type="date"
                       id="endDate"
                       onChange={(e) => handleEndDate(e.target.value)}
-                      onClick={() => setEnd_dateError("")}
-                      value={end_date}
+                      onClick={() => setEndDateError("")}
+                      value={endDate}
                       className={styles.endStart}
                       placeholder="Enter end date"
                       min={dayEndStr}
@@ -195,14 +187,6 @@ function CreateProject() {
                     </div>
                   </div>
                 </div>
-                {/* old button that was used to add the job div */}
-                {/* <button
-                onClick={() => addMemberClick()}
-                className={styles.addButton}
-              >
-                Add Member
-              </button> */}
-                {/* old button that was used to add the job div */}
               </div>
               {/*--------------------------- Forms ------------------------------*/}
 
@@ -239,6 +223,5 @@ function CreateProject() {
     </div>
   );
 }
-/************************ section for the logical part of the job component ******************************/
 
 export default CreateProject;
