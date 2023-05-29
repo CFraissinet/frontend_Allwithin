@@ -14,6 +14,7 @@ function CreateProject() {
   const [description, setDescription] = useState("");
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
+  const [end_dateError, setEnd_dateError] = useState("");
   const [locationData, setLocationData] = useState([]);
   const [location, setLocation] = useState("");
 
@@ -68,6 +69,61 @@ function CreateProject() {
     setLocation(selected.value);
   };
 
+  // SETTING UP START & END DATE FOR PROJECT
+  let now = Date.now();
+  let dateToday = new Date(now);
+
+  let dayStart = dateToday.setDate(dateToday.getDate() + 7);
+  dayStart = new Date(dayStart);
+
+  let dateStart = dayStart.getDate();
+  dateStart = dateStart.toString();
+
+  if (dateStart.length === 1) {
+    dateStart = "0" + dateStart;
+  }
+
+  let monthStart = dayStart.getMonth() + 1;
+  monthStart = monthStart.toString();
+  if (monthStart.length === 1) {
+    monthStart = "0" + monthStart;
+  }
+
+  let yearStart = dayStart.getFullYear();
+  yearStart = yearStart.toString();
+
+  let dayEnd = dateToday.setDate(dateToday.getDate() + 7);
+  dayEnd = new Date(dayEnd);
+
+  let dateEnd = dayEnd.getDate();
+  dateEnd = dateEnd.toString();
+
+  if (dateEnd.length === 1) {
+    dateEnd = "0" + dateEnd;
+  }
+
+  let monthEnd = dayEnd.getMonth() + 1;
+  monthEnd = monthEnd.toString();
+  if (monthEnd.length === 1) {
+    monthEnd = "0" + monthEnd;
+  }
+
+  let yearEnd = dayEnd.getFullYear();
+  yearStart = yearStart.toString();
+  let dayStartStr = yearStart + "-" + monthStart + "-" + dateStart;
+  let dayEndStr = yearEnd + "-" + monthEnd + "-" + dateEnd;
+
+  const handleEndDate = (change) => {
+    if (!start_date) {
+      setEnd_dateError("Please select a starting date first");
+      return;
+    } else {
+      setEnd_date(change);
+    }
+  };
+
+  /////////////////////////////////////////////////////
+
   return (
     <div className={styles.background}>
       <div className={styles.homeContainer}>
@@ -102,17 +158,23 @@ function CreateProject() {
                       value={start_date}
                       className={styles.endStart}
                       placeholder="Enter start date"
+                      min={dayStartStr}
                     />
                   </div>
                   <div className={`${styles.inputBox} ${styles.labelStyle}`}>
-                    <label htmlFor="endDate">End Date:</label>
+                    <label htmlFor="endDate">
+                      End Date:{" "}
+                      <span className={styles.errorTxt}>{end_dateError}</span>
+                    </label>
                     <input
                       type="date"
                       id="endDate"
-                      onChange={(e) => setEnd_date(e.target.value)}
+                      onChange={(e) => handleEndDate(e.target.value)}
+                      onClick={() => setEnd_dateError("")}
                       value={end_date}
                       className={styles.endStart}
                       placeholder="Enter end date"
+                      min={dayEndStr}
                     />
                   </div>
                 </div>
