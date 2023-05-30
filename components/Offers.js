@@ -74,21 +74,24 @@ function Offers() {
     ]);
   };
 
+  let jobs = [];
+  jobBox.map((jobCard) =>
+    jobs.unshift(
+      <JobCard
+        addJobToParent={addJobToParent}
+        key={jobCard.id}
+        id={jobCard.id}
+        isFirst={jobCard.isFirst}
+        removeJobCard={removeJobCard}
+      />
+    )
+  );
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.contentContainer}>
         <h1> Offers </h1>
-        <div className={styles.inputContainer}>
-          {jobBox.map((jobCard) => (
-            <JobCard
-              addJobToParent={addJobToParent}
-              key={jobCard.id}
-              id={jobCard.id}
-              isFirst={jobCard.isFirst}
-              removeJobCard={removeJobCard}
-            />
-          ))}
-        </div>
+        <div className={styles.inputContainer}>{jobs}</div>
 
         <div className={styles.buttonContainer}>
           <a onClick={() => addMemberClick()}>
