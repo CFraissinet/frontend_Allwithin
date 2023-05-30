@@ -8,9 +8,11 @@ import storage from "redux-persist/lib/storage";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import project from "../reducers/project";
 import user from "../reducers/user";
+import location from "../reducers/location";
+import job from "../reducers/job";
 import { Provider } from "react-redux";
 
-const reducers = combineReducers({ user, project });
+const reducers = combineReducers({ user, project, location, job });
 const persistConfig = { key: "allwithin", storage };
 
 const store = configureStore({
