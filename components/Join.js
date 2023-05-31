@@ -150,23 +150,34 @@ function Join() {
     <div className={styles.mainContainer}>
       <div className={styles.leftContainer}>
         <div className={styles.searchBox}>
-          <Select
-            isMulti
-            name="jobs"
-            options={jobOptions}
-            className={styles.jobSelect}
-            classNamePrefix="Select..."
-            onChange={(e) => handleOnChangeSelectJob(e)}
-          />
-
-          <Select
-            isMulti
-            name="locations"
-            options={locationOptions}
-            className={styles.jobSelect}
-            classNamePrefix="Select..."
-            onChange={(e) => handleOnChangeSelectLocation(e)}
-          />
+          <div className={styles.selectBox}>
+            <div className={styles.filterTxtContainer}>
+              <span className={styles.subTxt}>Job post filter</span>
+              <span className={styles.subTxt}>0/5</span>
+            </div>
+            <Select
+              isMulti
+              name="jobs"
+              options={jobOptions}
+              className={styles.jobSelect}
+              classNamePrefix="Select..."
+              onChange={(e) => handleOnChangeSelectJob(e)}
+            />
+          </div>
+          <div className={styles.selectBox}>
+            <div className={styles.filterTxtContainer}>
+              <span className={styles.subTxt}>Location filter</span>
+              <span className={styles.subTxt}>0/5</span>
+            </div>
+            <Select
+              isMulti
+              name="locations"
+              options={locationOptions}
+              className={styles.jobSelect}
+              classNamePrefix="Select..."
+              onChange={(e) => handleOnChangeSelectLocation(e)}
+            />
+          </div>
         </div>
 
         <div className={styles.filterContent}></div>
@@ -176,15 +187,27 @@ function Join() {
             <div className={styles.projectCard}>
               <div className={styles.leftCard}>
                 <span className={styles.cardTitle}>{data.project.name}</span>
-                <span>Location : {data.project.location.name}</span>
-                <span>Offer : {data.offers.job.label}</span>
                 <span>
-                  Start {data.project.startDate} End date :{" "}
+                  <span className={styles.subTxt}>Location :</span>{" "}
+                  {data.project.location.name}
+                </span>
+                <span>
+                  <span className={styles.subTxt}>Job Post :</span>{" "}
+                  {data.offers.job.label}
+                </span>
+                <span>
+                  <span className={styles.subTxt}>Start date :</span>{" "}
+                  {data.project.startDate}
+                  {" / "}
+                  <span className={styles.subTxt}>End date :</span>{" "}
                   {data.project.endDate}
                 </span>
               </div>
               <div className={styles.rigthCard}>
-                <a onClick={() => setSelectProject(data)}>
+                <a
+                  className={styles.detailsBtn}
+                  onClick={() => setSelectProject(data)}
+                >
                   <Button
                     text="More details"
                     backgroundColor="#87c0cd"
@@ -204,17 +227,18 @@ function Join() {
         <div className={styles.projectContent}>
           {selectProject.offers
             ? [
-                <div>
+                <div className={styles.content}>
                   <h1>
-                    Offer available : {""}
+                    Job Post : {""}
                     {selectProject.offers.job.label}
                   </h1>
-                  <p>
-                    Project desciption : {selectProject.project.description}
-                  </p>
-                  <p>Start {selectProject.project.start_date}</p>
-                  <p>End date : {selectProject.project.end_date}</p>
-
+                  <div className={styles.contentTxt}>
+                    <p>
+                      Project desciption : {selectProject.project.description}
+                    </p>
+                    <p>Start {selectProject.project.start_date}</p>
+                    <p>End date : {selectProject.project.end_date}</p>
+                  </div>
                   {user.token
                     ? [
                         <a

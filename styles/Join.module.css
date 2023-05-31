@@ -21,16 +21,29 @@
 }
 .searchBox {
   display: flex;
-  height: 30%;
+  height: 20%;
   width: 100%;
   padding: 20px;
   box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.25);
   gap: 10px;
 }
 
+.selectBox {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filterTxtContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
+}
+
 .jobSelect {
   height: 33px;
-  width: 90%;
+  width: 100%;
 }
 
 .projectContainer {
@@ -56,6 +69,10 @@
   justify-content: space-between;
 }
 
+.subTxt {
+  font-weight: bold;
+}
+
 .input {
   height: 40px;
   width: 100%;
@@ -72,11 +89,10 @@
   box-shadow: -8px 10px 0px #152232;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
 }
 
 .applyBtn {
-  height: 30%;
+  height: 20%;
   align-self: flex-end;
   flex-grow: 1;
   align-items: flex-end;
@@ -92,9 +108,26 @@
 .rigthCard {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.contentTxt {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #87c0cd;
+  border: #152232 solid 3px;
+  border-radius: 10px;
+  height: 100%;
+  padding: 30px;
 }
 
 .cardTitle {
@@ -113,46 +146,6 @@
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-}
-
-.modal {
-  margin-top: 25%;
-  margin-left: 50%;
-  background-color: #87c0cd;
-  transform: translate(-50%, -50%);
-  height: 70%;
-  width: 70%;
-  border-radius: 20px;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.modalTop {
-  display: flex;
-  background-color: #152232;
-  height: 80%;
-  width: 100%;
-
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-.modalBot {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 20px;
-  gap: 10px;
-}
-
-.modalInputContainerLeft {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  justify-content: space-around;
-  padding: 20px;
 }
 
 .input {
@@ -177,15 +170,6 @@
   font-size: medium;
 }
 
-.modalInputContainerRight {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 100%;
-  width: 50%;
-  padding: 20px;
-}
-
 .inputBox {
   display: flex;
   flex-direction: column;
@@ -198,62 +182,6 @@
   width: 100%;
   border: 2px solid #152232;
   box-shadow: -8px 10px 0px #87c0cd;
-}
-
-.dropMenuTxt {
-  margin: 0;
-  font-weight: 800;
-  font-size: small;
-  color: #152232;
-}
-
-.dropMenu:hover {
-  cursor: pointer;
-}
-
-.dropMenu {
-  width: 100%;
-  height: 40px;
-  font-weight: bold;
-  font-size: small;
-  color: #757575;
-  border: 2px solid #152232;
-  box-shadow: -8px 10px 0px #87c0cd;
-  margin-top: 3px;
-}
-
-.cvBtn {
-  align-self: flex-end;
-}
-
-.cvButtonContent {
-  display: flex;
-
-  align-items: center;
-  gap: 10px;
-}
-
-.cvButton {
-  height: 50px;
-  width: 150px;
-  border-radius: 10px;
-  border: solid transparent 2px;
-  font-weight: bold;
-  background-color: #87c0cd;
-  color: white;
-  margin-top: 40px;
-  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.errorTxt {
-  /* color: red; */
-  font-size: xx-small;
-  font-weight: bold;
-  width: 150px;
-}
-
-.inputCV {
-  display: none;
 }
 
 .offerCard {
