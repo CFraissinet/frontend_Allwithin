@@ -52,7 +52,7 @@ function CreateProject() {
     fetch("http://localhost:3000/locations/allLocation")
       .then((response) => response.json())
       .then((data) => {
-        let formattedData = data.Locations.map((data) => {
+        let formattedData = data.locations.map((data) => {
           return { value: data._id, label: data.name };
         });
         setLocationData(formattedData);

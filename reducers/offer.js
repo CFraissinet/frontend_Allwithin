@@ -5,14 +5,14 @@ const initialState = {
 };
 
 export const userSlice = createSlice({
-  name: "location",
+  name: "offer",
   initialState,
   reducers: {
-    stockLocation: (state, action) => {
+    stockOffer: (state, action) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { stockLocation } = userSlice.actions;
+export const { stockOffer } = userSlice.actions;
 export default userSlice.reducer;

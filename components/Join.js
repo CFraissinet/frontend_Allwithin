@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { stockLocation } from "../reducers/location";
 import { stockJob } from "../reducers/job";
+import { stockOffer } from "../reducers/offer";
 import { Document, Page, pdfjs } from "react-pdf";
 import Modal from "react-modal";
 import React from "react";
@@ -18,11 +19,14 @@ function Join() {
   const [selectProject, setSelectProject] = useState({});
   const [allJobs, setAllJobs] = useState([]);
   const [allLocation, setAllLocation] = useState([]);
+  const [filterOffer, setFilterOffer] = useState([]);
+  const [filterLocation, setFilterLocation] = useState([]);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   const locations = useSelector((state) => state.location.value);
   const jobs = useSelector((state) => state.job.value);
+  const offers = useSelector((state) => state.offer.value);
 
   // FETCHING USER'S FULL DATA
   // FETCHING ALL OFFERS FROM DATABASE
@@ -36,7 +40,8 @@ function Join() {
     fetch(`http://localhost:3000/offers/allOffers`)
       .then((response) => response.json())
       .then((data) => {
-        setAllOffers(data.allOffers);
+        setFilterOffer(data.allOffers);
+        dispatch(stockOffer(data.allOffers));
       });
 
     fetch(`http://localhost:3000/jobs`)
@@ -97,12 +102,46 @@ function Join() {
     locationOptions.push({ value: data._id, label: data.name });
   });
 
-  //   const handleOnChangeSelectJob = (value) => {
+  let filter = [];
 
-  // let filteredOffer = allOffers.filter(element => element.)
-  //     }
-  //   };
-  console.log("all offers", allOffers);
+  const handleOnChangeSelectJob = (value) => {
+    if (value.length === 0) {
+      setFilterOffer(offers);
+    }
+    for (const obj of value) {
+      let hold = offers.filter(
+        (element) => element.offers.job.label === obj.label
+      );
+      console.log("hold", hold);
+      for (const obj of hold) {
+        if (filter.some((e) => e._id === obj._id)) {
+        } else {
+          filter.push(obj);
+          setFilterOffer(filter);
+        }
+      }
+    }
+  };
+
+  const handleOnChangeSelectLocation = (value) => {
+    if (value.length === 0) {
+      setFilterLocation(offers);
+    }
+    for (const obj of value) {
+      let hold = offers.filter(
+        (element) => element.offers.job.label === obj.label
+      );
+      console.log("hold", hold);
+      for (const obj of hold) {
+        if (filter.some((e) => e._id === obj._id)) {
+        } else {
+          filter.push(obj);
+          setFilterOffer(filter);
+        }
+      }
+    }
+  };
+  // console.log("filter", filterOffer);
   return (
     <div className={styles.mainContainer}>
       <div className={styles.leftContainer}>
@@ -114,6 +153,7 @@ function Join() {
             className={styles.jobSelect}
             classNamePrefix="Select..."
             onChange={(e) => handleOnChangeSelectJob(e)}
+            onClick={() => console.log("clicl")}
           />
 
           <Select
@@ -122,17 +162,18 @@ function Join() {
             options={locationOptions}
             className={styles.jobSelect}
             classNamePrefix="Select..."
-            // onChange={(e) => handleOnChangeSelectJob(e)}
+            onChange={(e) => handleOnChangeSelectLocation(e)}
           />
         </div>
 
         <div className={styles.filterContent}></div>
 
         <div className={styles.projectContainer}>
-          {allOffers.map((data, i) => (
+          {filterOffer.map((data, i) => (
             <div className={styles.projectCard}>
               <div className={styles.leftCard}>
                 <span className={styles.cardTitle}>{data.project.name}</span>
+                <span>Location : {data.project.location.name}</span>
                 <span>Offer : {data.offers.job.label}</span>
                 <span>
                   Start {data.project.start_date} End date :{" "}
