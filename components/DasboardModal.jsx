@@ -1,4 +1,3 @@
-import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faXmark,
@@ -12,37 +11,22 @@ import { useState, useEffect } from "react";
 function DashboardModal(props) {
   const [containerPost, setContainerPost] = useState([]);
 
-  console.log(props.data.offers.job.value);
+  console.log("props", props.data._id);
 
   useEffect(() => {
-    const idOffers = props.data.offers.job.value;
+    const idOffers = props.data._id;
     fetch(`http://localhost:3000/offers/project/${idOffers}`)
       .then((response) => response.json())
       .then((data) => {
         setContainerPost(data);
-        console.log(data);
-        // if (dataProjects.length !== 0) {
-        //   setSelectProject(data.projects[0]);
-        // } else {
-        //   setSelectProject({ name: "", description: "" });
-        // }
+        console.log("fetch", data);
       });
   }, []);
 
   console.log(containerPost);
 
   return (
-    <Modal
-      ariaHideApp={false}
-      isOpen={props.modalIsOpen}
-      onRequestClose={props.closeModal}
-      className={styles.modalOpen}
-    >
-      <FontAwesomeIcon
-        className={styles.btnClose}
-        onClick={props.closeModal}
-        icon={faXmark}
-      />
+    <div className={styles.modalOpen}>
       {props.data.users.length === 0 ? (
         <div className={styles.noFriend}>
           <em>No cadidate, wait !</em>
@@ -96,7 +80,7 @@ function DashboardModal(props) {
           </div>
         ))
       )}
-    </Modal>
+    </div>
   );
 }
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "../styles/Dashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { removeProject } from "../reducers/project";
 import DashboardModal from "./DasboardModal";
 
 function Dashboard() {
@@ -9,18 +8,7 @@ function Dashboard() {
   const [btnProject, setBtnProject] = useState(false);
   const [projectData, setProjectData] = useState([]);
   const dispatch = useDispatch();
-
-  const [modalIsOpen, setIsOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-
-  function openModal(data) {
-    setModalData(data);
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
 
   useEffect(() => {
     const idProject = project[0]._id;
@@ -28,16 +16,8 @@ function Dashboard() {
       .then((response) => response.json())
       .then((data) => {
         setProjectData(data.projectData);
-        console.log(data.projectData);
-        // if (dataProjects.length !== 0) {
-        //   setSelectProject(data.projects[0]);
-        // } else {
-        //   setSelectProject({ name: "", description: "" });
-        // }
       });
   }, []);
-
-  console.log(projectData);
 
   const toolsBtn = (
     <>
@@ -49,31 +29,8 @@ function Dashboard() {
     </>
   );
 
-  //For clear store
-  // const clearProject = (project) => {
-  //   dispatch(removeProject(project));
-  //   setProjectData([]);
-  //   location.href = "/lobby";
-  // };
-
-  // if (projectData.length === 0) {
-  //   return (
-  //     <div>
-  //       <h1>Loading</h1>
-  //     </div>
-  //   );
-  // }
-
   return (
     <div className={styles.main}>
-      {modalData && (
-        <DashboardModal
-          modalIsOpen={modalIsOpen}
-          closeModal={closeModal}
-          data={modalData}
-        />
-      )}
-
       <div className={styles.component}>
         {/* COMPONENT WITH BUTTON LEFT AND DASHBOARD */}
         <div className={styles.containerBtn}>{btnProject && toolsBtn}</div>
@@ -88,7 +45,7 @@ function Dashboard() {
                   <b className={styles.postPending}>Post Pending :</b>
                   {projectData.map((data, i) => (
                     <div
-                      onClick={() => openModal(data)}
+                      onClick={() => setModalData(data)}
                       className={styles.post}
                       key={i}
                     >
@@ -98,12 +55,14 @@ function Dashboard() {
                 </div>
               </div>
               <div className={styles.midCard}>
-                <div className={styles.ctnDescription}>
-                  <b>Description :</b>
-                  <div className={styles.txtDescription}>
-                    {project[0].description}
-                  </div>
-                </div>
+                {modalData
+                  ? [<DashboardModal data={modalData} />]
+                  : [
+                      <div className={styles.rightContent}>
+                        <b>Description :</b>
+                        {project[0].description}
+                      </div>,
+                    ]}
               </div>
             </div>
             <div className={styles.containerStartBtn}>
