@@ -2,25 +2,22 @@ import styles from "../styles/Join.module.css";
 import Link from "next/link";
 import Button from "../components/Button";
 import Select from "react-select";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { stockLocation } from "../reducers/location";
 import { stockJob } from "../reducers/job";
 import { stockOffer } from "../reducers/offer";
 import { Document, Page, pdfjs } from "react-pdf";
-import Modal from "react-modal";
 import React from "react";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
 function Join() {
-  const [allOffers, setAllOffers] = useState([]);
   const [userData, setUserData] = useState({});
   const [selectProject, setSelectProject] = useState({});
-  const [allJobs, setAllJobs] = useState([]);
-  const [allLocation, setAllLocation] = useState([]);
   const [filterOffer, setFilterOffer] = useState([]);
   const [filterLocation, setFilterLocation] = useState([]);
+  const [filterFusion, setFilterFusion] = useState([]);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
@@ -41,6 +38,7 @@ function Join() {
       .then((response) => response.json())
       .then((data) => {
         setFilterOffer(data.allOffers);
+        setFilterLocation(data.allOffers);
         dispatch(stockOffer(data.allOffers));
       });
 
@@ -92,6 +90,7 @@ function Join() {
     location.href = "/signIn";
   };
 
+  // FILTER SETUP //////////////////////
   let jobOptions = [];
   const mappingJobs = jobs.map((data, i) => {
     jobOptions.push({ value: data._id, label: data.name });
@@ -103,7 +102,6 @@ function Join() {
   });
 
   let filter = [];
-
   const handleOnChangeSelectJob = (value) => {
     if (value.length === 0) {
       setFilterOffer(offers);
@@ -124,24 +122,30 @@ function Join() {
   };
 
   const handleOnChangeSelectLocation = (value) => {
+    console.log(value);
     if (value.length === 0) {
       setFilterLocation(offers);
     }
     for (const obj of value) {
       let hold = offers.filter(
-        (element) => element.offers.job.label === obj.label
+        (element) => element.project.location.name === obj.label
       );
       console.log("hold", hold);
       for (const obj of hold) {
         if (filter.some((e) => e._id === obj._id)) {
         } else {
           filter.push(obj);
-          setFilterOffer(filter);
+          setFilterLocation(filter);
         }
       }
     }
   };
-  // console.log("filter", filterOffer);
+  let fusion = filterOffer.concat(filterLocation);
+  let unique = fusion.filter((element, index) => {
+    return fusion.indexOf(element) !== index;
+  });
+  //////////////////////
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.leftContainer}>
@@ -153,7 +157,6 @@ function Join() {
             className={styles.jobSelect}
             classNamePrefix="Select..."
             onChange={(e) => handleOnChangeSelectJob(e)}
-            onClick={() => console.log("clicl")}
           />
 
           <Select
@@ -169,15 +172,15 @@ function Join() {
         <div className={styles.filterContent}></div>
 
         <div className={styles.projectContainer}>
-          {filterOffer.map((data, i) => (
+          {unique.map((data, i) => (
             <div className={styles.projectCard}>
               <div className={styles.leftCard}>
                 <span className={styles.cardTitle}>{data.project.name}</span>
                 <span>Location : {data.project.location.name}</span>
                 <span>Offer : {data.offers.job.label}</span>
                 <span>
-                  Start {data.project.start_date} End date :{" "}
-                  {data.project.end_date}
+                  Start {data.project.startDate} End date :{" "}
+                  {data.project.endDate}
                 </span>
               </div>
               <div className={styles.rigthCard}>
