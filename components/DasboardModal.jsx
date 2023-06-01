@@ -1,29 +1,76 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faXmark,
+  faSquareXmark,
   faEnvelope,
   faPhone,
   faFile,
+  faSquareCheck
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/Dashboard.module.css";
 import { useState, useEffect } from "react";
 
 function DashboardModal(props) {
-  const [containerPost, setContainerPost] = useState([]);
 
-  console.log("props", props.data._id);
+  const [people, setPeople] = useState(props.data.users)
 
-  useEffect(() => {
-    const idOffers = props.data._id;
-    fetch(`http://localhost:3000/offers/project/${idOffers}`)
+  console.log("people",people)
+  
+  // useEffect(() => {
+  //   const idOffers = props.data._id;
+  //   fetch(`http://localhost:3000/offers/project/${idOffers}`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setContainerPost(data);
+  //       console.log("fetch", data);
+  //     });
+  // }, []);
+
+
+  const handleRefuseClick = (id, users) => {
+    fetch("http://localhost:3000/offers/confirm", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: id,
+        users: users._id
+      })
+    })
       .then((response) => response.json())
       .then((data) => {
-        setContainerPost(data);
-        console.log("fetch", data);
-      });
-  }, []);
+        setPeople(data.users)
+      })
+  };
 
-  console.log(containerPost);
+  const handleAcceptClick = (id, users, projectId) => {
+    fetch("http://localhost:3000/offers/confirm", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: id,
+        users: users._id,
+        projectId: projectId
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("modif users",data.users)
+        setPeople(data.users);})
+      .then(fetch("http://localhost:3000/projects/addCrew", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            users: users._id,
+            projectId: projectId
+          })
+        })
+          .then((response) => response.json())
+      )};
 
   return (
     <div className={styles.modalOpen}>
@@ -32,51 +79,43 @@ function DashboardModal(props) {
           <em>No cadidate, wait !</em>
         </div>
       ) : (
-        props.data.users.map((data) => (
+        people.map((data) => (
           <div className={styles.card}>
-            <div className={styles.cardContainer}>
               <img className={styles.photo} src={data.photo} />
-              <div className={styles.containerContact}>
                 <b className={styles.name}>
                   {data.firstname} {data.name}
                 </b>
-                <div className={styles.gitHub}>
+                <a href={data.github}>
                   <img
                     className={styles.contactGitHub}
                     src="/images/github.svg"
                     alt="GitHub"
                   />
-                  <a href={data.github}>Voir le profil</a>
-                </div>
-                <div className={styles.linkLinkedin}>
+                  </a>
+                  <a href={data.linkedin}>
                   <img
                     className={styles.linkedin}
                     src="/images/linkedin.png"
                     alt="GitHub"
                   />
-                  <a href={data.linkedin}>Voir le profil</a>
-                </div>
-                <div className={styles.mail}>
+                  </a>
+                  <a href="mailto:{data.email}">
                   <FontAwesomeIcon
-                    className={styles.contact}
+                    className={styles.email}
                     color="black"
                     icon={faEnvelope}
                     alt="E-Mail"
                   />
-                  <a href="mailto:{data.email}">{data.email}</a>
-                </div>
-                <div className={styles.tel}>
-                  <FontAwesomeIcon className={styles.contact} icon={faPhone} />
-                  <a href="tel: `${data.phone_number}`">{data.phone_number}</a>
-                </div>
-                <div className={styles.cv}>
-                  <FontAwesomeIcon className={styles.contact} icon={faFile} />
-                  <a className={styles.cvLink} href={data.cv}>
-                    Voir CV
                   </a>
-                </div>
-              </div>
-            </div>
+                  <a href="tel: `${data.phone_number}`">
+                  <FontAwesomeIcon className={styles.phone} icon={faPhone} />
+                  </a>
+                  <a className={styles.cvLink} href={data.cv}>
+                  <FontAwesomeIcon className={styles.cv} icon={faFile} />
+                  </a>
+                  <FontAwesomeIcon className={styles.accept} icon={faSquareCheck} onClick={() => handleAcceptClick(props.data._id, data, props.data.project)} />
+                  <FontAwesomeIcon className={styles.refuse} icon={faSquareXmark} onClick={() => handleRefuseClick(props.data._id, data)} />
+
           </div>
         ))
       )}
