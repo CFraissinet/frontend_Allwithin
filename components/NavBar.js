@@ -14,19 +14,29 @@ function NavBar() {
   const dispatch = useDispatch();
   console.log("TOKEN FROM USER NAV", user.token);
 
+  // useEffect(() => {
+  //   if (user.token) {
+  //     fetch(`http://localhost:3000/users/userData/${user.token}`)
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         console.log("Image avatar", data);
+  //         if (data.userData[0].photo) {
+  //           console.log(data.userData[0].photo);
+  //           setAvatar(data.userData[0].photo);
+  //         } else {
+  //           setAvatar("Sample_User_Icon.png");
+  //         }
+  //       });
+  //   }
+  // }, [user]);
+
   useEffect(() => {
     if (user.token) {
-      fetch(`http://localhost:3000/users/userData/${user.token}`)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Image avatar", data);
-          if (data.userData[0].photo) {
-            console.log(data.userData[0].photo);
-            setAvatar(data.userData[0].photo);
-          } else {
-            setAvatar("Sample_User_Icon.png");
-          }
-        });
+      if (user.avatar) {
+        setAvatar(user.avatar);
+      } else {
+        setAvatar("Sample_User_Icon.png");
+      }
     }
   }, [user]);
 

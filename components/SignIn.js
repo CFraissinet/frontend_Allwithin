@@ -40,8 +40,9 @@ function SignIn() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log("DATA", data);
         if (data.result) {
-          dispatch(login({ token: data.token }));
+          dispatch(login({ token: data.token, avatar: data.avatar }));
           Cookies.set("token", data.token);
           location.href = "/lobby";
         } else {

@@ -6,10 +6,15 @@ function Home() {
   const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
   let connection;
+  let pathCreate;
+  let pathJoin;
+
   if (user.token) {
-    connection = "/createProject";
+    pathCreate = "/createProject";
+    pathJoin = "/join";
   } else {
-    connection = "/signIn";
+    pathCreate = "/signIn";
+    pathJoin = "/signIn";
   }
   return (
     <div className={styles.homeContainer}>
@@ -28,7 +33,7 @@ function Home() {
             <span className={styles.txtLeftCard}>
               Create your own project and costumize your staff
             </span>
-            <Link href={connection}>
+            <Link href={pathCreate}>
               <button className={styles.btnLeft}>Create Project</button>
             </Link>
           </div>
@@ -36,7 +41,9 @@ function Home() {
             <span className={styles.txtRightCard}>
               Join a project with a tailor-made team
             </span>
-            <button className={styles.btnRight}>Join Project</button>
+            <Link href={pathJoin}>
+              <button className={styles.btnRight}>Join Project</button>
+            </Link>
           </div>
         </div>
       </div>
