@@ -116,7 +116,6 @@
   box-shadow: #152232 -15px 10px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .rightContent {
@@ -233,11 +232,16 @@
 }
 
 .card {
-  border: #152232 1px solid;
+  border: #152232 2px solid;
   background-color: white;
-  height: 95%;
+  height: 20%;
   border-radius: 10px;
-  margin: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
 }
 
 .cardContainer {
@@ -251,7 +255,7 @@
 }
 
 .contact {
-  width: 30px;
+  width: 25px;
   height: auto;
   color: #152232;
 }
@@ -262,8 +266,8 @@
 }
 
 .photo {
-  height: 125px;
-  width: 125px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -322,10 +326,6 @@
   gap: 5%;
 }
 
-.cvLink {
-  width: 100%;
-}
-
 .linkLinkedin {
   display: flex;
   flex-direction: row;
@@ -337,5 +337,37 @@
 .linkedin {
   width: 30px;
   height: auto;
-  color: #152232;
+  color: black;
+}
+
+.accept {
+  height: 25px;
+  color: forestgreen;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.refuse {
+  height: 25px;
+  color: firebrick;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.phone {
+  width: 25px;
+  height: auto;
+  color: black;
+}
+
+.email {
+  width: 30px;
+  height: auto;
+  color: black;
+}
+
+.cv {
+  width: 20px;
+  height: auto;
+  color: black;
 }
