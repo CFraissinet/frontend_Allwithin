@@ -41,7 +41,6 @@ function Signup() {
   const [wrongNumber, setWrongNumber] = useState("");
   const [userExist, setUserExist] = useState("");
 
-
   // SETTING UP MIN & MAX DATE FOR BIRTHDATE (18years old min and 65 years old max)
   let now = Date.now();
   let dateToday = new Date(now);
@@ -75,25 +74,28 @@ function Signup() {
   const inputCVRef = useRef(null);
   const inputPhotoRef = useRef(null);
 
-
   /* Const for validate if that was a valid email*/
   const verifEmail = new RegExp(
     "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
   );
 
   /* Const for validate if that was a valid password*/
-  const verifPassword = new RegExp("(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$");
+  const verifPassword = new RegExp(
+    "(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$"
+  );
 
   /* Const for validate if that was a valid linkedin account*/
   const verifLinkedin = new RegExp(
-  "^https?://((www|\w\w)\.)?linkedin.com/((in/[^/]+/?)|(pub/[^/]+/((\w|\d)+/?){3}))$");
+    "^https?://((www|ww).)?linkedin.com/((in/[^/]+/?)|(pub/[^/]+/((w|d)+/?){3}))$"
+  );
 
   /* Const for validate if that was a valid account Git Hub*/
   const verifGithub = new RegExp("^https?://github.com/[A-Za-z0-9_-]+$");
 
   /* Const for validate if that was a valid french phone number*/
   const verifNumber = new RegExp(
-    "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$");
+    "^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$"
+  );
 
   useEffect(() => {
     fetch("http://localhost:3000/users/jobs")
@@ -134,23 +136,26 @@ function Signup() {
     if (!validate1) {
       setErrorEmail("Please enter a valid email");
       setLoader(false);
-      return
+      return;
     } else if (!validate5) {
       setWrongNumber("Please add a french phone number");
       setLoader(false);
-      return
+      return;
     } else if (!validate2) {
-      setErrorPassword("Password need 1 number, 1 lower, 1 upper case and 1 special caracter");
+      setErrorPassword(
+        "Password need 1 number, 1 lower, 1 upper case and 1 special caracter"
+      );
       setLoader(false);
-      return
+      return;
     } else if (!validate4) {
       setWrongLinkedin("Please add a valid Linkedin account");
       setLoader(false);
-      return
+      return;
     } else if (!validate3) {
       setWrongGithub("Please add a valid Git Hub account");
       setLoader(false);
-      return}
+      return;
+    }
 
     if (job) {
       dataInfo = {
@@ -233,7 +238,7 @@ function Signup() {
             });
 
           setLoader(false);
-          dispatch(login({ token: data.user.token }));
+          dispatch(login({ token: data.user.token, avatar: data.avatar }));
           Cookies.set("token", data.token);
           if (!uploadImg) {
             location.href = "./lobby";
@@ -243,7 +248,7 @@ function Signup() {
           setLoader(false);
           setConfirmError("");
           console.log(data.error);
-          setUserExist(data.error)
+          setUserExist(data.error);
         }
       });
   };
