@@ -32,7 +32,7 @@ function Signup() {
   const [loader, setLoader] = useState(false);
   const [confirm, setConfirmError] = useState("");
   const [jobData, setJobData] = useState([]);
-  const [uploadImg, setUploadImg] = useState(false);
+  // const [uploadImg, setUploadImg] = useState(false);
   const [birthdate, setBirthdate] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
@@ -185,6 +185,7 @@ function Signup() {
     }
 
     let token;
+    let uploadImg = false;
     fetch("http://localhost:3000/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -194,6 +195,7 @@ function Signup() {
       .then((data) => {
         console.log("first", data);
         token = data.user.token;
+
         if (data.result) {
           if (inputCVRef.current.files[0]) {
             console.log("have cv");
@@ -207,11 +209,14 @@ function Signup() {
               .then((res) => res.json())
               .then((data) => {
                 console.log("cv log", data);
+                dispatch(login({ token: token, avatar: data.avatar }));
+                Cookies.set("token", token);
               });
           }
 
           if (inputPhotoRef.current.files[0]) {
-            setUploadImg(true);
+            // setUploadImg(true);
+            uploadImg = true;
             console.log("have avatar");
             const formData = new FormData();
             formData.append("avatar", inputPhotoRef.current.files[0]);
@@ -223,7 +228,6 @@ function Signup() {
               .then((res) => res.json())
               .then((data) => {
                 console.log("avatar log", data);
-                console.log;
                 dispatch(login({ token: token, avatar: data.avatar }));
                 Cookies.set("token", token);
                 location.href = "./lobby";
@@ -245,6 +249,8 @@ function Signup() {
 
           setLoader(false);
           if (!uploadImg) {
+            dispatch(login({ token: token, avatar: null }));
+            Cookies.set("token", token);
             location.href = "./lobby";
           }
           console.log("go to lobby", data);
