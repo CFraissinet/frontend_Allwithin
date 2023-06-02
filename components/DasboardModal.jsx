@@ -12,9 +12,9 @@ import { useState, useEffect } from "react";
 function DashboardModal(props) {
 
   const [people, setPeople] = useState(props.data.users)
-
-  console.log("people",people)
   
+  console.log(props)
+
   // useEffect(() => {
   //   const idOffers = props.data._id;
   //   fetch(`http://localhost:3000/offers/project/${idOffers}`)
@@ -76,7 +76,7 @@ function DashboardModal(props) {
     <div className={styles.modalOpen}>
       {props.data.users.length === 0 ? (
         <div className={styles.noFriend}>
-          <em>No cadidate, wait !</em>
+          <em>No cadidate for {props.data.offers.job.label}, wait !</em>
         </div>
       ) : (
         people.map((data) => (
