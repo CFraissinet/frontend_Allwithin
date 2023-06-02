@@ -184,6 +184,7 @@ function Signup() {
       };
     }
 
+    let token;
     fetch("http://localhost:3000/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -191,6 +192,8 @@ function Signup() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log("first", data);
+        token = data.user.token;
         if (data.result) {
           if (inputCVRef.current.files[0]) {
             console.log("have cv");
@@ -220,6 +223,9 @@ function Signup() {
               .then((res) => res.json())
               .then((data) => {
                 console.log("avatar log", data);
+                console.log;
+                dispatch(login({ token: token, avatar: data.avatar }));
+                Cookies.set("token", token);
                 location.href = "./lobby";
               });
           }
@@ -238,8 +244,6 @@ function Signup() {
             });
 
           setLoader(false);
-          dispatch(login({ token: data.user.token, avatar: data.avatar }));
-          Cookies.set("token", data.token);
           if (!uploadImg) {
             location.href = "./lobby";
           }
