@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import styles from "../styles/Dashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import DashboardModal from "./DasboardModal";
@@ -9,6 +10,7 @@ function Dashboard() {
   const [projectData, setProjectData] = useState([]);
   const dispatch = useDispatch();
   const [modalData, setModalData] = useState(null);
+  const [myTeamData, setMyTeamData] = useState(null)
 
   useEffect(() => {
     const idProject = project[0]._id;
@@ -19,13 +21,20 @@ function Dashboard() {
       });
   }, []);
 
+  function goMyTeam (data) {
+    location.href = "/myTeam"
+    setMyTeamData(data)
+  };
+
   const toolsBtn = (
     <>
       <button className={styles.btnModal}>Chat</button>
       <button className={styles.btnModal}>Drive</button>
+      <a href="https://github.com/new">
       <button className={styles.btnModal}>Github</button>
-      <button className={styles.btnModal}>Calendar</button>
-      <button className={styles.btnModal}>My team</button>
+      </a>
+        <button className={styles.btnModal}>Calendar</button>
+        <button className={styles.btnModal} onClick={goMyTeam}>My team</button>
     </>
   );
 
