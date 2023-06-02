@@ -13,14 +13,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
 function Join() {
-  const [userData, setUserData] = useState({});
+  const [userId, setUserId] = useState("");
   const [selectProject, setSelectProject] = useState({});
   const [filterOffer, setFilterOffer] = useState([]);
   const [filterLocation, setFilterLocation] = useState([]);
-  const [counterJob, setCounterJob] = useState(0);
-  const [counterLocation, setCounterLocation] = useState(0);
-  const [selectedOptions, setSelectedOptions] = React.useState([]);
-
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   const locations = useSelector((state) => state.location.value);
@@ -33,7 +29,7 @@ function Join() {
     fetch(`http://localhost:3000/users/userData/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
-        setUserData(data.userData);
+        setUserId(data.userData[0]._id);
       });
 
     fetch(`http://localhost:3000/offers/allOffers`)
@@ -56,22 +52,6 @@ function Join() {
         dispatch(stockLocation(data.locations));
       });
   }, []);
-
-  const handleChangeFirstname = (firstname) => {
-    setUserData({ ...userData, firstname });
-  };
-
-  const handleChangeName = (name) => {
-    setUserData({ ...userData, name });
-  };
-
-  const handleChangeEmail = (email) => {
-    setUserData({ ...userData, email });
-  };
-
-  const handleChangePhone = (phone) => {
-    setUserData({ ...userData, phone });
-  };
 
   const handleApplyBtn = (selectProject) => {
     fetch("http://localhost:3000/offers/addUserIdOnOffer", {
@@ -154,6 +134,9 @@ function Join() {
   let unique = fusion.filter((element, index) => {
     return fusion.indexOf(element) !== index;
   });
+  unique = unique.filter((e) => e.project.user !== userId);
+  console.log(unique);
+
   //////////////////////
 
   return (
@@ -241,12 +224,16 @@ function Join() {
                     {selectProject.offers.job.label}
                   </h1>
                   <div className={styles.contentTxt}>
-                    <p>
-                      Project desciption : {selectProject.project.description}
-                    </p>
-                    <p>Start {selectProject.project.start_date}</p>
-                    <p>End date : {selectProject.project.end_date}</p>
+                    <span className={styles.subTxt}>Project desciption : </span>{" "}
+                    {selectProject.project.description}
+                    <span className={styles.subTxt}>Start date : </span>
+                    {selectProject.project.startDate}
+                    <span className={styles.subTxt}>End date : </span>
+                    {selectProject.project.endDate}
+                    <span className={styles.subTxt}>Location : </span>
+                    {selectProject.project.location.name}
                   </div>
+
                   {user.token
                     ? [
                         <a
