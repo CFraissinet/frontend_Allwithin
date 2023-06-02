@@ -87,6 +87,15 @@ function Profile() {
         setGitHub(data.userData[0].github);
         setLinkedin(data.userData[0].linkedin);
         setJob(data.userData[0].job);
+        //partie pour recuprer nom du job par l'id
+        // if (job) {
+        //   console.log("Entrer dans la condition");
+        //   fetch(`http://localhost:3000/jobs/job/${job}`)
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //       setJob(data.job);
+        //     });
+        // }
 
         if (data.userData.photo !== null) {
           setAvatar(data.userData[0].photo);
