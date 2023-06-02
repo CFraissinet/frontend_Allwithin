@@ -42,7 +42,7 @@ function SignIn() {
       .then((data) => {
         console.log("DATA", data);
         if (data.result) {
-          fetch(`http://localhost:3000/projects/token/${user.token}`)
+          fetch(`http://localhost:3000/users/userData/${data.token}`)
             .then((response) => response.json())
             .then((dataUser) => {
               dispatch(login({ token: data.token, avatar: dataUser.avatar }));
