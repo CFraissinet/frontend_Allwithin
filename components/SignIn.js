@@ -45,7 +45,11 @@ function SignIn() {
           fetch(`http://localhost:3000/users/userData/${data.token}`)
             .then((response) => response.json())
             .then((dataUser) => {
-              dispatch(login({ token: data.token, avatar: dataUser.avatar }));
+              console.log(dataUser);
+              dispatch(
+                login({ token: data.token, avatar: dataUser.userData[0].photo })
+              );
+
               Cookies.set("token", data.token);
               location.href = "/lobby";
             });
