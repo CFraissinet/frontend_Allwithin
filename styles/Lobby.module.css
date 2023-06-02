@@ -57,7 +57,8 @@
   display: flex;
   flex-direction: column;
   height: 70%;
-  flex-grow: 1;
+  padding: 20px;
+  align-items: center;
 }
 
 .botList {
@@ -69,45 +70,38 @@
   gap: 35px;
 }
 
-.midLeft {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-  height: 80%;
+.projectList {
+  display: block;
+  width: 100%;
+  height: 60%;
+  gap: 20px;
   overflow-y: scroll;
+  padding: 30px;
+  border: solid #87c0cd 2px;
 }
 
-.projectList {
+.switch {
   display: flex;
-  flex-direction: column;
-  width: 70%;
-  height: 100%;
+  justify-content: space-around;
+  padding: 20px;
   gap: 20px;
 }
 
-.arrow {
-  width: 40px;
-  height: 40px;
-  margin: 15px;
-  background-color: #87c0cd;
-  color: #152232;
-  border-radius: 10px;
-}
-
-.arrow:hover {
-  cursor: pointer;
-  color: white;
+.projectButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .projectButton {
-  width: 100%;
+  width: 80%;
   height: 40px;
   border-radius: 20px;
   border: solid 1px black;
   font-weight: bold;
   font-size: 24px;
   box-shadow: -5px 5px 0px #87c0cd;
+  margin-bottom: 20px;
 }
 
 .projectButton:hover {
@@ -120,7 +114,6 @@
 .titleBody {
   font-size: 64px;
   margin-top: 10px;
-  margin-left: 20px;
 }
 
 .span {
@@ -135,7 +128,7 @@
   border-radius: 20px;
   border: solid black 3px;
   background-color: white;
-  box-shadow: -30px 30px 2px #152232;
+  box-shadow: -20px 20px 0px #152232;
 }
 
 .actionProject:hover {
@@ -162,7 +155,7 @@
   height: 90%;
   border-radius: 20px;
   border: 3px solid #152232;
-  box-shadow: -30px 30px 2px #152232;
+  box-shadow: -20px 20px 0px #152232;
 }
 
 .rightTitle {

@@ -1,26 +1,28 @@
 import styles from "../styles/Lobby.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  faUser,
-  faArrowRight,
-  faArrowLeft,
-} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { addProject } from "../reducers/project";
+import Button from "../components/Button";
 
 function Lobby() {
   const project = useSelector((state) => state.project.value);
+
   //user reducer
   const user = useSelector((state) => state.user.value);
+  console.log(user);
   //hook for user's projects
   const [dataProjects, setDataProjects] = useState([]);
+
   const [selectProject, setSelectProject] = useState({});
+  const [freelanceProject, setFreelanceProject] = useState(null);
+  const [switcher, setSwitcher] = useState(true);
   const dispatch = useDispatch();
+  console.log("filter", freelanceProject);
 
   // useEffect allowing to connect to the backend to retrieve the projects related to the person connected to the component loading
   useEffect(() => {
+    console.log("yo");
     fetch(`http://localhost:3000/projects/token/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
@@ -31,6 +33,18 @@ function Lobby() {
           setSelectProject({ name: "", description: "" });
         }
       });
+    let userId;
+    fetch(`http://localhost:3000/users/userData/${user.token}`)
+      .then((response) => response.json())
+      .then((data) => {
+        userId = data.userData[0]._id;
+        fetch(`http://localhost:3000/projects/freelanceProjects/${userId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            setFreelanceProject(data.freelanceProjects);
+          });
+      });
   }, []);
 
   //To upload to the store and find the project in the project dashboard page
@@ -38,28 +52,42 @@ function Lobby() {
     console.log(project);
     dispatch(addProject(project));
   };
-
-  const projectData = dataProjects.map((data, i) => {
-    return (
-      <button
-        key={i}
-        onClick={() => showProject(data._id)}
-        className={styles.projectButton}
-      >
-        {data.name}
-      </button>
-    );
-  });
+  let projectData;
+  if (switcher) {
+    projectData = dataProjects.map((data, i) => {
+      return (
+        <div className={styles.projectButtonContainer}>
+          <button
+            key={i}
+            onClick={() => showProject(data._id)}
+            className={styles.projectButton}
+          >
+            {data.name}
+          </button>
+        </div>
+      );
+    });
+  } else {
+    projectData = freelanceProject.map((data, i) => {
+      return (
+        <div className={styles.projectButtonContainer}>
+          <button
+            key={i}
+            onClick={() => showProject(data._id)}
+            className={styles.projectButton}
+          >
+            {data.name}
+          </button>
+        </div>
+      );
+    });
+  }
 
   function showProject(idProject) {
     setSelectProject(
       dataProjects[dataProjects.findIndex((data) => data._id === idProject)]
     );
   }
-
-  // if (!selectProject.name) {
-  //   setSelectProject({ name: "", description: "" });
-  // }
 
   return (
     <div className={styles.container}>
@@ -69,14 +97,32 @@ function Lobby() {
             <h2 className={styles.titleBody}>
               Your <span className={styles.span}>Projects</span>
             </h2>
-            <div className={styles.midLeft}>
-              <div>
-                <FontAwesomeIcon className={styles.arrow} icon={faArrowLeft} />
-              </div>
-              <div className={styles.projectList}>{projectData}</div>
-              <div>
-                <FontAwesomeIcon className={styles.arrow} icon={faArrowRight} />
-              </div>
+
+            <div className={styles.projectList}>{projectData}</div>
+            <div className={styles.switch}>
+              {" "}
+              <a onClick={() => setSwitcher(true)}>
+                <Button
+                  text="Project Manager"
+                  backgroundColor="#87c0cd"
+                  borderColor="#87c0cd"
+                  textColor="#152232"
+                  backgroundColorHover="#white"
+                  borderColorHover="#white"
+                  textColorHover="white"
+                />
+              </a>
+              <a onClick={() => setSwitcher(false)}>
+                <Button
+                  text="Freelancer"
+                  backgroundColor="#87c0cd"
+                  borderColor="#87c0cd"
+                  textColor="#152232"
+                  backgroundColorHover="#white"
+                  borderColorHover="#white"
+                  textColorHover="white"
+                />
+              </a>{" "}
             </div>
           </div>
           <div className={styles.botList}>

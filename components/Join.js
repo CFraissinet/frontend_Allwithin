@@ -17,7 +17,9 @@ function Join() {
   const [selectProject, setSelectProject] = useState({});
   const [filterOffer, setFilterOffer] = useState([]);
   const [filterLocation, setFilterLocation] = useState([]);
-  const [filterFusion, setFilterFusion] = useState([]);
+  const [counterJob, setCounterJob] = useState(0);
+  const [counterLocation, setCounterLocation] = useState(0);
+  const [selectedOptions, setSelectedOptions] = React.useState([]);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
@@ -103,6 +105,10 @@ function Join() {
 
   let filter = [];
   const handleOnChangeSelectJob = (value) => {
+    if (value.length > 5) {
+      return;
+    }
+    setCounterJob(value.length);
     if (value.length === 0) {
       setFilterOffer(offers);
     }
@@ -122,6 +128,10 @@ function Join() {
   };
 
   const handleOnChangeSelectLocation = (value) => {
+    if (value.length > 5) {
+      return;
+    }
+    setCounterLocation(value.length);
     console.log(value);
     if (value.length === 0) {
       setFilterLocation(offers);
@@ -153,7 +163,6 @@ function Join() {
           <div className={styles.selectBox}>
             <div className={styles.filterTxtContainer}>
               <span className={styles.subTxt}>Job post filter</span>
-              <span className={styles.subTxt}>0/5</span>
             </div>
             <Select
               isMulti
@@ -167,7 +176,6 @@ function Join() {
           <div className={styles.selectBox}>
             <div className={styles.filterTxtContainer}>
               <span className={styles.subTxt}>Location filter</span>
-              <span className={styles.subTxt}>0/5</span>
             </div>
             <Select
               isMulti
