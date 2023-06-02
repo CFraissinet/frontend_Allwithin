@@ -42,9 +42,13 @@ function SignIn() {
       .then((data) => {
         console.log("DATA", data);
         if (data.result) {
-          dispatch(login({ token: data.token, avatar: data.avatar }));
-          Cookies.set("token", data.token);
-          location.href = "/lobby";
+          fetch(`http://localhost:3000/projects/token/${user.token}`)
+            .then((response) => response.json())
+            .then((dataUser) => {
+              dispatch(login({ token: data.token, avatar: dataUser.avatar }));
+              Cookies.set("token", data.token);
+              location.href = "/lobby";
+            });
         } else {
           setError(`${data.error}`);
           setEmail("");
