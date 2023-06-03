@@ -34,14 +34,16 @@ function Lobby() {
         }
       });
     let userId;
+
     fetch(`http://localhost:3000/users/userData/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
-        userId = data._id;
+        userId = data.userData._id;
+
         fetch(`http://localhost:3000/projects/freelanceProjects/${userId}`)
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
+            console.log("hey", data);
             setFreelanceProject(data.freelanceProjects);
           });
       });
@@ -67,6 +69,12 @@ function Lobby() {
         </div>
       );
     });
+
+    function showProject(idProject) {
+      setSelectProject(
+        dataProjects[dataProjects.findIndex((data) => data._id === idProject)]
+      );
+    }
   } else {
     projectData = freelanceProject.map((data, i) => {
       return (
@@ -81,12 +89,14 @@ function Lobby() {
         </div>
       );
     });
-  }
 
-  function showProject(idProject) {
-    setSelectProject(
-      dataProjects[dataProjects.findIndex((data) => data._id === idProject)]
-    );
+    function showProject(idProject) {
+      setSelectProject(
+        freelanceProject[
+          freelanceProject.findIndex((data) => data._id === idProject)
+        ]
+      );
+    }
   }
 
   return (
