@@ -37,7 +37,7 @@ function Lobby() {
     fetch(`http://localhost:3000/users/userData/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
-        userId = data.userData[0]._id;
+        userId = data._id;
         fetch(`http://localhost:3000/projects/freelanceProjects/${userId}`)
           .then((response) => response.json())
           .then((data) => {

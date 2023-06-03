@@ -18,6 +18,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 function Profile() {
   const user = useSelector((state) => state.user.value);
+  console.log("token", user.token);
   const inputCVRef = useRef(null);
   const inputPhotoRef = useRef(null);
 

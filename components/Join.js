@@ -29,7 +29,7 @@ function Join() {
     fetch(`http://localhost:3000/users/userData/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
-        setUserId(data.userData[0]._id);
+        setUserId(data._id);
       });
 
     fetch(`http://localhost:3000/offers/allOffers`)
@@ -88,10 +88,7 @@ function Join() {
     if (value.length > 5) {
       return;
     }
-    setCounterJob(value.length);
-    if (value.length === 0) {
-      setFilterOffer(offers);
-    }
+
     for (const obj of value) {
       let hold = offers.filter(
         (element) => element.offers.job.label === obj.label
@@ -111,11 +108,7 @@ function Join() {
     if (value.length > 5) {
       return;
     }
-    setCounterLocation(value.length);
-    console.log(value);
-    if (value.length === 0) {
-      setFilterLocation(offers);
-    }
+
     for (const obj of value) {
       let hold = offers.filter(
         (element) => element.project.location.name === obj.label

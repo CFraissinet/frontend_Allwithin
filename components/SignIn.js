@@ -47,7 +47,10 @@ function SignIn() {
             .then((dataUser) => {
               console.log(dataUser);
               dispatch(
-                login({ token: data.token, avatar: dataUser.userData[0].photo })
+                login({
+                  token: dataUser.userData.token,
+                  avatar: dataUser.userData.photo,
+                })
               );
 
               Cookies.set("token", data.token);
