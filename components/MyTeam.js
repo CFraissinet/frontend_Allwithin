@@ -26,6 +26,8 @@ function MyTeam() {
           });
       }, []);
 
+      console.log(crew)
+
 return (
     <div className={styles.container}>
         <div>
@@ -33,13 +35,26 @@ return (
         </div>
         <div className={styles.cardLead}>
             <b>Lead project</b>
-            <img src={leadder.photo} alt="Photo" />
+            <img className={styles.photoChef} src={leadder.photo} alt="Photo" />
                 {leadder.firstname} {leadder.name}
-                <div className={styles.containerContact}>
-                    {leadder.linkedin}
-                    {leadder.email}
-                    {leadder.phone}
-                </div>
+                    <a href={leadder.linkedin}>                  
+                    <img
+                    className={styles.linkedin}
+                    src="/images/linkedin.png"
+                    alt="GitHub"
+                  />
+                    </a>
+                    <a href="mailto:{leadder.email}">
+                    <FontAwesomeIcon
+                    className={styles.email}
+                    color="black"
+                    icon={faEnvelope}
+                    alt="E-Mail"
+                  />
+                    </a>
+                    <a href="tel: `${leadder.phone}`">
+                    <FontAwesomeIcon className={styles.phone} icon={faPhone} />
+                    </a>
         </div>
         <b> Crew project</b>
         <div className={styles.containerCrew}>
@@ -50,9 +65,12 @@ return (
                     key={i}
                 >
                 <img className={styles.photo} src={data.photo} />
+                <div className={styles.nameJob}>
                 <b className={styles.name}>
                   {data.firstname} {data.name}
                 </b>
+                <b>{data.job.name}</b>
+                </div>
                 <a href={data.github}>
                   <img
                     className={styles.contactGitHub}

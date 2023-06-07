@@ -26,8 +26,8 @@
 .cardCrew {
     border: #152232 2px solid;
     background-color: white;
-    height: 50%;
-    width: 50%;
+    height: 115px;
+    width: 550px;
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -91,4 +91,16 @@
 
 .projectName {
     color: black;
+}
+
+.photoChef {
+    border-radius: 50%;
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+}
+
+.nameJob {
+    display: flex;
+    flex-direction: column;
 }
