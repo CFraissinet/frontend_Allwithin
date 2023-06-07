@@ -15,17 +15,6 @@ function DashboardModal(props) {
   
   console.log(props)
 
-  // useEffect(() => {
-  //   const idOffers = props.data._id;
-  //   fetch(`http://localhost:3000/offers/project/${idOffers}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setContainerPost(data);
-  //       console.log("fetch", data);
-  //     });
-  // }, []);
-
-
   const handleRefuseClick = (id, users) => {
     fetch("http://localhost:3000/offers/confirm", {
       method: "PUT",

@@ -6,9 +6,6 @@ import { login } from "../reducers/user";
 import { useSelector } from "react-redux";
 
 export default async function middleware(request) {
-  // const user = useSelector((state) => state.user.value);
-  // const user = await localStorage.getItem("persist:allwithin");
-  // const user = request.cookies.get("token")?.value;
   const verify = request.cookies["token"];
   console.log("user", verify);
   // let verify = user.token;

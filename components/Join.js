@@ -262,39 +262,6 @@ function Join() {
                 </div>,
               ]
             : [<h1>Select a project</h1>]}
-
-          {/* {user.token
-            ? [
-                <a
-                  className={styles.applyBtn}
-                  onClick={() => handleApplyBtn(selectProject)}
-                >
-                  <Button
-                    text="Apply"
-                    backgroundColor="#87c0cd"
-                    borderColor="#87c0cd"
-                    textColor="#152232"
-                    backgroundColorHover="#87c0cd"
-                    borderColorHover="#87c0cd"
-                    textColorHover="white"
-                  />
-                </a>,
-              ]
-            : [
-                <Link href="/signIn">
-                  <div className={styles.applyBtn}>
-                    <Button
-                      text="Sign in to apply"
-                      backgroundColor="#87c0cd"
-                      borderColor="#87c0cd"
-                      textColor="#152232"
-                      backgroundColorHover="#87c0cd"
-                      borderColorHover="#87c0cd"
-                      textColorHover="white"
-                    />
-                  </div>
-                </Link>,
-              ]} */}
         </div>
       </div>
     </div>
