@@ -19,7 +19,7 @@ function Offers() {
   const project = useSelector((state) => state.project.value);
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/jobs")
+    fetch("https://backend-allwithin.vercel.app/users/jobs")
       .then((response) => response.json())
       .then((data) => {
         let formattedData = data.jobs.map((job) => {
@@ -54,14 +54,13 @@ function Offers() {
         project: project[0],
       };
 
-      fetch("http://localhost:3000/offers/newOffer", {
+      fetch("https://backend-allwithin.vercel.app/offers/newOffer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataPush),
       })
         .then((response) => response.json())
-        .then((data) => {
-        });
+        .then((data) => {});
     });
   };
 
@@ -129,7 +128,7 @@ function JobCard({ id, isFirst, removeJobCard, addJobToParent }) {
   const [jobData, setJobData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/jobs")
+    fetch("https://backend-allwithin.vercel.app/users/jobs")
       .then((response) => response.json())
       .then((data) => {
         let formattedData = data.jobs.map((job) => {

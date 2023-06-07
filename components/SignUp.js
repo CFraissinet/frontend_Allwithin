@@ -98,7 +98,7 @@ function Signup() {
   );
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/jobs")
+    fetch("https://backend-allwithin.vercel.app/users/jobs")
       .then((response) => response.json())
       .then((data) => {
         setJobData(data.jobs);
@@ -186,7 +186,7 @@ function Signup() {
 
     let token;
     let uploadImg = false;
-    fetch("http://localhost:3000/users/signup", {
+    fetch("https://backend-allwithin.vercel.app/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dataInfo),
@@ -205,7 +205,7 @@ function Signup() {
             const formData = new FormData();
             formData.append("cv", inputCVRef.current.files[0]);
             formData.append("data", JSON.stringify(dataInfo));
-            fetch("http://localhost:3000/users/updateCV", {
+            fetch("https://backend-allwithin.vercel.app/users/updateCV", {
               method: "POST",
               body: formData,
             })
@@ -222,7 +222,7 @@ function Signup() {
             const formData = new FormData();
             formData.append("avatar", inputPhotoRef.current.files[0]);
             formData.append("data", JSON.stringify(dataInfo));
-            fetch("http://localhost:3000/users/updateAvatar", {
+            fetch("https://backend-allwithin.vercel.app/users/updateAvatar", {
               method: "POST",
               body: formData,
             })
@@ -234,7 +234,7 @@ function Signup() {
               });
           }
 
-          fetch("http://localhost:3000/users/jobs", {
+          fetch("https://backend-allwithin.vercel.app/users/jobs", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

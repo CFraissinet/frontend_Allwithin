@@ -26,13 +26,13 @@ function Join() {
   // FETCHING USER'S FULL DATA
   // FETCHING ALL OFFERS FROM DATABASE
   useEffect(() => {
-    fetch(`http://localhost:3000/users/userData/${user.token}`)
+    fetch(`https://backend-allwithin.vercel.app/users/userData/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
         setUserId(data._id);
       });
 
-    fetch(`http://localhost:3000/offers/allOffers`)
+    fetch(`https://backend-allwithin.vercel.app/offers/allOffers`)
       .then((response) => response.json())
       .then((data) => {
         setFilterOffer(data.allOffers);
@@ -40,13 +40,13 @@ function Join() {
         dispatch(stockOffer(data.allOffers));
       });
 
-    fetch(`http://localhost:3000/jobs`)
+    fetch(`https://backend-allwithin.vercel.app/jobs`)
       .then((response) => response.json())
       .then((data) => {
         dispatch(stockJob(data.jobs));
       });
 
-    fetch(`http://localhost:3000/locations/allLocation`)
+    fetch(`https://backend-allwithin.vercel.app/locations/allLocation`)
       .then((response) => response.json())
       .then((data) => {
         dispatch(stockLocation(data.locations));
@@ -54,7 +54,7 @@ function Join() {
   }, []);
 
   const handleApplyBtn = (selectProject) => {
-    fetch("http://localhost:3000/offers/addUserIdOnOffer", {
+    fetch("https://backend-allwithin.vercel.app/offers/addUserIdOnOffer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
