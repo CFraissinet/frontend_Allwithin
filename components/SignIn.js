@@ -13,7 +13,6 @@ function SignIn() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
 
-
   /* Fetch for connect to account and go to /Lobby */
   const clickSignIn = () => {
     const data = {
@@ -29,6 +28,8 @@ function SignIn() {
     const validate = verifEmail.test(email);
     if (!validate) {
       setError("Please enter a valid email");
+      setEmail("");
+      setPassword("");
       return;
     }
 
@@ -88,24 +89,25 @@ function SignIn() {
                 className={styles.inputEmail}
                 type="email"
                 placeholder="Work email address"
+                onClick={() => setError("")}
               />
             </div>
             <div className={styles.passwordInput}>
               <span className={styles.textInput}>Enter your password :</span>
               <input
                 onChange={(e) => setPassword(e.target.value)}
-                // onChange={validate}
                 value={password}
                 className={styles.inputPassword}
                 type="password"
                 placeholder="Password"
+                onClick={() => setError("")}
               />
-              <h2 className={styles.textNoAccount}>
+              {/* <h2 className={styles.textNoAccount}>
                 Forgot your password ?{" "}
                 <Link href="/">
                   <span className={styles.bNoAccount}>CLICK HERE</span>
                 </Link>
-              </h2>
+              </h2> */}
             </div>
             <div className={styles.buttonCo}>
               <button onClick={clickSignIn} className={styles.buttonSignIn}>

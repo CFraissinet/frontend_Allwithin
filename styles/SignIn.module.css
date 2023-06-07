@@ -89,6 +89,12 @@
   font-size: medium;
 }
 
+.bNoAccount:hover {
+  color: #87c0cd;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .bNoPassword {
   color: #87c0cd;
   background-color: red;

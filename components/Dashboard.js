@@ -10,7 +10,7 @@ function Dashboard() {
   const [projectData, setProjectData] = useState([]);
   const dispatch = useDispatch();
   const [modalData, setModalData] = useState(null);
-  const [myTeamData, setMyTeamData] = useState(null)
+  const [myTeamData, setMyTeamData] = useState(null);
 
   useEffect(() => {
     const idProject = project[0]._id;
@@ -21,9 +21,13 @@ function Dashboard() {
       });
   }, []);
 
-  function goMyTeam (data) {
-    location.href = "/myTeam"
-    setMyTeamData(data)
+  function goMyTeam(data) {
+    location.href = "/myTeam";
+    setMyTeamData(data);
+  }
+
+  const handleOfferBtn = (data) => {
+    setModalData(data);
   };
 
   const toolsBtn = (
@@ -31,10 +35,12 @@ function Dashboard() {
       <button className={styles.btnModal}>Chat</button>
       <button className={styles.btnModal}>Drive</button>
       <a href="https://github.com/new">
-      <button className={styles.btnModal}>Github</button>
+        <button className={styles.btnModal}>Github</button>
       </a>
-        <button className={styles.btnModal}>Calendar</button>
-        <button className={styles.btnModal} onClick={goMyTeam}>My team</button>
+      <button className={styles.btnModal}>Calendar</button>
+      <button className={styles.btnModal} onClick={goMyTeam}>
+        My team
+      </button>
     </>
   );
 
@@ -54,7 +60,7 @@ function Dashboard() {
                   <b className={styles.postPending}>Post Pending :</b>
                   {projectData.map((data, i) => (
                     <div
-                      onClick={() => setModalData(data)}
+                      onClick={() => handleOfferBtn(data)}
                       className={styles.post}
                       key={i}
                     >

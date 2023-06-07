@@ -40,6 +40,7 @@ function Signup() {
   const [wrongLinkedin, setWrongLinkedin] = useState("");
   const [wrongNumber, setWrongNumber] = useState("");
   const [userExist, setUserExist] = useState("");
+  const [missingFields, setMissingFields] = useState("");
 
   // SETTING UP MIN & MAX DATE FOR BIRTHDATE (18years old min and 65 years old max)
   let now = Date.now();
@@ -192,6 +193,11 @@ function Signup() {
     })
       .then((response) => response.json())
       .then((data) => {
+        if (!data.result) {
+          setMissingFields(data.error);
+          setLoader(false);
+          return;
+        }
         token = data.user.token;
 
         if (data.result) {
@@ -237,8 +243,7 @@ function Signup() {
             }),
           })
             .then((response) => response.json())
-            .then((data) => {
-            });
+            .then((data) => {});
 
           setLoader(false);
           if (!uploadImg) {
@@ -353,6 +358,7 @@ function Signup() {
             </div>
             {/* INPUT CONTAINER */}
             <div className={styles.inputContainer}>
+              <p className={styles.missingFieldsError}>{missingFields}</p>
               <div className={styles.inputBox}>
                 <h2 className={styles.labelTxt}>Enter your firstname :</h2>
                 <input
@@ -361,7 +367,7 @@ function Signup() {
                   value={firstname}
                   className={styles.input}
                   placeholder="John"
-                  required
+                  onClick={() => setMissingFields("")}
                 ></input>
               </div>
 
@@ -372,7 +378,7 @@ function Signup() {
                   value={name}
                   className={styles.input}
                   placeholder="Doe"
-                  required
+                  onClick={() => setMissingFields("")}
                 ></input>
               </div>
 
@@ -386,7 +392,7 @@ function Signup() {
                   value={email}
                   className={styles.input}
                   placeholder="email@gmail.com"
-                  required
+                  onClick={() => setErrorEmail("")}
                 ></input>
               </div>
 
@@ -400,7 +406,7 @@ function Signup() {
                   value={phone}
                   className={styles.input}
                   placeholder="########"
-                  required
+                  onClick={() => setWrongNumber("")}
                 ></input>
               </div>
 
@@ -416,7 +422,7 @@ function Signup() {
                   value={password}
                   className={styles.input}
                   placeholder="**********"
-                  required
+                  onClick={() => setErrorPassword("")}
                 ></input>
               </div>
 
@@ -476,6 +482,7 @@ function Signup() {
                     value={linkedin}
                     className={styles.inputLinks}
                     placeholder="linkedin.com/in/.../"
+                    onClick={() => setWrongLinkedin("")}
                   ></input>
                 </div>
 
@@ -490,6 +497,7 @@ function Signup() {
                     value={github}
                     className={styles.inputLinks}
                     placeholder="github.com/..."
+                    onClick={() => setWrongGithub("")}
                   ></input>
                 </div>
               </div>

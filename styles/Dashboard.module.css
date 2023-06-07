@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none
+  pointer-events: none;
 }
 
 .btnContainer {
@@ -91,7 +91,7 @@
 
 .txtCard1 {
   font-size: xx-large;
-  pointer-events: none
+  pointer-events: none;
 }
 
 .aDashboard {
@@ -140,7 +140,7 @@
   align-self: flex-start;
   font-weight: bolder;
   margin-left: 5%;
-  pointer-events: none
+  pointer-events: none;
 }
 
 .post {
@@ -153,13 +153,16 @@
   padding: 2%;
   font-weight: 700;
   cursor: pointer;
-
 }
 
 .post:hover {
   background-color: #87c0cd;
   border: solid 3px #152232;
   box-shadow: -5px 5px #152232;
+}
+
+.post:current {
+  background-color: red;
 }
 
 .txtDescription {
@@ -376,4 +379,3 @@
   height: auto;
   color: black;
 }
-

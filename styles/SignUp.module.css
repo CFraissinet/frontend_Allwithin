@@ -106,6 +106,12 @@
   width: 50%;
 }
 
+.missingFieldsError {
+  color: red;
+
+  align-self: center;
+}
+
 .input {
   height: 40px;
   border: 2px solid #152232;
