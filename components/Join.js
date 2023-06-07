@@ -93,7 +93,6 @@ function Join() {
       let hold = offers.filter(
         (element) => element.offers.job.label === obj.label
       );
-      console.log("hold", hold);
       for (const obj of hold) {
         if (filter.some((e) => e._id === obj._id)) {
         } else {
@@ -113,7 +112,6 @@ function Join() {
       let hold = offers.filter(
         (element) => element.project.location.name === obj.label
       );
-      console.log("hold", hold);
       for (const obj of hold) {
         if (filter.some((e) => e._id === obj._id)) {
         } else {
@@ -128,7 +126,6 @@ function Join() {
     return fusion.indexOf(element) !== index;
   });
   unique = unique.filter((e) => e.project.user !== userId);
-  console.log(unique);
 
   //////////////////////
 

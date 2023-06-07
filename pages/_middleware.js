@@ -7,11 +7,8 @@ import { useSelector } from "react-redux";
 
 export default async function middleware(request) {
   const verify = request.cookies["token"];
-  console.log("user", verify);
   // let verify = user.token;
-  console.log("verify", verify);
   let url = request.url;
-  console.log(url);
 
   if (
     !verify &&

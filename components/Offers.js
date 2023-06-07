@@ -48,7 +48,6 @@ function Offers() {
   };
 
   const clickCreatProject = () => {
-    console.log("project", project);
     jobsSelected.map((data) => {
       let dataPush = {
         offers: data,
@@ -62,7 +61,6 @@ function Offers() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
         });
     });
   };

@@ -13,8 +13,6 @@ function DashboardModal(props) {
 
   const [people, setPeople] = useState(props.data.users)
   
-  console.log(props)
-
   const handleRefuseClick = (id, users) => {
     fetch("http://localhost:3000/offers/confirm", {
       method: "PUT",
@@ -46,7 +44,6 @@ function DashboardModal(props) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("modif users",data.users)
         setPeople(data.users);})
       .then(fetch("http://localhost:3000/projects/addCrew", {
           method: "PUT",

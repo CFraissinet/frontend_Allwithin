@@ -13,7 +13,6 @@ function SignIn() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
 
-  console.log(setError);
 
   /* Fetch for connect to account and go to /Lobby */
   const clickSignIn = () => {
@@ -40,12 +39,10 @@ function SignIn() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("DATA", data);
         if (data.result) {
           fetch(`http://localhost:3000/users/userData/${data.token}`)
             .then((response) => response.json())
             .then((dataUser) => {
-              console.log(dataUser);
               dispatch(
                 login({
                   token: dataUser.userData.token,

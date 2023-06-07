@@ -69,7 +69,6 @@ function Signup() {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
-  console.log(user);
 
   const inputCVRef = useRef(null);
   const inputPhotoRef = useRef(null);
@@ -193,12 +192,10 @@ function Signup() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("first", data);
         token = data.user.token;
 
         if (data.result) {
           if (inputCVRef.current.files[0]) {
-            console.log("have cv");
             const formData = new FormData();
             formData.append("cv", inputCVRef.current.files[0]);
             formData.append("data", JSON.stringify(dataInfo));
@@ -208,7 +205,6 @@ function Signup() {
             })
               .then((res) => res.json())
               .then((data) => {
-                console.log("cv log", data);
                 dispatch(login({ token: token, avatar: data.avatar }));
                 Cookies.set("token", token);
               });
@@ -217,7 +213,6 @@ function Signup() {
           if (inputPhotoRef.current.files[0]) {
             // setUploadImg(true);
             uploadImg = true;
-            console.log("have avatar");
             const formData = new FormData();
             formData.append("avatar", inputPhotoRef.current.files[0]);
             formData.append("data", JSON.stringify(dataInfo));
@@ -227,7 +222,6 @@ function Signup() {
             })
               .then((res) => res.json())
               .then((data) => {
-                console.log("avatar log", data);
                 dispatch(login({ token: token, avatar: data.avatar }));
                 Cookies.set("token", token);
                 location.href = "./lobby";
@@ -244,7 +238,6 @@ function Signup() {
           })
             .then((response) => response.json())
             .then((data) => {
-              console.log("JOB SENT", data);
             });
 
           setLoader(false);
@@ -253,11 +246,9 @@ function Signup() {
             Cookies.set("token", token);
             location.href = "./lobby";
           }
-          console.log("go to lobby", data);
         } else {
           setLoader(false);
           setConfirmError("");
-          console.log(data.error);
           setUserExist(data.error);
         }
       });

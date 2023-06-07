@@ -10,7 +10,6 @@ function Lobby() {
 
   //user reducer
   const user = useSelector((state) => state.user.value);
-  console.log(user);
   //hook for user's projects
   const [dataProjects, setDataProjects] = useState([]);
 
@@ -18,11 +17,9 @@ function Lobby() {
   const [freelanceProject, setFreelanceProject] = useState(null);
   const [switcher, setSwitcher] = useState(true);
   const dispatch = useDispatch();
-  console.log("filter", freelanceProject);
 
   // useEffect allowing to connect to the backend to retrieve the projects related to the person connected to the component loading
   useEffect(() => {
-    console.log("yo");
     fetch(`http://localhost:3000/projects/token/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
@@ -43,7 +40,6 @@ function Lobby() {
         fetch(`http://localhost:3000/projects/freelanceProjects/${userId}`)
           .then((response) => response.json())
           .then((data) => {
-            console.log("hey", data);
             setFreelanceProject(data.freelanceProjects);
           });
       });
@@ -51,7 +47,6 @@ function Lobby() {
 
   //To upload to the store and find the project in the project dashboard page
   const sendProjectDasboard = (project) => {
-    console.log(project);
     dispatch(addProject(project));
   };
   let projectData;

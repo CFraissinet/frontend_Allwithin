@@ -18,7 +18,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 function Profile() {
   const user = useSelector((state) => state.user.value);
-  console.log("token", user.token);
   const inputCVRef = useRef(null);
   const inputPhotoRef = useRef(null);
 
@@ -50,7 +49,6 @@ function Profile() {
 
   function openModal() {
     setIsOpen(true);
-    console.log(modalIsOpen);
   }
 
   function closeModal() {
@@ -105,7 +103,6 @@ function Profile() {
         const data = await response.json();
         if (data.result) {
           if (inputCVRef.current.files[0]) {
-            console.log("have cv");
             const formData = new FormData();
             formData.append("cv", inputCVRef.current.files[0]);
             const cvResponse = await fetch(
@@ -116,11 +113,9 @@ function Profile() {
               }
             );
             const cvData = await cvResponse.json();
-            console.log("cv log", cvData);
           }
 
           if (inputPhotoRef.current.files[0]) {
-            console.log("have avatar");
             const formData = new FormData();
             formData.append("avatar", inputPhotoRef.current.files[0]);
             const avatarResponse = await fetch(
@@ -131,7 +126,6 @@ function Profile() {
               }
             );
             const avatarData = await avatarResponse.json();
-            console.log("avatar log", avatarData);
           }
         }
       } catch (error) {
@@ -220,7 +214,6 @@ function Profile() {
     }
   };
 
-  console.log(experiencesTxt);
   return (
     <div className={styles.mainContainer}>
       {/* HEADER */}

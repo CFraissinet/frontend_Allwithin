@@ -16,8 +16,6 @@ function MyTeam() {
     const [crew, setCrew] = useState([])
     const [leadder, setLeadder] = useState([])
 
-    console.log("project", project)
-
     useEffect(() => {
         const projectId = project[0]._id
         fetch(`http://localhost:3000/projects/crewProject/${projectId}`)
@@ -27,9 +25,6 @@ function MyTeam() {
             setLeadder(data.user)
           });
       }, []);
-
-    console.log("crew", crew)
-    console.log("leadder", leadder)
 
 return (
     <div className={styles.container}>

@@ -12,7 +12,6 @@ function NavBar() {
   const user = useSelector((state) => state.user.value);
   const [avatar, setAvatar] = useState("");
   const dispatch = useDispatch();
-  console.log("TOKEN FROM USER NAV", user.token);
 
 
   useEffect(() => {
