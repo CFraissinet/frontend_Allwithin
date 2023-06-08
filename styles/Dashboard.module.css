@@ -161,9 +161,7 @@
   box-shadow: -5px 5px #152232;
 }
 
-.post:current {
-  background-color: red;
-}
+
 
 .txtDescription {
   font-size: x-large;
