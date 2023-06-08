@@ -122,6 +122,7 @@ function Profile() {
             formData.append("avatar", inputPhotoRef.current.files[0]);
             const avatarResponse = await fetch(
               "https://backend-allwithin.vercel.app/users/updateAvatar",
+
               {
                 method: "POST",
                 body: formData,
