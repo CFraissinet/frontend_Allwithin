@@ -205,7 +205,7 @@ function Signup() {
             const formData = new FormData();
             formData.append("cv", inputCVRef.current.files[0]);
             formData.append("data", JSON.stringify(dataInfo));
-            fetch("https://backend-allwithin.vercel.app/users/updateCV", {
+            fetch("http://localhost:3000/users/updateCV", {
               method: "POST",
               body: formData,
             })
@@ -222,7 +222,7 @@ function Signup() {
             const formData = new FormData();
             formData.append("avatar", inputPhotoRef.current.files[0]);
             formData.append("data", JSON.stringify(dataInfo));
-            fetch("https://backend-allwithin.vercel.app/users/updateAvatar", {
+            fetch("http://localhost:3000/users/updateAvatar", {
               method: "POST",
               body: formData,
             })
