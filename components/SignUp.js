@@ -98,7 +98,7 @@ function Signup() {
   );
 
   useEffect(() => {
-    fetch("https://backend-allwithin.vercel.app/users/jobs")
+    fetch("https://backend-allwithin-xi.vercel.app/users/jobs")
       .then((response) => response.json())
       .then((data) => {
         setJobData(data.jobs);
@@ -186,7 +186,7 @@ function Signup() {
 
     let token;
     let uploadImg = false;
-    fetch("https://backend-allwithin.vercel.app/users/signup", {
+    fetch("https://backend-allwithin-xi.vercel.app/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dataInfo),
@@ -205,7 +205,7 @@ function Signup() {
             const formData = new FormData();
             formData.append("cv", inputCVRef.current.files[0]);
             formData.append("data", JSON.stringify(dataInfo));
-            fetch("https://backend-allwithin.vercel.app/users/updateCV", {
+            fetch("https://backend-allwithin-xi.vercel.app/users/updateCV", {
               method: "POST",
               body: formData,
             })
@@ -222,10 +222,13 @@ function Signup() {
             const formData = new FormData();
             formData.append("avatar", inputPhotoRef.current.files[0]);
             formData.append("data", JSON.stringify(dataInfo));
-            fetch("http://localhost:3000/users/updateAvatar", {
-              method: "POST",
-              body: formData,
-            })
+            fetch(
+              "https://backend-allwithin-xi.vercel.app/users/updateAvatar",
+              {
+                method: "POST",
+                body: formData,
+              }
+            )
               .then((res) => res.json())
               .then((data) => {
                 dispatch(login({ token: token, avatar: data.avatar }));
@@ -234,7 +237,7 @@ function Signup() {
               });
           }
 
-          fetch("https://backend-allwithin.vercel.app/users/jobs", {
+          fetch("https://backend-allwithin-xi.vercel.app/users/jobs", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
