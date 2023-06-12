@@ -20,9 +20,7 @@ function Lobby() {
 
   // useEffect allowing to connect to the backend to retrieve the projects related to the person connected to the component loading
   useEffect(() => {
-    fetch(
-      `https://backend-allwithin-xi.vercel.app/projects/token/${user.token}`
-    )
+    fetch(`https://backend-allwithin.vercel.app/projects/token/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
         setDataProjects(data.projects);
@@ -34,15 +32,13 @@ function Lobby() {
       });
     let userId;
 
-    fetch(
-      `https://backend-allwithin-xi.vercel.app/users/userData/${user.token}`
-    )
+    fetch(`https://backend-allwithin.vercel.app/users/userData/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
         userId = data.userData._id;
 
         fetch(
-          `https://backend-allwithin-xi.vercel.app/projects/freelanceProjects/${userId}`
+          `https://backend-allwithin.vercel.app/projects/freelanceProjects/${userId}`
         )
           .then((response) => response.json())
           .then((data) => {
