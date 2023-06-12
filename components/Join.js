@@ -109,7 +109,7 @@ function Join() {
 
   const handleOnChangeSelectLocation = (value) => {
     if (value.length === 0) {
-      setFilterOffer(offers);
+      setFilterLocation(offers);
     }
     if (value.length > 5) {
       return;
